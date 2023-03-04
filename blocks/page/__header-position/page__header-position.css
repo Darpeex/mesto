@@ -1,0 +1,15 @@
+.page__header-position {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+
+/* @media screen and (max-width: 1279px) {
+  .page__header-position {
+    padding-bottom: 48px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .page__header-position {
+    padding-top: 16px;
+  }
+} */

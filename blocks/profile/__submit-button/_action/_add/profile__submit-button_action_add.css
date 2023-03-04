@@ -1,0 +1,8 @@
+.profile__submit-button_action_add {
+  background: url(../../../../../images/plus.svg) no-repeat;
+  background-position: 50%;
+  box-sizing: border-box;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #fff;
+}

@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+  max-width: 880px;
+  align-items: center;
+  justify-content: space-between;
+}
