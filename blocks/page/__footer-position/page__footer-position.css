@@ -3,13 +3,13 @@
   padding-bottom: 60px;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 849px) {
   .page__footer-position {
-    margin-top: 88px;
+    padding-bottom: 50px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 599px) {
   .page__footer-position {
-    margin-top: 64px;
+    padding-bottom: 36px;
   }
 }

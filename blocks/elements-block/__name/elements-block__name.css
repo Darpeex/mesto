@@ -1,9 +1,34 @@
 .elements-block__name {
   margin: 0;
-
   color: black;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
-  line-height: 29px;
+  line-height: calc(29 / 24);
+
+  max-width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 599px) {
+  .elements-block__name {
+    max-width: 450px;
+  }
+}
+@media screen and (max-width: 399px) {
+  .elements-block__name {
+    max-width: 250px;
+  }
+}
+@media screen and (max-width: 369px) {
+  .elements-block__name {
+    max-width: 220px;
+  }
+}
+@media screen and (max-width: 349px) {
+  .elements-block__name {
+    max-width: 215px;
+  }
 }

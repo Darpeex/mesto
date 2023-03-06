@@ -1,7 +1,17 @@
 .profile__info_edit-button {
-  /* background: url(../../../../images/edit-button.svg) no-repeat;
-  width: 24px;
-  height: 24px; */
   margin: 0;
   margin-left: 18px;
+}
+
+.profile__info_edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info_edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
 }

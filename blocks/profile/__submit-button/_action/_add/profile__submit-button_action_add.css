@@ -6,3 +6,14 @@
   height: 50px;
   border: 1px solid #fff;
 }
+
+.profile__submit-button_action_add:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__submit-button_action_add {
+    width: 100%;
+  }
+}

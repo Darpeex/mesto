@@ -3,3 +3,10 @@
   flex-direction: column;
   justify-content: center;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__info-text {
+    text-align: center;
+    padding-bottom: 36px;
+  }
+}
