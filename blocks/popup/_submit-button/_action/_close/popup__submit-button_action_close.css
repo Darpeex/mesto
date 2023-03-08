@@ -1,0 +1,25 @@
+.popup__submit-button_action_close {
+  background: url(../../../../../images/close-button.svg) no-repeat;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: calc(-32px + -8px);
+  right: calc(-32px + -8px);
+}
+
+.popup__submit-button_action_close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 599px) {
+  .popup__submit-button_action_close {
+    background: url(../../../../../images/close-button-m.svg) no-repeat;
+    width: 20px;
+    height: 20px;
+    top: calc(-20px + -14.5px); /* не - 16px,как по макету - мне кажется, так чуть аккуратнее, но, если необходимо соблюсти 1:1 - исправлю */
+    right: 0;
+  }
+}

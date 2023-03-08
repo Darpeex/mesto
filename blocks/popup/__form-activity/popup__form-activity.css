@@ -1,0 +1,19 @@
+.popup__form-activity {
+  margin: 0;
+  color: #000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(17 /14);
+
+  padding-bottom: 9px;
+  margin-bottom: 48px;
+  width: 100%;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.2);
+}
+
+@media screen and (max-width: 599px) {
+  .popup__form-activity {
+    margin-bottom: 45px;
+  }
+}

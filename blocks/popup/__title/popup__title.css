@@ -1,0 +1,20 @@
+.popup__title {
+  margin: 0;
+  color: #000;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: calc(29 / 24);
+  padding-bottom: 47px; 
+  /* !52px - Судя по отступам и pixel perfect'у некорректно указана высота title,
+  соответсвтвенно и расстояние междуэлементами, если я правильно понял, по PP подогнать пришлось */
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 599px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: calc(22 / 18);
+    padding-bottom: 75px; 
+  }
+}
