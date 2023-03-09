@@ -20,6 +20,8 @@ const openPopup = function () {
 // Закрыть попап
 const closePopup = function () {
   popupElement.classList.remove('popup_opened');
+  nameInput.value = getName.textContent;
+  jobInput.value = getJob.textContent;
 };
 
 // Отправляем форму с изменениями в профиле
