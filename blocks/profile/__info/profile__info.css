@@ -1,5 +1,6 @@
 .profile__info {
   display: flex;
+  align-items: center;
   min-height: 73px;
   min-width: 336px;
 } 

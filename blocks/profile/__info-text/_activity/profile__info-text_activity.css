@@ -1,8 +1,11 @@
 .profile__info-text_activity {
-  margin: 0;
+  margin: 16px 0 0 0;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+  grid-area: activity;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   line-height: calc(22 / 18);
 }
 

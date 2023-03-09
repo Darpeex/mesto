@@ -49,6 +49,5 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_submit-button/_action/_save/popup__submit-button_action_save.css);
 @import url(../blocks/popup/_submit-button/_action/_close/popup__submit-button_action_close.css);
-@import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-name/popup__form-name.css);
 @import url(../blocks/popup/__form-activity/popup__form-activity.css);

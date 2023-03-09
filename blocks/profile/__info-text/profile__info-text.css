@@ -1,7 +1,11 @@
 .profile__info-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-areas:
+        "name editButton"
+        "activity .";
+  grid-template-columns: 1fr min-content;
+  column-gap: 18px;
+  align-items: baseline;
 }
 
 @media screen and (max-width: 767px) {
