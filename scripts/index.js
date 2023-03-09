@@ -6,7 +6,7 @@ const popupSaveButton = popupElement.querySelector('.popup__submit-button_action
 const getName = document.querySelector ('.profile__info-text_name');
 const getJob = document.querySelector('.profile__info-text_activity');
 const formElement = document.querySelector('.popup__container');
-// Находим поля формы в DOM
+// Находим поля формы
 let nameInput = formElement.querySelector('.popup__form-name');
 let jobInput = formElement.querySelector('.popup__form-activity');
 
@@ -22,14 +22,26 @@ const closePopup = function () {
   popupElement.classList.remove('popup_opened');
 };
 
-// 
+// Отправляем форму с изменениями в профиле
 function handleFormSubmit (evt) {
     evt.preventDefault();
     getName.textContent = `${nameInput.value}`;
     getJob.textContent = `${jobInput.value}`;
     closePopup ();
-}
+};
 
 popupEditButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
+
+// Закрыть попап на кнопку Esc
+popupEditButton.addEventListener('keydown', function(esc) {
+  if (esc.key === 'Escape') {
+    closePopup()
+  }
+});
+popupElement.addEventListener('keydown', function(esc) {
+  if (esc.key === 'Escape') {
+    closePopup()
+  }
+});
