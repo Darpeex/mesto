@@ -1,4 +1,4 @@
-.profile__info-text_activity {
+.profile__activity {
   margin: 16px 0 0 0;
   font-style: normal;
   font-weight: 400;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__info-text_activity {
+  .profile__activity {
     font-size: 14px;
     margin-top: 14px;
     line-height: calc(17 / 14);

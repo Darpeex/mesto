@@ -1,26 +1,25 @@
-.profile__submit-button_action_add {
+.profile__button_action_add {
   background: url(../../../../../images/plus.svg) no-repeat;
   background-position: 50%;
   box-sizing: border-box;
   width: 150px;
   height: 50px;
-  border: none;
   border: 1px solid #fff;
 }
 
-.profile__submit-button_action_add:hover {
+.profile__button_action_add:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__submit-button_action_add {
+  .profile__button_action_add {
     max-width: 225px;
     width: 100%;
   }
 }
 @media screen and (max-width: 599px) {
-  .profile__submit-button_action_add {
+  .profile__button_action_add {
     max-width: 100%;
   }
 }

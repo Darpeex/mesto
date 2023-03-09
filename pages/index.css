@@ -23,11 +23,12 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
-@import url(../blocks/profile/__info-text/profile__info-text.css);
-@import url(../blocks/profile/__info-text/_name/profile__info-text_name.css);
-@import url(../blocks/profile/__info-text/_activity/profile__info-text_activity.css);
-@import url(../blocks/profile/__info/_edit-button/profile__info_edit-button.css);
-@import url(../blocks/profile/__submit-button/_action/_add/profile__submit-button_action_add.css);
+@import url(../blocks/profile/__content/profile__content.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__activity/profile__activity.css);
+@import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/__button/_action/_edit/profile__button_action_edit.css);
+@import url(../blocks/profile/__button/_action/_add/profile__button_action_add.css);
 
 /* elements */
 @import url(../blocks/elements/element.css);

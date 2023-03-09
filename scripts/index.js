@@ -1,10 +1,10 @@
 // Делаем выборку DOM элементов
 const popupElement = document.querySelector('.popup');
-const popupEditButton = document.querySelector('.profile__info_edit-button');
+const popupEditButton = document.querySelector('.profile__button_action_edit');
 const popupCloseButton = popupElement.querySelector('.popup__button_action_close');
 const popupSaveButton = popupElement.querySelector('.popup__button_action_save');
-const getName = document.querySelector ('.profile__info-text_name');
-const getJob = document.querySelector('.profile__info-text_activity');
+const getName = document.querySelector ('.profile__name');
+const getJob = document.querySelector('.profile__activity');
 const formElement = document.querySelector('.popup__container');
 // Находим поля формы
 let nameInput = formElement.querySelector('.popup__form-name');
