@@ -20,9 +20,6 @@ const openPopup = function () {
 // Закрыть попап
 const closePopup = function () {
   popupElement.classList.remove('popup_opened');
-  nameInput.value = getName.textContent;
-  jobInput.value = getJob.textContent;
-  //заметил левый submit - временно исправил так (т.к. уже отправил вам с:)
 };
 
 // Отправляем форму с изменениями в профиле
