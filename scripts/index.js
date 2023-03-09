@@ -1,8 +1,8 @@
 // Делаем выборку DOM элементов
 const popupElement = document.querySelector('.popup');
 const popupEditButton = document.querySelector('.profile__info_edit-button');
-const popupCloseButton = popupElement.querySelector('.popup__submit-button_action_close');
-const popupSaveButton = popupElement.querySelector('.popup__submit-button_action_save');
+const popupCloseButton = popupElement.querySelector('.popup__button_action_close');
+const popupSaveButton = popupElement.querySelector('.popup__button_action_save');
 const getName = document.querySelector ('.profile__info-text_name');
 const getJob = document.querySelector('.profile__info-text_activity');
 const formElement = document.querySelector('.popup__container');
