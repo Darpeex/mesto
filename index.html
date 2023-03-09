@@ -23,13 +23,13 @@
       <section class="profile page__profile-position section">
         <div class="profile__info">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
-          <div class="profile__info-text">
-            <h1 class="profile__info-text_name">Жак-Ив&nbsp;Кусто</h1>
-            <button class="profile__info_edit-button"></button>
-            <h2 class="profile__info-text_activity">Исследователь&nbsp;океана</h2>
+          <div class="profile__info-text"> <!--profile__content-->
+            <h1 class="profile__info-text_name">Жак-Ив&nbsp;Кусто</h1> <!--profile__content-name-->
+            <h2 class="profile__info-text_activity">Исследователь&nbsp;океана</h2> <!--profile__content-activity-->
+            <button class="profile__info_edit-button"></button> <!--profile__content-button_action_edit-->
           </div>
         </div>
-        <button class="profile__submit-button_action_add"></button>
+        <button class="profile__submit-button_action_add"></button> <!--profile__button_action_add-->
       </section>
 
 <!-- Секция, блок elements -->
@@ -91,8 +91,8 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <input name="userName" value="" class="popup__form-name" type="text" placeholder="Имя" maxlength="20" required autofocus>
         <input name="userAbout" value="" class="popup__form-activity" type="text" placeholder="О себе" maxlength="40" required>
-        <button class="popup__submit-button_action_close"></button>
-        <button class="popup__submit-button_action_save" type="submit">Сохранить</button>
+        <button class="popup__submit-button_action_close"></button> <!--Не может быть просто модификатор-->
+        <button class="popup__submit-button_action_save" type="submit">Сохранить</button> <!--Проверь сверху-->
       </form>
     </section>
   </div>

@@ -12,6 +12,7 @@
 @media screen and (max-width: 767px) {
   .profile__info-text_activity {
     font-size: 14px;
+    margin-top: 14px;
     line-height: calc(17 / 14);
   }
 }

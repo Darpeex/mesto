@@ -15,6 +15,12 @@
 
 @media screen and (max-width: 767px) {
   .profile__submit-button_action_add {
+    max-width: 225px;
     width: 100%;
+  }
+}
+@media screen and (max-width: 599px) {
+  .profile__submit-button_action_add {
+    max-width: 100%;
   }
 }
