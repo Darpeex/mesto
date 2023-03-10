@@ -17,14 +17,9 @@
     max-width: 450px;
   }
 }
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 449px) {
   .elements-block__name {
     max-width: 250px;
-  }
-}
-@media screen and (max-width: 369px) {
-  .elements-block__name {
-    max-width: 220px;
   }
 }
 @media screen and (max-width: 349px) {

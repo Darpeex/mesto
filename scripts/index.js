@@ -33,15 +33,3 @@ function handleFormSubmit (evt) {
 popupEditButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
-
-// Закрыть попап на кнопку Esc
-popupEditButton.addEventListener('keydown', function(esc) {
-  if (esc.key === 'Escape') {
-    closePopup()
-  }
-});
-popupElement.addEventListener('keydown', function(esc) {
-  if (esc.key === 'Escape') {
-    closePopup()
-  }
-});

@@ -1,6 +1,7 @@
 .page__header-position {
+  margin: 0 auto;
   padding-top: 45px;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
   width: calc(100% - 200px*2);
 }
 
@@ -14,21 +15,16 @@
     width: calc(100% - 24px*2);
   }
 }
-@media screen and (max-width: 599px) {
-  .page__header-position {
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 849px) {
   .page__header-position {
     padding-top: 35px;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
   }
 }
 @media screen and (max-width: 599px) {
   .page__header-position {
     padding-top: 28px;
-    padding-bottom: 42px;
+    margin-bottom: 42px;
+    width: 100%;
   }
 }

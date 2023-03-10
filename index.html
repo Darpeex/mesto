@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./vendor/map.ico">
+  <link rel="icon" href="./images/map.ico">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
+  <meta name="description" content="Я.Практикум - Спринт 4">
+  <meta name="keywords" content="HTML5, CSS, JS">
+  <meta name="author" content="Darpeex">
 </head>
 <body>
   <div class="page">
@@ -13,7 +16,6 @@
 <!-- Шапка сайта -->
     <header class="header page__header-position">
       <div class="header__logo"></div>
-      <div class="header__line"></div>
     </header>
 
 <!-- Основное содержимое страницы -->
@@ -25,11 +27,11 @@
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
           <div class="profile__content">
             <h1 class="profile__name">Жак-Ив&nbsp;Кусто</h1>
-            <h2 class="profile__activity">Исследователь&nbsp;океана</h2>
-            <button class="profile__button profile__button_action_edit"></button>
+            <p class="profile__activity">Исследователь&nbsp;океана</p>
+            <button class="profile__button profile__button_action_edit" type="button"></button>
           </div>
         </div>
-        <button class="profile__button profile__button_action_add"></button>
+        <button class="profile__button profile__button_action_add" type="button"></button>
       </section>
 
 <!-- Секция, блок elements -->
@@ -38,21 +40,21 @@
           <img src="./images/elements-kamchatka.jpg" alt="Камчатка природа горы" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Камчатка</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements-block">
           <img src="./images//elements-elbrus.jpg" alt="Гора Эльбрус пейзаж" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Гора Эльбрус</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements-block">
           <img src="./images/elements-crimea.jpg" alt="Крым горы море вид" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Крым</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
       <!-- 3 -->
@@ -60,21 +62,21 @@
           <img src="./images/elements-dombai.jpg" alt="Домбай леса горы" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Домбай</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements-block">
           <img src="./images/elements-tula.jpg" alt="Голубые озёра кундуки Тульская область" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Голубые озёра</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements-block">
           <img src="./images/elements-krachevsk.jpg" alt="Карачевск храмы горы" class="elements-block__image">
           <div class="elements-block__text">
             <h2 class="elements-block__name">Карачевск-Черкесия</h2>
-            <div class="elements-block__like-button"></div>
+            <button class="elements-block__like-button" type="button"></button>
           </div>
         </article>
       </section>
@@ -82,19 +84,19 @@
 
 <!--Подвал сайта, блок footer  -->
     <footer class="footer page__footer-position section">
-          <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+          <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
     </footer>
 
 <!-- Попап -->
-    <section class="popup">
-      <form class="popup__container">
+    <div class="popup">
+      <form class="popup__container" name="form-popup">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input name="userName" value="" class="popup__form-name" type="text" placeholder="Имя" maxlength="20" required autofocus>
         <input name="userAbout" value="" class="popup__form-activity" type="text" placeholder="О себе" maxlength="40" required>
         <button class="popup__button popup__button_action_close" type="button"></button>
         <button class="popup__button popup__button_action_save" type="submit">Сохранить</button>
       </form>
-    </section>
+    </div>
   </div>
 
 <!-- Подключение Скрипта -->
