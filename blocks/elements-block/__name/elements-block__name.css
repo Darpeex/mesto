@@ -14,16 +14,16 @@
 
 @media screen and (max-width: 599px) {
   .elements-block__name {
-    max-width: 450px;
+    max-width: 340px;
   }
 }
 @media screen and (max-width: 449px) {
   .elements-block__name {
-    max-width: 250px;
+    max-width: 240px;
   }
 }
 @media screen and (max-width: 349px) {
   .elements-block__name {
-    max-width: 215px;
+    max-width: 200px;
   }
 }
