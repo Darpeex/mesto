@@ -1,7 +1,6 @@
 .profile__info {
   display: flex;
   align-items: center;
-  min-height: 73px;
   max-width: 336px;
   min-width: fit-content;
 } 

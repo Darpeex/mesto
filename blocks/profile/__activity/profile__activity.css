@@ -1,6 +1,6 @@
 .profile__activity {
   padding: 0;
-  margin: 16px 0 0 0;
+  margin: 8px 0 0 0;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -15,7 +15,6 @@
 @media screen and (max-width: 767px) {
   .profile__activity {
     font-size: 14px;
-    margin-top: 14px;
     max-width: 282px;
     line-height: calc(17 / 14);
   }

@@ -15,7 +15,7 @@
 
 @media screen and (max-width: 767px) {
   .profile__button_action_edit {
-    background: url(../../../../images/edit-button-m.svg) no-repeat;
+    background-size: contain;
     width: 18px;
     height: 18px;
   }
