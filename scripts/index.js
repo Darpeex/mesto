@@ -5,10 +5,10 @@ const popupCloseButton = popupElement.querySelector('.popup__button_action_close
 const popupSaveButton = popupElement.querySelector('.popup__button_action_save');
 const getName = document.querySelector ('.profile__name');
 const getJob = document.querySelector('.profile__activity');
-const formElement = document.querySelector('.popup__container');
+const formElement = document.querySelector('.popup__form');
 // Находим поля формы
-let nameInput = formElement.querySelector('.popup__form-name');
-let jobInput = formElement.querySelector('.popup__form-activity');
+let nameInput = formElement.querySelector('.popup__form-input_field_name');
+let jobInput = formElement.querySelector('.popup__form-input_field_activity');
 
 // Открыть попап
 const openPopup = function () {

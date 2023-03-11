@@ -1,0 +1,11 @@
+.popup__form-input_field_activity {
+  padding-bottom: 9px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+  
+@media screen and (max-width: 599px) {
+  .popup__form-input_field_activity {
+    margin-bottom: 45px;
+  }
+}
