@@ -15,12 +15,14 @@
 }
 
 .popup__button_action_save:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
 @media screen and (max-width: 599px) {
   .popup__button_action_save {
     min-height: 46px;
+    font-size: 14px;
+    line-height: calc(17 / 14);
   }
 }
