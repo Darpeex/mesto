@@ -1,18 +1,22 @@
 .profile__activity {
+  padding: 0;
   margin: 16px 0 0 0;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   grid-area: activity;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   line-height: calc(22 / 18);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 294px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__activity {
     font-size: 14px;
     margin-top: 14px;
+    max-width: 282px;
     line-height: calc(17 / 14);
   }
 }
