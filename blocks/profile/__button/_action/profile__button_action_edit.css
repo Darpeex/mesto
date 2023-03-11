@@ -1,5 +1,5 @@
 .profile__button_action_edit {
-  background: url(../../../../../images/edit-button.svg) no-repeat;
+  background: url(../../../../images/edit-button.svg) no-repeat;
   box-sizing: border-box;
   width: 24px;
   height: 24px;
@@ -15,7 +15,7 @@
 
 @media screen and (max-width: 767px) {
   .profile__button_action_edit {
-    background: url(../../../../../images/edit-button-m.svg) no-repeat;
+    background: url(../../../../images/edit-button-m.svg) no-repeat;
     width: 18px;
     height: 18px;
   }

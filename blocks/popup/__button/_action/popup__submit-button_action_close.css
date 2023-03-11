@@ -1,5 +1,5 @@
 .popup__button_action_close {
-  background: url(../../../../../images/close-button.svg) no-repeat;
+  background: url(../../../../images/close-button.svg) no-repeat;
   width: 32px;
   height: 32px;
   padding: 0;
@@ -15,7 +15,7 @@
 
 @media screen and (max-width: 599px) {
   .popup__button_action_close {
-    background: url(../../../../../images/close-button-m.svg) no-repeat;
+    background: url(../../../../images/close-button-m.svg) no-repeat;
     width: 20px;
     height: 20px;
     top: calc(-20px + -14.5px); /* не - 16px,как по макету - мне кажется, так чуть аккуратнее, но, если необходимо соблюсти 1:1 - исправлю */
