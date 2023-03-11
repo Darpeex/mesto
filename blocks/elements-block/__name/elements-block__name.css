@@ -6,24 +6,8 @@
   font-size: 24px;
   line-height: calc(29 / 24);
 
-  max-width: 190px;
+  max-width: calc(100% - 40px);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-@media screen and (max-width: 599px) {
-  .elements-block__name {
-    max-width: 340px;
-  }
-}
-@media screen and (max-width: 449px) {
-  .elements-block__name {
-    max-width: 240px;
-  }
-}
-@media screen and (max-width: 349px) {
-  .elements-block__name {
-    max-width: 200px;
-  }
 }
