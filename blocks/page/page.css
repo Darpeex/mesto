@@ -8,6 +8,7 @@
   min-height: 100%; /* Для липкого футера */
   display: flex; /* Для липкого футера */
   flex-direction: column; /* Для липкого футера */
+  /* Пытался, но в normalize.css нельзя вносить изменения - тесты отклоняют */
   
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

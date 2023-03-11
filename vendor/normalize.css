@@ -9,7 +9,6 @@
  */
 
  html {
-  height: 100%; /* Для липкого футера */
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -22,7 +21,6 @@
  */
 
 body {
-  height: 100%; /* Для липкого футера */
   margin: 0;
 }
 
@@ -31,7 +29,6 @@ body {
  */
 
 main {
-  flex: 1 1 auto; /* Для липкого футера */
   display: block;
 }
 
