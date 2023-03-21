@@ -36,6 +36,7 @@
 @import url(../blocks/elements-block/__image/elements-block__image.css);
 @import url(../blocks/elements-block/__text/elements-block__text.css);
 @import url(../blocks/elements-block/__name/elements-block__name.css);
+@import url(../blocks/elements-block/__delete-button/elements-block__delete-button.css);
 @import url(../blocks/elements-block/__like-button/elements-block__like-button.css);
 
 /* footer */
