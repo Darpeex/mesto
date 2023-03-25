@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-.elements-block__like-button:active {
+/* .elements-block__like-button:active {
   background: url(../../../images/like-active.svg) no-repeat;
   opacity: 1;
-}
+} */
