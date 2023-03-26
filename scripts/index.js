@@ -71,6 +71,7 @@ function createCard (data) {
   let cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector(".elements-block__name").textContent = data.name;
   cardElement.querySelector(".elements-block__image").src = data.link; 
+  cardElement.querySelector(".elements-block__image").alt = data.name; // alt
   setEventListeners(cardElement);
   cardsContainer.prepend(cardElement);
   return cardElement;
@@ -129,23 +130,26 @@ const popupImage = openCard.querySelector('.popup__image');
 const popupSubtitle = openCard.querySelector('.popup__image-subtitle');
 const popupCloseFullScreenBtn = openCard.querySelector('.popup__button_action_close');
 const imagePopupOpenBtn = document.querySelector('.elements-block__image');
-
-const openPopupCard = function(link, name, evt) {
+const cardTitle = document.querySelector(".elements-block__name");
+const elementBlock = document.querySelector(".elements-block");
+const elementTitle = elementBlock.querySelector(".elements-block__text");
+function openPopupCard (evt) {
+  popupImage.src = evt.target.src;
+  popupImage.alt = data.name;
+  popupImage.alt = evt.target.alt;
+  popupSubtitle.textContent = evt.target.alt;
   openCard.classList.add('popup_opened');
-  imagePopupOpenBtn.evt.target.closest('.elements-block'); 
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupSubtitle.textContent = name;
+  console.log(popupImage.src);
+  console.log(popupImage.alt);
+  console.log(popupSubtitle.textContent);
 }
 const closePopupCard = function () {
   openCard.classList.remove('popup_opened');
 };
-imagePopupOpenBtn.addEventListener('click', openPopupCard);
-popupCloseFullScreenBtn.addEventListener('click', closePopupCard);
-// 7. Плавное открытие и закрытие попапов
 
+popupCloseFullScreenBtn.addEventListener('click', closePopupCard);
 function setEventListeners (cardElement) {
   cardElement.querySelector(".elements-block__delete-button").addEventListener('click', handleDelete);
   cardElement.querySelector(".elements-block__like-button").addEventListener('click', cardLiker);
+  cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
 }
-
