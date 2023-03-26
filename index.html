@@ -38,7 +38,7 @@
       <section class="elements page__elements-position section">
         <template id="template">
           <article class="elements-block">
-            <img src="" alt="Карточка" class="elements-block__image">
+            <img src="#" alt="Карточка" class="elements-block__image">
             <button class="elements-block__delete-button"></button>
             <div class="elements-block__text">
               <h2 class="elements-block__name"></h2>
@@ -60,7 +60,7 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
         <form class="popup__form" name="form-popup">
-          <input name="userName" value="" class="popup__form-input popup__form-input_field_name" type="text" placeholder="Имя" minlength="2" maxlength="30" required autofocus>
+          <input name="userName" value="" class="popup__form-input popup__form-input_field_name" type="text" placeholder="Имя" minlength="2" maxlength="30" required>
           <input name="userAbout" value="" class="popup__form-input popup__form-input_field_activity" type="text" placeholder="О себе" minlength="2" maxlength="50" required>
           <button class="popup__button popup__button_action_save" type="submit">Сохранить</button>
         </form>
@@ -74,18 +74,17 @@
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
       <form class="popup__creationForm" name="form-popup">
-        <input name="userName" value="" class="popup__form-input popup__form-input_field_cardName" type="text" placeholder="Название" minlength="2" maxlength="200" required autofocus>
+        <input name="userName" value="" class="popup__form-input popup__form-input_field_cardName" type="text" placeholder="Название" minlength="2" maxlength="200" required>
         <input name="userAbout" value="" class="popup__form-input popup__form-input_field_srcImg" type="text" placeholder="Ссылка на картинку" minlength="2" maxlength="200" required>
         <button class="popup__button popup__button_action_create" type="submit">Создать</button>
       </form>
-      </div>
     </div>
   </div>
 
   <!-- Попап открытия карточки-->
   <div id="openCard" class="popup opened__popup">
     <div class="popup__image-desription">
-      <img class="popup__image" src="" alt="Фотография из карточки"/>
+      <img class="popup__image" src="#" alt="Фотография из карточки"/>
       <p class="popup__image-subtitle"></p>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
     </div>
