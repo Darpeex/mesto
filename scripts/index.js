@@ -126,7 +126,7 @@ function handleDelete (evt) {
 
 // 6. Открытие попапа с картинкой
 const openCard = document.querySelector("#openCard");
-const popupImage = openCard.querySelector('.popup__image');
+const popupImage = openCard.querySelector('.popup__image-card');
 const popupSubtitle = openCard.querySelector('.popup__image-subtitle');
 const popupCloseFullScreenBtn = openCard.querySelector('.popup__button_action_close');
 const imagePopupOpenBtn = document.querySelector('.elements-block__image');
