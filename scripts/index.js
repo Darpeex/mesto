@@ -1,7 +1,6 @@
 // Делаем выборку DOM элементов
 const popupProfile = document.querySelector('#editProfile');
 const profileEditButton = document.querySelector('.profile__button_action_edit');
-const profileCloseButton = popupProfile.querySelector('.popup__button_action_close');
 const profileSaveButton = popupProfile.querySelector('.popup__button_action_save');
 const getName = document.querySelector ('.profile__name');
 const getJob = document.querySelector('.profile__activity');
@@ -18,10 +17,6 @@ const openPopupEditProfile = function () {
   nameInput.value = getName.textContent;
   jobInput.value = getJob.textContent;
 };
-// Закрыть попап
-const closePopupEditProfile = function () {
-  popupProfile.classList.remove('popup_opened');
-};
 // Отправляем форму с изменениями в профиле
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
@@ -30,7 +25,6 @@ function handleProfileFormSubmit (evt) {
     closePopupEditProfile ();
 };
 profileEditButton.addEventListener('click', openPopupEditProfile);
-profileCloseButton.addEventListener('click', closePopupEditProfile);
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 
@@ -83,17 +77,11 @@ initialCards.reverse().forEach(createCard);
 // Делаем выборку из DOM элементов
 const popupAddCard = document.querySelector('#addCard');
 const popupAddCardBtn = document.querySelector('.profile__button_action_add');
-const popupCloseCardBtn = popupAddCard.querySelector('.popup__button_action_close');
 // Открыть попап добавления карточки
 const openPopupAddCard = function () {
   popupAddCard.classList.add('popup_opened');
 };
-// Закрыть попап
-const closePopupAddCard = function () {
-  popupAddCard.classList.remove('popup_opened');
-};
 popupAddCardBtn.addEventListener('click', openPopupAddCard);
-popupCloseCardBtn.addEventListener('click', closePopupAddCard);
 
 // 3. Добавление карточки
 const creationForm = popupAddCard.querySelector('.popup__creationForm');
@@ -130,7 +118,6 @@ function handleDelete (evt) {
 const openCard = document.querySelector("#openCard");
 const popupImage = openCard.querySelector('.popup__image-card');
 const popupSubtitle = openCard.querySelector('.popup__image-subtitle');
-const popupCloseFullScreenBtn = openCard.querySelector('.popup__button_action_close');
 const imagePopupOpenBtn = document.querySelector('.elements-block__image');
 const cardTitle = document.querySelector(".elements-block__name");
 const elementBlock = document.querySelector(".elements-block");
@@ -145,13 +132,27 @@ function openPopupCard (evt) {
   console.log(popupImage.alt);
   console.log(popupSubtitle.textContent);
 }
-const closePopupCard = function () {
-  openCard.classList.remove('popup_opened');
-};
 
-popupCloseFullScreenBtn.addEventListener('click', closePopupCard);
 function setEventListeners (cardElement) {
   cardElement.querySelector(".elements-block__delete-button").addEventListener('click', handleDelete);
   cardElement.querySelector(".elements-block__like-button").addEventListener('click', toggleLike);
   cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
 }
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__button_action_close');
+// с окончанием `s`, так как кнопок много
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
+});
