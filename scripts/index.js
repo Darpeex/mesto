@@ -5,7 +5,6 @@ const profileSaveButton = popupProfile.querySelector('.popup__button_action_save
 const getName = document.querySelector('.profile__name');
 const getJob = document.querySelector('.profile__activity');
 const profileForm = document.querySelector('.popup__form');
-// Находим поля формы
 const nameInput = profileForm.querySelector('.popup__form-input_field_name');
 const jobInput = profileForm.querySelector('.popup__form-input_field_activity');
 const cardsContainer = document.querySelector(".elements");
@@ -76,8 +75,6 @@ function handleProfileFormSubmit (evt) {
 profileEditButton.addEventListener('click', openPopupEditProfile);
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-
-
 // СПРИНТ 5
 // 0. Шесть карточек «из коробки»
 
@@ -95,7 +92,6 @@ function createCard (data) {
 initialCards.reverse().forEach(createCard);
 
 // 2. Форма добавления карточки
-// Делаем выборку из DOM элементов
 // Открыть попап добавления карточки
 const openPopupAddCard = function () {
   popupAddCard.classList.add('popup_opened');
@@ -103,7 +99,6 @@ const openPopupAddCard = function () {
 popupAddCardBtn.addEventListener('click', openPopupAddCard);
 
 // 3. Добавление карточки
-
 const renderCard = (evt) => {
   if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
   else {
@@ -136,9 +131,9 @@ function openPopupCard (evt) {
   popupImage.alt = evt.target.alt;
   popupSubtitle.textContent = evt.target.alt;
   openCard.classList.add('popup_opened');
-  console.log(popupImage.src);
-  console.log(popupImage.alt);
-  console.log(popupSubtitle.textContent);
+  // console.log(popupImage.src);
+  // console.log(popupImage.alt);
+  // console.log(popupSubtitle.textContent);
 }
 
 function setEventListeners (cardElement) {
@@ -147,6 +142,7 @@ function setEventListeners (cardElement) {
   cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
 }
 
+// Общий обработчик для кнопок закрытия (крестиков)
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__button_action_close');
 // с окончанием `s`, так как кнопок много
