@@ -2,34 +2,14 @@
 const popupProfile = document.querySelector('#editProfile');
 const profileEditButton = document.querySelector('.profile__button_action_edit');
 const profileSaveButton = popupProfile.querySelector('.popup__button_action_save');
-const getName = document.querySelector ('.profile__name');
+const getName = document.querySelector('.profile__name');
 const getJob = document.querySelector('.profile__activity');
 const profileForm = document.querySelector('.popup__form');
 // Находим поля формы
 const nameInput = profileForm.querySelector('.popup__form-input_field_name');
 const jobInput = profileForm.querySelector('.popup__form-input_field_activity');
-
-
-// СПРИНТ 4
-// Открыть попап редактирования
-const openPopupEditProfile = function () {
-  popupProfile.classList.add('popup_opened');
-  nameInput.value = getName.textContent;
-  jobInput.value = getJob.textContent;
-};
-// Отправляем форму с изменениями в профиле
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault();
-    getName.textContent = `${nameInput.value}`;
-    getJob.textContent = `${jobInput.value}`;
-    closePopupEditProfile ();
-};
-profileEditButton.addEventListener('click', openPopupEditProfile);
-profileForm.addEventListener('submit', handleProfileFormSubmit);
-
-
-// СПРИНТ 5
-// 0. Шесть карточек «из коробки»
+const cardsContainer = document.querySelector(".elements");
+const cardTemplate = cardsContainer.querySelector('#template').content;
 const initialCards = [
   {
     name: 'Казанский Собор',
@@ -56,9 +36,50 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1229&q=80'
   }
 ]; 
-const cardsContainer = document.querySelector(".elements");
-const cardTemplate = cardsContainer.querySelector('#template').content;
 const data = {name: '.elements-block__name', link: '.elements-block__image'};
+const popupAddCard = document.querySelector('#addCard');
+const popupAddCardBtn = document.querySelector('.profile__button_action_add');
+const creationForm = popupAddCard.querySelector('.popup__creationForm');
+const makeCard = popupAddCard.querySelector('.popup__button_action_create');
+const getCardName = creationForm.querySelector ('.popup__form-input_field_cardName');
+const getSrcImg = creationForm.querySelector('.popup__form-input_field_srcImg');
+const openCard = document.querySelector("#openCard");
+const popupImage = openCard.querySelector('.popup__image-card');
+const popupSubtitle = openCard.querySelector('.popup__image-subtitle');
+const imagePopupOpenBtn = document.querySelector('.elements-block__image');
+const cardTitle = document.querySelector(".elements-block__name");
+const elementBlock = document.querySelector(".elements-block");
+ 
+const popup = document.querySelector('.popup');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+// СПРИНТ 4
+// Открыть попап редактирования
+const openPopupEditProfile = function () {
+  popupProfile.classList.add('popup_opened');
+  nameInput.value = getName.textContent;
+  jobInput.value = getJob.textContent;
+};
+// Отправляем форму с изменениями в профиле
+function handleProfileFormSubmit (evt) {
+    evt.preventDefault();
+    getName.textContent = `${nameInput.value}`;
+    getJob.textContent = `${jobInput.value}`;
+    closePopup(popupProfile);
+};
+profileEditButton.addEventListener('click', openPopupEditProfile);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+
+
+
+// СПРИНТ 5
+// 0. Шесть карточек «из коробки»
 
 // 1. Функция добавления карточки
 function createCard (data) {
@@ -75,8 +96,6 @@ initialCards.reverse().forEach(createCard);
 
 // 2. Форма добавления карточки
 // Делаем выборку из DOM элементов
-const popupAddCard = document.querySelector('#addCard');
-const popupAddCardBtn = document.querySelector('.profile__button_action_add');
 // Открыть попап добавления карточки
 const openPopupAddCard = function () {
   popupAddCard.classList.add('popup_opened');
@@ -84,10 +103,6 @@ const openPopupAddCard = function () {
 popupAddCardBtn.addEventListener('click', openPopupAddCard);
 
 // 3. Добавление карточки
-const creationForm = popupAddCard.querySelector('.popup__creationForm');
-const makeCard = popupAddCard.querySelector('.popup__button_action_create');
-const getCardName = creationForm.querySelector ('.popup__form-input_field_cardName');
-const getSrcImg = creationForm.querySelector('.popup__form-input_field_srcImg');
 
 const renderCard = (evt) => {
   if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
@@ -99,7 +114,7 @@ const renderCard = (evt) => {
     createCard(data);
     getCardName.value = '';
     getSrcImg.value = '';
-    closePopupAddCard();}
+    closePopup(popupAddCard);}
 }
 makeCard.addEventListener('click', renderCard);
 
@@ -115,13 +130,6 @@ function handleDelete (evt) {
 }
 
 // 6. Открытие попапа с картинкой
-const openCard = document.querySelector("#openCard");
-const popupImage = openCard.querySelector('.popup__image-card');
-const popupSubtitle = openCard.querySelector('.popup__image-subtitle');
-const imagePopupOpenBtn = document.querySelector('.elements-block__image');
-const cardTitle = document.querySelector(".elements-block__name");
-const elementBlock = document.querySelector(".elements-block");
-const elementTitle = elementBlock.querySelector(".elements-block__text");
 function openPopupCard (evt) {
   popupImage.src = evt.target.src;
   popupImage.alt = data.name;
@@ -137,14 +145,6 @@ function setEventListeners (cardElement) {
   cardElement.querySelector(".elements-block__delete-button").addEventListener('click', handleDelete);
   cardElement.querySelector(".elements-block__like-button").addEventListener('click', toggleLike);
   cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
 }
 
 // находим все крестики проекта по универсальному селектору
