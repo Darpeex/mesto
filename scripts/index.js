@@ -53,18 +53,17 @@ const popup = document.querySelector('.popup');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-// СПРИНТ 4
-// Открыть попап редактирования
 const openPopupEditProfile = function () {
-  popupProfile.classList.add('popup_opened');
   nameInput.value = getName.textContent;
   jobInput.value = getJob.textContent;
+  openPopup(editProfile);
 };
+// СПРИНТ 4
+// Открыть попап редактирования
 // Отправляем форму с изменениями в профиле
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
@@ -73,6 +72,10 @@ function handleProfileFormSubmit (evt) {
     closePopup(popupProfile);
 };
 profileEditButton.addEventListener('click', openPopupEditProfile);
+const openPopupAddCard = function () {
+  openPopup(popupAddCard);
+};
+popupAddCardBtn.addEventListener('click', openPopupAddCard);
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // СПРИНТ 5
@@ -93,10 +96,6 @@ initialCards.reverse().forEach(createCard);
 
 // 2. Форма добавления карточки
 // Открыть попап добавления карточки
-const openPopupAddCard = function () {
-  popupAddCard.classList.add('popup_opened');
-};
-popupAddCardBtn.addEventListener('click', openPopupAddCard);
 
 // 3. Добавление карточки
 const renderCard = (evt) => {
@@ -130,7 +129,7 @@ function openPopupCard (evt) {
   popupImage.alt = data.name;
   popupImage.alt = evt.target.alt;
   popupSubtitle.textContent = evt.target.alt;
-  openCard.classList.add('popup_opened');
+  openPopup(openCard);
   // console.log(popupImage.src);
   // console.log(popupImage.alt);
   // console.log(popupSubtitle.textContent);
@@ -143,10 +142,10 @@ function setEventListeners (cardElement) {
 }
 
 // Общий обработчик для кнопок закрытия (крестиков)
-// находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll('.popup__button_action_close');
-// с окончанием `s`, так как кнопок много
-closeButtons.forEach((button) => {
+  // находим все крестики проекта по универсальному селектору
+  const closeButtons = document.querySelectorAll('.popup__button_action_close');
+  // с окончанием `s`, так как кнопок много
+  closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
   const popup = button.closest('.popup');
   // устанавливаем обработчик закрытия на крестик
