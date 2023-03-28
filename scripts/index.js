@@ -82,15 +82,18 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 // 0. Шесть карточек «из коробки»
 
 // 1. Функция добавления карточки
-function createCard (data) {
-  const cardElement = cardTemplate.cloneNode(true);
+function getCard(data) {
+  const cardElement = cardTemplate.cloneNode(true); // всё очень подробно, но не уверен, что правильно понял про вставку DOM, но, наверное, речь про prepend
   const cardImage = cardElement.querySelector(".elements-block__image");
   cardElement.querySelector(".elements-block__name").textContent = data.name;
   cardImage.src = data.link; 
   cardImage.alt = data.name; // alt
   setEventListeners(cardElement);
+  return cardElement
+}
+function createCard (data) {
+  const cardElement = getCard(data)
   cardsContainer.prepend(cardElement);
-  return cardElement;
 };
 initialCards.reverse().forEach(createCard);
 
@@ -110,7 +113,7 @@ const renderCard = (evt) => {
     getSrcImg.value = '';
     closePopup(popupAddCard);}
 }
-makeCard.addEventListener('click', renderCard);
+creationForm.addEventListener('submit', renderCard)
 
 // 4. Лайк карточки
 function toggleLike (evt) {
@@ -151,3 +154,5 @@ function setEventListeners (cardElement) {
   // устанавливаем обработчик закрытия на крестик
   button.addEventListener('click', () => closePopup(popup));
 });
+
+//refactoring
