@@ -84,11 +84,10 @@ function handleDelete (evt) {
 
 
 // Открытие попапа с картинкой
-function openPopupCard (data) {
-  popupImage.src = data.target.src;
-  popupImage.alt = data.name;
-  popupImage.alt = data.target.alt;
-  popupSubtitle.textContent = data.target.alt;
+function openPopupCard (evt) {
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
+  popupSubtitle.textContent = evt.target.alt;
   openPopup(openCard);
 }
 // Обработчики событий
