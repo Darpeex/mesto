@@ -1,0 +1,27 @@
+.popup__form-input-error {
+  margin: 0;
+  padding: 5px 0 0;
+  margin-bottom: 8px;
+  display: block;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  height: 15px;
+  color: #FF0000; 
+}
+
+/* Линия подчёркивания */
+/* .popup__form-input-error ~ .popup__form-input {
+  border-bottom: 1px solid#FF0000;
+} */
+
+.popup__form-input-error:last-of-type {
+  margin-bottom: 28px;
+}
+
+@media screen and (max-width: 599px) {
+  .popup__form-input-error:last-of-type {
+  margin-bottom: 42px;
+  }
+}

@@ -19,6 +19,13 @@
   cursor: pointer;
 }
 
+.popup__button_action_create:disabled {
+  opacity: 0.2;
+  color: black;
+  border: solid 1px black;
+  background-color: transparent;
+}
+
 @media screen and (max-width: 599px) {
   .popup__button_action_create {
     min-height: 46px;
