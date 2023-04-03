@@ -1,10 +1,14 @@
 // Открытие попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('click', closePopupsOverlay);
+  document.addEventListener('keydown', closePopupEsc);
 }
 // Закрытие попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.addEventListener('click', closePopupsOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 
@@ -43,7 +47,7 @@ function getCard(data) {
   const cardImage = cardElement.querySelector(".elements-block__image");
   cardElement.querySelector(".elements-block__name").textContent = data.name;
   cardImage.src = data.link; 
-  cardImage.alt = data.name; // alt
+  cardImage.alt = data.name;
   setEventListeners(cardElement);
   return cardElement
 }
@@ -65,8 +69,7 @@ const renderCard = (evt) => {
     data.name = getCardName.value;
     data.link = getSrcImg.value;
     createCard(data);
-    getCardName.value = '';
-    getSrcImg.value = '';
+    creationForm.reset();
     closePopup(popupAddCard);}
 }
 creationForm.addEventListener('submit', renderCard)
@@ -99,8 +102,28 @@ function setEventListeners (cardElement) {
 
 
 // Общий обработчик для кнопок закрытия (крестиков)
-  const closeButtons = document.querySelectorAll('.popup__button_action_close'); // находим все крестики проекта по универсальному селектору.
+const closeButtons = document.querySelectorAll('.popup__button_action_close'); // находим все крестики проекта по универсальному селектору.
   closeButtons.forEach((button) => { // С окончанием `s`, так как кнопок много
   const popup = button.closest('.popup'); // находим 1 раз ближайший к крестику попап
   button.addEventListener('click', () => closePopup(popup)); // устанавливаем обработчик закрытия на крестик
 });
+
+// Закрытие попапа кликом на оверлей
+function closePopupsOverlay() {
+  const closeModal = Array.from(document.querySelectorAll('.popup'));
+  closeModal.forEach(popup => {
+    popup.addEventListener('click', function(evt) {
+      if(evt.target === evt.currentTarget) {
+        popup.classList.remove('popup_opened');
+      }
+    });
+  });
+}
+
+// Закрытие попапа нажатием на Esc
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpend = document.querySelector('.popup_opened');
+    closePopup(popupOpend);
+  }
+};

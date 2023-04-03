@@ -51,3 +51,6 @@ const popupSubtitle = openCard.querySelector('.popup__image-subtitle'); // Им�
 const imagePopupOpenBtn = document.querySelector('.elements-block__image'); // Картинка карточки в роли кнопки открытия этого попапа
 const cardTitle = document.querySelector(".elements-block__name"); // Имя карточки, соответствующее картинке открытия карточки ↑
 const elementBlock = document.querySelector(".elements-block"); // Карточка со всем её содержимым (Картинка, текст, кнопки лайка/удаления)
+
+const popup = document.querySelector('.popup'); // Попап
+const popupOpen = document.querySelector('.popup_opened'); // Модификатор открытого попапа
