@@ -9,12 +9,8 @@
   font-size: 12px;
   height: 15px;
   color: #FF0000; 
+  cursor: default;
 }
-
-/* Линия подчёркивания */
-/* .popup__form-input-error ~ .popup__form-input {
-  border-bottom: 1px solid#FF0000;
-} */
 
 .popup__form-input-error:last-of-type {
   margin-bottom: 28px;
