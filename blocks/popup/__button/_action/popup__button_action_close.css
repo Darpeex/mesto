@@ -18,7 +18,7 @@
     background-size: 20px auto;
     width: 20px;
     height: 20px;
-    top: calc(-20px + -14.5px); /* не - 16px,как по макету - мне кажется, так чуть аккуратнее, но, если необходимо соблюсти 1:1 - исправлю */
+    top: calc(-20px + -14.5px);
     right: 0;
   }
 }

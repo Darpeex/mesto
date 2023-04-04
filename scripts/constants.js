@@ -55,3 +55,4 @@ const elementBlock = document.querySelector(".elements-block"); // Карточ�
 const popup = document.querySelector('.popup'); // Попапы
 const popupOpen = document.querySelector('.popup_opened'); // Модификатор открытого попапа
 const formInput = document.querySelector('.popup__form-input') // Поля ввода попапов
+const openPopupBtn = document.querySelector('.button__form-open') // Кнопки открытия форм

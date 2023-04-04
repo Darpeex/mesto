@@ -20,10 +20,9 @@
 }
 
 .popup__button_action_save:disabled {
-  opacity: 0.2;
-  color: black;
-  border: solid 1px black;
-  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #e9e9e9;
+  border: solid 1px rgba(0, 0, 0, .2);
 }
 
 @media screen and (max-width: 599px) {

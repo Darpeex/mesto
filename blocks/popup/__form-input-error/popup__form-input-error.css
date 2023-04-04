@@ -7,7 +7,8 @@
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  height: 15px;
+ /* min-height: 15px; /* так по pixelPerfect от Figma*/
+  min-height: 28px; /* так по видео-примеру */
   color: #FF0000; 
   cursor: default;
 }
