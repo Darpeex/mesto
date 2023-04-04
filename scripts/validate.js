@@ -3,14 +3,14 @@ const validationConfig = ({
   inputSelector: '.popup__form-input', // селектор полей ввода
   submitButtonSelector: '.popup__button', // селектор кнопки попапа
   inactiveButtonClass: 'popup__button_invalid', // модификатор неактивной кнопки
-  activeButtonClass: 'popup__button_valid', // модификатор валидной кнопки
+  activeButtonClass: 'popup__button_valid', // модификатор активной кнопки
   inputErrorClass: 'popup__form-input_error', // модификатор сообщения об ошибке
   errorClass: 'popup__error_visible' // =()_()=
 });
 
 // Запускаем процесс проверки
 const enableValidation = ({formSelector, ...rest}) => { // получаем селектор "форм"
-  const forms = Array.from(document.querySelectorAll(formSelector))  // создаём массив из форм
+  const forms = Array.from(document.querySelectorAll(formSelector)) // создаём массив из форм
   forms.forEach(form => { // на каждую форму вешаем слушатель
     form.addEventListener('submit', (evt) => { // отправка формы
       evt.preventDefault() // отмена стандартного поведения браузера 
@@ -43,8 +43,8 @@ const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inpu
     currentInputErorrContainer.textContent = '' // Если всё хорошо - ошибки нет
     formInput.classList.remove(inputErrorClass) // Если всё хорошо - убираем модификатор с ошибкой
   } else { // Невалидно (не прошло проверку)
-    formInput.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
     currentInputErorrContainer.textContent = input.validationMessage // Если что-то нехорошо - выводим сообщение об ошибки
+    formInput.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
   }
 }
 
@@ -56,14 +56,14 @@ const hasInvalidImput = (formInputs) => { // функция проверки н�
 // Кнопка становиться активной
 const enableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку доступной
   button.classList.remove(inactiveButtonClass); // удаляем модификатор неактивной кнопки
-  button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки
+  // button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки
   button.removeAttribute('disabled'); // неактивность кнопки через псевдокласс ВЫКЛ
 }
 
 // Кнопка становиться неактивной
 const disableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку недоступной
   button.classList.add(inactiveButtonClass); // добавляем класс неактивной кнопки
-  button.classList.remove(activeButtonClass); // удаляем класс активной кнопки
+  // button.classList.remove(activeButtonClass); // удаляем класс активной кнопки
   button.setAttribute('disabled', true); // неактивность кнопки через псевдокласс ВКЛ
 }
 
