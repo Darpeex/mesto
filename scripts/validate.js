@@ -1,80 +1,65 @@
-const form = document.querySelector('.popup__form');
-const formInput = document.querySelector('.popup__form-input')
 const validationConfig = ({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}); 
+  formSelector: '.popup__form', // селектор форм
+  inputSelector: '.popup__form-input', // селектор полей ввода
+  submitButtonSelector: '.popup__button', // селектор кнопки попапа
+  inactiveButtonClass: 'popup__button_invalid', // селектор стиля не активной кнопки
+  activeButtonClass: 'popup__button_valid', // селектор стиля валидной кнопки
+  inputErrorClass: 'popup__form-input_error', // селектор стилей сообщения об ошибке
+  errorClass: 'popup__error_visible' // =()_()=
+}); // Селекторы
 
-const enableValidation = () => {
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault()
+// 
+const enableValidation = ({formSelector, ...rest}) => { // получаем селектор "форм"
+  const forms = Array.from(document.querySelectorAll(formSelector))  // создаём массив из форм
+  forms.forEach(form => { // на каждую форму вешаем слушатель
+    form.addEventListener('submit', (evt) => { // отправка формы
+      evt.preventDefault() // отмена стандартного поведения браузера 
+    })
+    setFormEventListeners(form, rest) // передаем аргументы
   })
-  setFormEventListeners(form) 
 }
 
-const setFormEventListeners = (form) => {
-  const formInputs = Array.from(form.querySelectorAll('.popup__form-input'))
-  const formButton = form.querySelector('.popup__button')
-  disableButton(formButton)
-  formInputs.forEach(input => {
-    input.addEventListener('input', () => {
-      checkInputValidity(input)
-      if (hasInvalidImput(formInputs)) {
-        disableButton(formButton)
-      } else {
-        enableButton(formButton)
+const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelector, ...rest}) => { // получаем селекторы инпутов форм и кнопок отправки
+  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector)) // создаём массив из input
+  const formButton = formToValidate.querySelector(submitButtonSelector) // создаём константу содержащую кнопку
+  disableButton(formButton, rest) // функция отключения кнопки с передаваемыми аргументами кнопки и оставшегося из массива validationConfig
+  formInputs.forEach(input => { // для каждого поля input
+    input.addEventListener('input', () => { // вешаем слушатель
+      checkInputValidity(input, rest) // проверка на валидацию и передача аргументов
+      if (hasInvalidImput(formInputs)) { // если одно из полей не валидно
+        disableButton(formButton, rest) // кнопка неактивна
+      } else { // если валидны все поля
+        enableButton(formButton, rest) // кнопка активна
       }
     })
   })
 }
 
-const checkInputValidity = (input) => {
-  const currentInputErorrContainer = document.querySelector(`#${input.id}-error`)
+const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => { // Проверка полей на валидность. Получаем селекторы ...
+  const currentInputErorrContainer = document.querySelector(`#${input.id}-error`) // Добавляем к определенному инпуту приставку "-error"
   if (input.checkValidity()) { // Валидно (прошло проверку)
-    currentInputErorrContainer.textContent = ''
-    formInput.classList.remove('popup__form-input_error')
+    currentInputErorrContainer.textContent = '' // Если всё хорошо - ошибки нет
+    formInput.classList.remove(inputErrorClass) // Если всё хорошо - убираем модификатор с ошибкой
   } else { // Невалидно (не прошло проверку)
-    formInput.classList.add('popup__form-input_error')
-    currentInputErorrContainer.textContent = input.validationMessage
+    formInput.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
+    currentInputErorrContainer.textContent = input.validationMessage // Если что-то нехорошо - выводим сообщение об ошибки
   }
 }
 
-const hasInvalidImput = (formInputs) => {
-  return formInputs.some(item => !item.validity.valid)
+const hasInvalidImput = (formInputs) => { // функция проверки на невалидное поле
+  return formInputs.some(item => !item.validity.valid) // возвращаем, если какое-то поле не валидно
 }
 
-const enableButton = (button) => {
-  button.classList.remove('popup__button_invalid');
-  button.classList.add('popup__button_valid');
-  // button.setAttribute('disabled', true);
+const enableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку доступной
+  button.classList.remove(inactiveButtonClass); // удаляем модификатор неактивной кнопки
+  button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки
+  // button.removeAttribute('disabled'); // неактивность кнопки через псевдокласс ВЫКЛ
 }
 
-const disableButton = (button) => {
-  button.classList.add('popup__button_invalid');
-  button.classList.remove('popup__button_valid');
-  // button.removeAttribute('disabled');
+const disableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку недоступной
+  button.classList.add(inactiveButtonClass); // добавляем класс неактивной кнопки
+  button.classList.remove(activeButtonClass); // удаляем класс активной кнопки
+  // button.setAttribute('disabled', true); // неактивность кнопки через псевдокласс ВКЛ
 }
 
-enableValidation()
-
-
-
-// 1. Валидация формы «Редактировать профиль»
-
-
-// 2. Валидация формы «Новое место»
-
-// Валидируйте форму добавления места.
-// Не нужна проверка длины текста у поля ссылки.
-// Нужна проверка того, что ввели именно ссылку.
-// Используйте стандартные браузерные тексты ошибок.
-// Если хотя бы одно из полей не прошло валидацию, кнопка «Сохранить» должна быть неактивной. Если оба поля прошли — активной. Цвета неактивных кнопок те же.
-
-
-// // включение валидации вызовом enableValidation
-// // все настройки передаются при вызове
-
+enableValidation(validationConfig) // вызываем функцию проверки формы

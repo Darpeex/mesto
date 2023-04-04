@@ -4,7 +4,7 @@ const profileEditButton = document.querySelector('.profile__button_action_edit')
 const profileSaveButton = popupProfile.querySelector('.popup__button_action_save'); // Кнопка отправки формы редактирования профиля
 const getName = document.querySelector('.profile__name'); // Получение имени из профиля (для формы)
 const getJob = document.querySelector('.profile__activity'); // Получение рода деятельности из профиля (для формы)
-const profileForm = document.querySelector('.popup__form'); // Форма попапа профиля
+const profileForm = document.querySelector('.popup__editForm'); // Форма попапа профиля
 const nameInput = profileForm.querySelector('.popup__form-input_field_name'); // Поле формы попапа профиля для имени
 const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
 
@@ -52,5 +52,6 @@ const imagePopupOpenBtn = document.querySelector('.elements-block__image'); // �
 const cardTitle = document.querySelector(".elements-block__name"); // Имя карточки, соответствующее картинке открытия карточки ↑
 const elementBlock = document.querySelector(".elements-block"); // Карточка со всем её содержимым (Картинка, текст, кнопки лайка/удаления)
 
-const popup = document.querySelector('.popup'); // Попап
+const popup = document.querySelector('.popup'); // Попапы
 const popupOpen = document.querySelector('.popup_opened'); // Модификатор открытого попапа
+const formInput = document.querySelector('.popup__form-input') // Поля ввода попапов

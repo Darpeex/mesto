@@ -3,7 +3,6 @@
 
 /* Начальные */
 @import url(../blocks/content/content.css);
-@import url(../blocks/button/button.css);
 
 /* fonts */
 @import url(../vendor/fonts/fonts.css);

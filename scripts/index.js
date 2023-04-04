@@ -112,7 +112,7 @@ const closeButtons = document.querySelectorAll('.popup__button_action_close'); /
 function closePopupsOverlay() {
   const closeModal = Array.from(document.querySelectorAll('.popup'));
   closeModal.forEach(popup => {
-    popup.addEventListener('click', function(evt) {
+    popup.addEventListener('mousedown', function(evt) { // mousedown, а не click, т.к. когда пользователь выделяет поле мышкой, чтобы стереть содержимое и курсор выходит за пределы конктейнера попапа, попап закрывается, а таким образом мы закрываем по оверлею только целенаправленно
       if(evt.target === evt.currentTarget) {
         popup.classList.remove('popup_opened');
       }
