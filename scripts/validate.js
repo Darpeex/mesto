@@ -38,13 +38,14 @@ const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelec
 
 // Проверка на валидность + добавление стилей и текстов ошибки
 const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => { // Проверка полей на валидность. Получаем селекторы ...
-  const currentInputErorrContainer = document.querySelector(`#${input.id}-error`) // Добавляем к определенному инпуту приставку "-error"
+  const currentInputErorrContainer = document.querySelector(`#${input.id}-error`) // Находим span'ы от айдишников инпут с приставкой -error
+  const currentInputErorrContainerLine = document.querySelector(`#${input.id}`) // Сами инпуты
   if (input.checkValidity()) { // Валидно (прошло проверку)
     currentInputErorrContainer.textContent = '' // Если всё хорошо - ошибки нет
-    formInput.classList.remove(inputErrorClass) // Если всё хорошо - убираем модификатор с ошибкой
+    currentInputErorrContainerLine.classList.remove(inputErrorClass) // Если всё хорошо - убираем модификатор с ошибкой
   } else { // Невалидно (не прошло проверку)
     currentInputErorrContainer.textContent = input.validationMessage // Если что-то нехорошо - выводим сообщение об ошибки
-    formInput.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
+    currentInputErorrContainerLine.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
   }
 }
 
