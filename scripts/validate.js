@@ -9,11 +9,11 @@ const validationConfig = ({
 });
 
 // Запускаем процесс проверки
-const enableValidation = ({formSelector, ...rest}) => { // получаем селектор "форм"
-  const forms = Array.from(document.querySelectorAll(formSelector)) // создаём массив из форм
-  forms.forEach(form => { // на каждую форму вешаем слушатель
-    form.addEventListener('submit', (evt) => { // отправка формы 
-      evt.preventDefault() // отмена стандартного поведения браузера 
+const enableValidation = ({formSelector, ...rest}) => { // получаем селектор "форм" из массива данных
+  const forms = Array.from(document.querySelectorAll(formSelector)) // создаём массив из "форм"
+  forms.forEach(form => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault()
     })
     setFormEventListeners(form, rest) // передаем аргументы
   })
@@ -25,7 +25,7 @@ const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelec
   const formButton = formToValidate.querySelector(submitButtonSelector)
   disableButton(formButton, rest)
   formInputs.forEach(input => {
-    input.addEventListener('input', () => { // проверка происходит по инпуту
+    input.addEventListener('input', () => { // проверка происходит по инпуту (при нужатии на клавишу в поле ввода)
       checkInputValidity(input, rest)
       if (hasInvalidImput(formInputs)) {
         disableButton(formButton, rest)
@@ -37,12 +37,12 @@ const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelec
 }
 
 // Проверка на валидность + добавление стилей и текстов ошибки
-const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => { // Получаем селекторы ...
+const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => {
   const currentInputErorrContainer = document.querySelector(`#${input.id}-error`) // Находим span'ы от айдишников инпут с приставкой -error
-  const currentInputErorrContainerLine = document.querySelector(`#${input.id}`) // Сами инпуты
+  const currentInputErorrContainerLine = document.querySelector(`#${input.id}`) // Сами input'ы
   if (input.checkValidity()) { // Валидно (прошло проверку)
-    currentInputErorrContainer.textContent = '' // Если всё хорошо - ошибки нет
-    currentInputErorrContainerLine.classList.remove(inputErrorClass) // Если всё хорошо - убираем модификатор с ошибкой
+    currentInputErorrContainer.textContent = ''
+    currentInputErorrContainerLine.classList.remove(inputErrorClass)
   } else { // Невалидно (не прошло проверку)
     currentInputErorrContainer.textContent = input.validationMessage // Если что-то нехорошо - выводим сообщение об ошибки
     currentInputErorrContainerLine.classList.add(inputErrorClass) // Если что-то нехорошо - добавляем подчёркивание красным цветом
@@ -55,16 +55,14 @@ const hasInvalidImput = (formInputs) => { // функция проверки н�
 }
 
 // Кнопка становиться активной
-const enableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку доступной
+const enableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => {
   button.classList.remove(inactiveButtonClass); // удаляем модификатор неактивной кнопки
-  // button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки // оно в принципе и через атрибут 'disabled', вроде, хорошо работает
   button.removeAttribute('disabled'); // неактивность кнопки через псевдокласс ВЫКЛ
 }
 
 // Кнопка становиться неактивной
 const disableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку недоступной
   button.classList.add(inactiveButtonClass); // добавляем класс неактивной кнопки
-  // button.classList.remove(activeButtonClass); // удаляем класс активной кнопки // оно в принципе и через атрибут 'disabled', вроде, хорошо работает
   button.setAttribute('disabled', true); // неактивность кнопки через псевдокласс ВКЛ
 }
 

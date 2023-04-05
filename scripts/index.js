@@ -3,6 +3,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('click', closePopupsOverlay);
   document.addEventListener('keydown', closePopupEsc);
+
+  enableValidation(validationConfig);
 }
 // Закрытие попапов
 function closePopup(popup) {
