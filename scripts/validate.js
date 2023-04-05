@@ -12,7 +12,7 @@ const validationConfig = ({
 const enableValidation = ({formSelector, ...rest}) => { // получаем селектор "форм"
   const forms = Array.from(document.querySelectorAll(formSelector)) // создаём массив из форм
   forms.forEach(form => { // на каждую форму вешаем слушатель
-    form.addEventListener('submit', (evt) => { // отправка формы
+    form.addEventListener('submit', (evt) => { // отправка формы 
       evt.preventDefault() // отмена стандартного поведения браузера 
     })
     setFormEventListeners(form, rest) // передаем аргументы
@@ -20,24 +20,24 @@ const enableValidation = ({formSelector, ...rest}) => { // получаем се
 }
 
 // Устанавливаем слушатели и реагируем на информацию с полей (добавляем, убираем подсказки)
-const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelector, ...rest}) => { // получаем селекторы инпутов форм и кнопок отправки
-  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector)) // создаём массив из input
-  const formButton = formToValidate.querySelector(submitButtonSelector) // создаём константу содержащую кнопку
-  disableButton(formButton, rest) // функция отключения кнопки с передаваемыми аргументами кнопки и оставшегося из массива validationConfig
-  formInputs.forEach(input => { // для каждого поля input
-    input.addEventListener('input', () => { // вешаем слушатель
-      checkInputValidity(input, rest) // проверка на валидацию и передача аргументов
-      if (hasInvalidImput(formInputs)) { // если одно из полей не валидно
-        disableButton(formButton, rest) // кнопка неактивна
-      } else { // если валидны все поля
-        enableButton(formButton, rest) // кнопка активна
+const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelector, ...rest}) => {
+  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector))
+  const formButton = formToValidate.querySelector(submitButtonSelector)
+  disableButton(formButton, rest)
+  formInputs.forEach(input => {
+    input.addEventListener('input', () => { // проверка происходит по инпуту
+      checkInputValidity(input, rest)
+      if (hasInvalidImput(formInputs)) {
+        disableButton(formButton, rest)
+      } else {
+        enableButton(formButton, rest)
       }
     })
   })
 }
 
 // Проверка на валидность + добавление стилей и текстов ошибки
-const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => { // Проверка полей на валидность. Получаем селекторы ...
+const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inputErrorClass, ...rest}) => { // Получаем селекторы ...
   const currentInputErorrContainer = document.querySelector(`#${input.id}-error`) // Находим span'ы от айдишников инпут с приставкой -error
   const currentInputErorrContainerLine = document.querySelector(`#${input.id}`) // Сами инпуты
   if (input.checkValidity()) { // Валидно (прошло проверку)
@@ -49,7 +49,7 @@ const checkInputValidity = (input, {inactiveButtonClass, activeButtonClass, inpu
   }
 }
 
-// Проверка - есть ли невалидное поле
+// Проверка: есть ли невалидное поле
 const hasInvalidImput = (formInputs) => { // функция проверки на невалидное поле
   return formInputs.some(item => !item.validity.valid) // возвращаем, если какое-то поле не валидно
 }
@@ -57,14 +57,14 @@ const hasInvalidImput = (formInputs) => { // функция проверки н�
 // Кнопка становиться активной
 const enableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку доступной
   button.classList.remove(inactiveButtonClass); // удаляем модификатор неактивной кнопки
-  // button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки
+  // button.classList.add(activeButtonClass); // добавляем модификатор валидной кнопки // оно в принципе и через атрибут 'disabled', вроде, хорошо работает
   button.removeAttribute('disabled'); // неактивность кнопки через псевдокласс ВЫКЛ
 }
 
 // Кнопка становиться неактивной
 const disableButton = (button, {inactiveButtonClass, activeButtonClass, ...rest}) => { // делаем кнопку недоступной
   button.classList.add(inactiveButtonClass); // добавляем класс неактивной кнопки
-  // button.classList.remove(activeButtonClass); // удаляем класс активной кнопки
+  // button.classList.remove(activeButtonClass); // удаляем класс активной кнопки // оно в принципе и через атрибут 'disabled', вроде, хорошо работает
   button.setAttribute('disabled', true); // неактивность кнопки через псевдокласс ВКЛ
 }
 
