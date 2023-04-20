@@ -35,7 +35,7 @@
       </section>
 
 <!-- Секция, блок elements -->
-      <section class="elements page__elements-position section">
+      <section id="elements" class="elements page__elements-position section">
         <template id="template">
           <article class="elements-block">
             <img src="#" alt="Карточка" class="elements-block__image">
@@ -91,7 +91,7 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
-      <form class="popup__form popup__creationForm" name="form-popup">
+      <form id="popup__creationForm" class="popup__form popup__creationForm" name="form-popup">
         <input 
           name="cardName"
           id="name-card"
@@ -127,6 +127,6 @@
 <!-- Подключение Скриптов -->
     <script src="./scripts/constants.js"></script>
     <script src="./scripts/validate.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
