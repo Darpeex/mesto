@@ -1,10 +1,15 @@
+import FormValidator from "./FormValidation.js";
+
+const formValidator = new FormValidator(validationConfig);
+formValidator.enableValidation();
+
 // Открытие попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('click', closePopupsOverlay);
   document.addEventListener('keydown', closePopupEsc);
 
-  enableValidation(validationConfig);
+  formValidator.enableValidation(validationConfig);
 }
 // Закрытие попапов
 function closePopup(popup) {
