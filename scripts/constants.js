@@ -58,11 +58,11 @@ const formInput = document.querySelector('.popup__form-input') // Поля вв�
 const openPopupBtn = document.querySelector('.button__form-open') // Кнопки открытия форм
 
 const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__form-input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_invalid",
-  activeButtonClass: "popup__button_valid",
-  inputErrorClass: "popup__form-input_error",
-  errorClass: "popup__error_visible",
-}; // Селекторы и модификаторы
+  formSelector: ".popup__form", // селектор форм
+  inputSelector: ".popup__form-input", // селектор полей ввода
+  submitButtonSelector: ".popup__button", // селектор кнопки попапа
+  inactiveButtonClass: "popup__button_invalid", // модификатор неактивной кнопки
+  activeButtonClass: "popup__button_valid", // модификатор активной кнопки
+  inputErrorClass: "popup__form-input_error", // модификатор сообщения об ошибке
+  errorClass: "popup__error_visible" // =()_()=
+}; // Селекторы и модификаторы форм
