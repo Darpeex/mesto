@@ -1,17 +1,21 @@
 class FormValidator {
-  constructor(config) {
-    this._formSelector = config.formSelector;
-    this._inputSelector = config.inputSelector;
-    this._submitButtonSelector = config.submitButtonSelector;
-    this._inactiveButtonClass = config.inactiveButtonClass;
-    this._activeButtonClass = config.activeButtonClass;
-    this._inputErrorClass = config.inputErrorClass;
-    this._errorClass = config.errorClass;
+  #formSelector;
+  #inputSelector;
+  #submitButtonSelector;
+  #inactiveButtonClass;
+  #inputErrorClass;
+
+  constructor(validationConfig) {
+    this.#formSelector = validationConfig.formSelector;
+    this.#inputSelector = validationConfig.inputSelector;
+    this.#submitButtonSelector = validationConfig.submitButtonSelector;
+    this.#inactiveButtonClass = validationConfig.inactiveButtonClass;
+    this.#inputErrorClass = validationConfig.inputErrorClass;
   }
 
   _setEventListeners(form) {
-    const formInputs = Array.from(form.querySelectorAll(this._inputSelector));
-    const formButton = form.querySelector(this._submitButtonSelector);
+    const formInputs = Array.from(form.querySelectorAll(this.#inputSelector));
+    const formButton = form.querySelector(this.#submitButtonSelector);
     this._disableButton(formButton);
     formInputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -29,10 +33,10 @@ class FormValidator {
     const errorElement = document.querySelector(`#${input.id}-error`);
     if (input.checkValidity()) {
       errorElement.textContent = "";
-      input.classList.remove(this._inputErrorClass);
+      input.classList.remove(this.#inputErrorClass);
     } else {
       errorElement.textContent = input.validationMessage;
-      input.classList.add(this._inputErrorClass);
+      input.classList.add(this.#inputErrorClass);
     }
   }
 
@@ -41,17 +45,17 @@ class FormValidator {
   }
 
   _enableButton(button) {
-    button.classList.remove(this._inactiveButtonClass);
+    button.classList.remove(this.#inactiveButtonClass);
     button.removeAttribute("disabled");
   }
 
   _disableButton(button) {
-    button.classList.add(this._inactiveButtonClass);
+    button.classList.add(this.#inactiveButtonClass);
     button.setAttribute("disabled", true);
   }
 
   enableValidation() {
-    const forms = Array.from(document.querySelectorAll(this._formSelector));
+    const forms = Array.from(document.querySelectorAll(this.#formSelector));
     forms.forEach((form) => {
       form.addEventListener("submit", (evt) => {
         evt.preventDefault();

@@ -9,7 +9,7 @@ function openPopup(popup) {
   document.addEventListener('click', closePopupsOverlay);
   document.addEventListener('keydown', closePopupEsc);
 
-  formValidator.enableValidation(validationConfig);
+  formValidator.enableValidation();
 }
 // Закрытие попапов
 function closePopup(popup) {
