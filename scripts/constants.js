@@ -8,7 +8,7 @@ const profileForm = document.querySelector('.popup__editForm'); // Форма п
 const nameInput = profileForm.querySelector('.popup__form-input_field_name'); // Поле формы попапа профиля для имени
 const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
 
-const cardsContainer = document.querySelector(".elements"); // Контейнер, содержащий карточки
+const cardsContainer = document.querySelector("#elements"); // Контейнер, содержащий карточки
 const cardTemplate = cardsContainer.querySelector('#template').content; // Темплейт и всё его содержимое (".content")
 const initialCards = [
   {
