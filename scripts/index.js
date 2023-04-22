@@ -1,7 +1,11 @@
 import FormValidator from "./FormValidation.js";
+import Card from "./Card.js";
 
 const formValidator = new FormValidator(validationConfig);
 formValidator.enableValidation();
+
+const card = new Card('#elements', data)
+
 
 // Открытие попапов
 function openPopup(popup) {
@@ -40,57 +44,13 @@ function handleProfileFormSubmit (evt) {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 
-// Открыть попап добавления карточки
-const openPopupAddCard = function () {
-  openPopup(popupAddCard);
-};
-// Обработчик клика функции
-popupAddCardBtn.addEventListener('click', openPopupAddCard);
-
-
-// Создаём и возвращаем карточку из массива
-function getCard(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".elements-block__image");
-  cardElement.querySelector(".elements-block__name").textContent = data.name;
-  cardImage.src = data.link; 
-  cardImage.alt = data.name;
-  setEventListeners(cardElement);
-  return cardElement
-}
 // Добавляем готовую карточку в сетку
 function createCard (data) {
-  const cardElement = getCard(data)
+  const cardElement = card.getCard(data)
   cardsContainer.prepend(cardElement);
 };
 // Перебераем каждую и ставим в начало списка
 initialCards.reverse().forEach(createCard);
-
-
-// Добавление новой карточки
-const renderCard = (evt) => {
-  if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
-  else {
-    evt.preventDefault();
-    const data = {name: '.elements-block__name', link: '.elements-block__image'};
-    data.name = getCardName.value;
-    data.link = getSrcImg.value;
-    createCard(data);
-    creationForm.reset();
-    closePopup(popupAddCard);}
-}
-creationForm.addEventListener('submit', renderCard)
-
-
-// Лайк карточки
-function toggleLike (evt) {
-    evt.target.classList.toggle('elements-block__like-button_active');
-};
-// Удаление карточки
-function handleDelete (evt) {
-  const card = evt.target.closest('.elements-block');
-  card.remove();
-}
 
 
 // Открытие попапа с картинкой
@@ -134,3 +94,5 @@ function closePopupEsc(evt) {
     closePopup(popupOpend);
   }
 };
+
+export { openPopup, closePopup, createCard };
