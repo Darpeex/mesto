@@ -8,8 +8,6 @@ const creationFormValidator = new FormValidator(validationConfig, creationForm)
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
 
-const card = new Card('#elements', data, cardTemplate)
-
 // Открыть попап добавления карточки
 const openPopupAddCard = function() {
   openPopup(popupAddCard);
@@ -31,6 +29,8 @@ creationForm.addEventListener('submit', renderCard);
 
 // Добавляем готовую карточку в сетку
 function createCard (data) {
+  const card = new Card('#elements', data, cardTemplate)
+  
   const cardElement = card.getCard(data)
   cardsContainer.prepend(cardElement);
 };
