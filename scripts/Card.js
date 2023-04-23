@@ -6,11 +6,12 @@ class Card {
   #data;
   #cardElement;
   #cardImage;
-  #template = cardTemplate;
+  #template;
 
-  constructor (containerSelector, data) { 
+  constructor (containerSelector, data, cardTemplate) { 
     this.#container = document.querySelector(containerSelector); // #elements
     this.#data = data;
+    this.#template = cardTemplate;
   }
 
 // Открыть попап добавления карточки
@@ -18,17 +19,21 @@ class Card {
     openPopup(popupAddCard);
   };
 
-// Создаём и возвращаем карточку из массива
-  getCard(data) {
+  #getCardTemplate (data) {
     this.#cardElement = this.#template.cloneNode(true);
     this.#cardImage = this.#cardElement.querySelector(".elements-block__image");
     this.#cardElement.querySelector(".elements-block__name").textContent = data.name;
     this.#cardImage.src = data.link; 
     this.#cardImage.alt = data.name;
+
     this.#setEventListeners(this.#cardElement);
-    return this.#cardElement;
   }
 
+// Создаём и возвращаем карточку из массива
+  getCard(data) {
+      this.#getCardTemplate(data)
+    return this.#cardElement;
+  }
 
 // Лайк карточки
   #toggleLike (evt) {

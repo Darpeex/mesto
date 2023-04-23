@@ -5,7 +5,7 @@ import Card from "./Card.js";
 const formValidator = new FormValidator(validationConfig);
 formValidator.enableValidation();
 
-const card = new Card('#elements', data)
+const card = new Card('#elements', data, cardTemplate)
 
 
 // Добавление новой карточки
