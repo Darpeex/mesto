@@ -55,18 +55,3 @@ function handleProfileFormSubmit (evt) {
 };
 // Обработчик отправки функции
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-
-
-// Открытие попапа с картинкой
-function openPopupCard (evt) {
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  popupSubtitle.textContent = evt.target.alt;
-  openPopup(openCard);
-}
-// Обработчики событий
-function setEventListeners (cardElement) {
-  cardElement.querySelector(".elements-block__delete-button").addEventListener('click', handleDelete);
-  cardElement.querySelector(".elements-block__like-button").addEventListener('click', toggleLike);
-  cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
-}

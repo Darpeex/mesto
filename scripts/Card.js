@@ -47,7 +47,6 @@ class Card {
     openPopup(openCard);
   }
 
-
 // Обработчики событий
   #setEventListeners (cardElement) {
     cardElement.querySelector(".elements-block__delete-button").addEventListener('click', this.#handleDelete);
