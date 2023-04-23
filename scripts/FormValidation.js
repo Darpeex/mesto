@@ -5,17 +5,18 @@ class FormValidator {
   #inactiveButtonClass;
   #inputErrorClass;
 
-  constructor(validationConfig) {
+  constructor(validationConfig, popupForm) {
     this.#formSelector = validationConfig.formSelector;
     this.#inputSelector = validationConfig.inputSelector;
     this.#submitButtonSelector = validationConfig.submitButtonSelector;
     this.#inactiveButtonClass = validationConfig.inactiveButtonClass;
     this.#inputErrorClass = validationConfig.inputErrorClass;
   }
+  
 
-  #setEventListeners(form) {
-    const formInputs = Array.from(form.querySelectorAll(this.#inputSelector));
-    const formButton = form.querySelector(this.#submitButtonSelector);
+  #setEventListeners(form) { 
+    const formInputs = Array.from(form.querySelectorAll(this.#inputSelector)); // Обязательно ли переность эти две константы в свойства? Если они используются -
+    const formButton = form.querySelector(this.#submitButtonSelector); // только в этом методе, а в свойства ещё нужно form из enableValidation метода подтянуть
     this.#disableButton(formButton);
     formInputs.forEach((input) => {
       input.addEventListener("input", () => {

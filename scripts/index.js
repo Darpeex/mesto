@@ -2,11 +2,13 @@ import { openPopup, closePopup } from "../utils/utils.js";
 import FormValidator from "./FormValidation.js";
 import Card from "./Card.js";
 
-const formValidator = new FormValidator(validationConfig);
-formValidator.enableValidation();
+const profileFormValidator = new FormValidator(validationConfig, profileForm)
+const creationFormValidator = new FormValidator(validationConfig, creationForm)
+
+profileFormValidator.enableValidation();
+creationFormValidator.enableValidation();
 
 const card = new Card('#elements', data, cardTemplate)
-
 
 // Открыть попап добавления карточки
 const openPopupAddCard = function() {
