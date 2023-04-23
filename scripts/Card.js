@@ -1,4 +1,4 @@
-import { openPopup, closePopup, createCard } from './index.js';
+import { openPopup } from '../utils/utils.js';
 
 // Создание класса Card
 class Card {
@@ -29,19 +29,6 @@ class Card {
     return this.#cardElement;
   }
 
-// Добавление новой карточки
-  #renderCard = (evt) => {
-    if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
-    else {
-      evt.preventDefault();
-      // this.#data = {name: '.elements-block__name', link: '.elements-block__image'};
-      this.#data.name = getCardName.value;
-      this.#data.link = getSrcImg.value;
-      createCard(data);
-      creationForm.reset();
-      closePopup(popupAddCard);}
-  }
-
 
 // Лайк карточки
   #toggleLike (evt) {
@@ -67,7 +54,6 @@ class Card {
     cardElement.querySelector(".elements-block__like-button").addEventListener('click', this.#toggleLike);
     cardElement.querySelector(".elements-block__image").addEventListener('click', this.#openPopupCard);
     popupAddCardBtn.addEventListener('click', this.#openPopupAddCard);
-    creationForm.addEventListener('submit', this.#renderCard);
   }
 }
 

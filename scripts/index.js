@@ -1,3 +1,4 @@
+import { openPopup, closePopup } from "../utils/utils.js";
 import FormValidator from "./FormValidation.js";
 import Card from "./Card.js";
 
@@ -7,20 +8,26 @@ formValidator.enableValidation();
 const card = new Card('#elements', data)
 
 
-// Открытие попапов
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('click', closePopupsOverlay);
-  document.addEventListener('keydown', closePopupEsc);
+// Добавление новой карточки
+const renderCard = (evt) => {
+  if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
+  else {
+    evt.preventDefault();
+    data.name = getCardName.value;
+    data.link = getSrcImg.value;
+    createCard(data);
+    creationForm.reset();
+    closePopup(popupAddCard);}
+}
+creationForm.addEventListener('submit', renderCard);
 
-  formValidator.enableValidation();
-}
-// Закрытие попапов
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.addEventListener('click', closePopupsOverlay);
-  document.removeEventListener('keydown', closePopupEsc);
-}
+// Добавляем готовую карточку в сетку
+function createCard (data) {
+  const cardElement = card.getCard(data)
+  cardsContainer.prepend(cardElement);
+};
+// Перебераем каждую и ставим в начало списка
+initialCards.reverse().forEach(createCard);
 
 
 // Редактирование профиля
@@ -44,15 +51,6 @@ function handleProfileFormSubmit (evt) {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 
-// Добавляем готовую карточку в сетку
-function createCard (data) {
-  const cardElement = card.getCard(data)
-  cardsContainer.prepend(cardElement);
-};
-// Перебераем каждую и ставим в начало списка
-initialCards.reverse().forEach(createCard);
-
-
 // Открытие попапа с картинкой
 function openPopupCard (evt) {
   popupImage.src = evt.target.src;
@@ -66,33 +64,3 @@ function setEventListeners (cardElement) {
   cardElement.querySelector(".elements-block__like-button").addEventListener('click', toggleLike);
   cardElement.querySelector(".elements-block__image").addEventListener('click', openPopupCard);
 }
-
-
-// Общий обработчик для кнопок закрытия (крестиков)
-const closeButtons = document.querySelectorAll('.popup__button_action_close'); // находим все крестики проекта по универсальному селектору.
-  closeButtons.forEach((button) => { // С окончанием `s`, так как кнопок много
-  const popup = button.closest('.popup'); // находим 1 раз ближайший к крестику попап
-  button.addEventListener('click', () => closePopup(popup)); // устанавливаем обработчик закрытия на крестик
-});
-
-// Закрытие попапа кликом на оверлей
-function closePopupsOverlay() {
-  const closeModal = Array.from(document.querySelectorAll('.popup'));
-  closeModal.forEach(popup => {
-    popup.addEventListener('mousedown', function(evt) { // mousedown, а не click, т.к. когда пользователь выделяет поле мышкой, чтобы стереть содержимое и курсор выходит за пределы конктейнера попапа, попап закрывается, а таким образом мы закрываем по оверлею только целенаправленно
-      if(evt.target === evt.currentTarget) {
-        popup.classList.remove('popup_opened');
-      }
-    });
-  });
-}
-
-// Закрытие попапа нажатием на Esc
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const popupOpend = document.querySelector('.popup_opened');
-    closePopup(popupOpend);
-  }
-};
-
-export { openPopup, closePopup, createCard };
