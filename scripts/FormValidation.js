@@ -4,20 +4,22 @@ class FormValidator {
   #submitButtonSelector;
   #inactiveButtonClass;
   #inputErrorClass;
+  #validationForm;
   #form;
 
-  constructor(validationConfig, popupForm) {
-    this.#formSelector = validationConfig.formSelector;
+  constructor(validationConfig, validationForm) {
+    this.#formSelector = validationConfig.formSelector; // Через форм селектор без передачи не следует делать? (Как было - тоже работает, через this. тем более, заранее спасибо))
     this.#inputSelector = validationConfig.inputSelector;
     this.#submitButtonSelector = validationConfig.submitButtonSelector;
     this.#inactiveButtonClass = validationConfig.inactiveButtonClass;
     this.#inputErrorClass = validationConfig.inputErrorClass;
+    this.#validationForm = validationForm.validationForm;
   }
   
 
   #setEventListeners() { 
-    const formInputs = Array.from(this.#form.querySelectorAll(this.#inputSelector)); // Обязательно ли переность эти две константы в свойства? Если они используются -
-    const formButton = this.#form.querySelector(this.#submitButtonSelector); // только в этом методе, а в свойства ещё нужно form из enableValidation метода подтянуть
+    const formInputs = Array.from(this.#form.querySelectorAll(this.#inputSelector)); 
+    const formButton = this.#form.querySelector(this.#submitButtonSelector);
     this.#disableButton(formButton);
     formInputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -57,7 +59,7 @@ class FormValidator {
   }
 
   enableValidation() {
-    const forms = Array.from(document.querySelectorAll(this.#formSelector));
+    const forms = Array.from(document.querySelectorAll(this.#validationForm));
     forms.forEach((form) => {
       form.addEventListener("submit", (evt) => {
         evt.preventDefault();
