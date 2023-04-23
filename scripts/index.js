@@ -8,6 +8,12 @@ formValidator.enableValidation();
 const card = new Card('#elements', data, cardTemplate)
 
 
+// Открыть попап добавления карточки
+const openPopupAddCard = function() {
+  openPopup(popupAddCard);
+};
+popupAddCardBtn.addEventListener('click', openPopupAddCard);
+
 // Добавление новой карточки
 const renderCard = (evt) => {
   if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}

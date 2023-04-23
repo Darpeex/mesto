@@ -14,11 +14,6 @@ class Card {
     this.#template = cardTemplate;
   }
 
-// Открыть попап добавления карточки
-  #openPopupAddCard () {
-    openPopup(popupAddCard);
-  };
-
   #getCardTemplate (data) {
     this.#cardElement = this.#template.cloneNode(true);
     this.#cardImage = this.#cardElement.querySelector(".elements-block__image");
@@ -58,7 +53,6 @@ class Card {
     cardElement.querySelector(".elements-block__delete-button").addEventListener('click', this.#handleDelete);
     cardElement.querySelector(".elements-block__like-button").addEventListener('click', this.#toggleLike);
     cardElement.querySelector(".elements-block__image").addEventListener('click', this.#openPopupCard);
-    popupAddCardBtn.addEventListener('click', this.#openPopupAddCard);
   }
 }
 
