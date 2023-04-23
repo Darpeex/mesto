@@ -8,7 +8,7 @@ class FormValidator {
   #form;
 
   constructor(validationConfig, validationForm) {
-    this.#formSelector = validationConfig.formSelector; // Через форм селектор без передачи не следует делать? (Как было - тоже работает, через this. тем более, заранее спасибо))
+    this.#formSelector = validationConfig.formSelector;
     this.#inputSelector = validationConfig.inputSelector;
     this.#submitButtonSelector = validationConfig.submitButtonSelector;
     this.#inactiveButtonClass = validationConfig.inactiveButtonClass;
