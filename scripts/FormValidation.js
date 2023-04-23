@@ -1,33 +1,33 @@
 class FormValidator {
-  #formSelector;
   #inputSelector;
   #submitButtonSelector;
   #inactiveButtonClass;
   #inputErrorClass;
   #validationForm;
-  #form;
+  #formInputs;
+  #formButton;
 
   constructor(validationConfig, validationForm) {
-    this.#formSelector = validationConfig.formSelector;
     this.#inputSelector = validationConfig.inputSelector;
     this.#submitButtonSelector = validationConfig.submitButtonSelector;
     this.#inactiveButtonClass = validationConfig.inactiveButtonClass;
     this.#inputErrorClass = validationConfig.inputErrorClass;
-    this.#validationForm = validationForm.validationForm;
+    
+    this.#validationForm = validationForm;
+    this.#formInputs = Array.from(this.#validationForm.querySelectorAll(this.#inputSelector)); 
+    this.#formButton = this.#validationForm.querySelector(this.#submitButtonSelector);
   }
   
 
-  #setEventListeners() { 
-    const formInputs = Array.from(this.#form.querySelectorAll(this.#inputSelector)); 
-    const formButton = this.#form.querySelector(this.#submitButtonSelector);
-    this.#disableButton(formButton);
-    formInputs.forEach((input) => {
+  #setEventListeners() {
+    this.#disableButton(this.#formButton);
+    this.#formInputs.forEach((input) => {
       input.addEventListener("input", () => {
         this.#checkInputValidity(input);
-        if (this.#hasInvalidInput(formInputs)) {
-          this.#disableButton(formButton);
+        if (this.#hasInvalidInput(this.#formInputs)) {
+          this.#disableButton(this.#formButton);
         } else {
-          this.#enableButton(formButton);
+          this.#enableButton(this.#formButton);
         }
       });
     });
@@ -59,14 +59,10 @@ class FormValidator {
   }
 
   enableValidation() {
-    const forms = Array.from(document.querySelectorAll(this.#validationForm));
-    forms.forEach((form) => {
-      form.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-      });
-      this.#form = form;
-      this.#setEventListeners();
+    this.#validationForm.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
+      this.#setEventListeners();
   }
 }
 
