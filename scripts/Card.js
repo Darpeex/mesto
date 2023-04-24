@@ -14,12 +14,13 @@ class Card {
     this.#template = cardTemplate;
   }
 
+  // Получаем данные карточки
   #getCardTemplate (data) {
-    this.#cardElement = this.#template.cloneNode(true);
-    this.#cardImage = this.#cardElement.querySelector(".elements-block__image");
-    this.#cardElement.querySelector(".elements-block__name").textContent = data.name;
-    this.#cardImage.src = data.link; 
-    this.#cardImage.alt = data.name;
+    this.#cardElement = this.#template.cloneNode(true); // Клонируем данные темплейта
+    this.#cardImage = this.#cardElement.querySelector(".elements-block__image"); // Блок  картинкой
+    this.#cardElement.querySelector(".elements-block__name").textContent = data.name; // Содержимое текстового поля = передаваемой data.name
+    this.#cardImage.src = data.link; // Содержимое ссылки = передаваемой data.link (Вроде как-то так)
+    this.#cardImage.alt = data.name; // Содержимое alt берётся из передаваемого data.name
 
     this.#setEventListeners(this.#cardElement);
   }

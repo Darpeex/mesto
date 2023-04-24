@@ -2,8 +2,8 @@ import { openPopup, closePopup } from "../utils/utils.js";
 import FormValidator from "./FormValidation.js";
 import Card from "./Card.js";
 
-const profileFormValidator = new FormValidator(validationConfig, profileForm)
-const creationFormValidator = new FormValidator(validationConfig, creationForm)
+const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
+const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
 
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
