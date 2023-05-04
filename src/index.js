@@ -1,6 +1,6 @@
-import { openPopup, closePopup } from "../utils/utils.js";
-import FormValidator from "../scripts/FormValidation.js";
-import Card from "../scripts/Card.js";
+import { openPopup, closePopup } from "./utils/utils.js";
+import FormValidator from "./scripts/FormValidation.js";
+import Card from "./scripts/Card.js";
 
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
