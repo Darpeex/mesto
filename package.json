@@ -4,7 +4,7 @@
   "description": "В этом cпринте работаем над сервисом Mesto: интерактивной страницей, куда можно добавлять фотографии, удалять их и ставить лайки.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "webpack --mode production",
     "dev": "webpack serve"
   },
   "author": "",
@@ -13,6 +13,8 @@
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.1",
     "webpack": "^5.82.0",
     "webpack-dev-server": "^4.13.3"
   },
