@@ -1,4 +1,4 @@
-import './pages/index.css'; // добавьте импорт главного файла стилей 
+// import './pages/index.css'; // добавьте импорт главного файла стилей 
 import { openPopup, closePopup } from "./utils/utils.js";
 import FormValidator from "./scripts/FormValidation.js";
 import Card from "./scripts/Card.js";
