@@ -1,7 +1,7 @@
 // import './pages/index.css'; // добавьте импорт главного файла стилей 
 import { openPopup, closePopup } from "./utils/utils.js";
-import FormValidator from "./scripts/FormValidation.js";
-import Card from "./scripts/Card.js";
+import FormValidator from "./components/FormValidation.js";
+import Card from "./components/Card.js";
 
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
