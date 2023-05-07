@@ -1,6 +1,10 @@
-import { Popup } from './Popup.js'
+import Popup from './Popup.js'
 
 class PopupWithForm extends Popup {
+  #handleSubmitForm;
+  #formElement;
+  #formInput;
+  #popup;
   // Новые комментарии после сдачи спринта пишу
   constructor(popup, handleSubmitForm) {
     super(popup);

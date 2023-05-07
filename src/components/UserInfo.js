@@ -1,6 +1,6 @@
 class UserInfo {
-  #profileNameSelector;
-  #profileAboutSelector;
+  #profileNameElement;
+  #profileDescriptionElement;
   // Новые комментарии после сдачи спринта пишу
   constructor({ profileNameSelector, profileAboutSelector }) {
     this.#profileNameElement = document.querySelector(profileNameSelector);
@@ -19,3 +19,5 @@ class UserInfo {
     this.#profileDescriptionElement.textContent = userDescription;
   }
 }
+
+export default UserInfo;

@@ -1,6 +1,8 @@
-import { Popup } from './Popup.js'
+import Popup from './Popup.js'
 
 class PopupWithImage extends Popup {
+  #popup;
+
   #popupImage = this.#popup.querySelector('.popup__image-card');
   #popupSubtitle = this.#popup.querySelector('.popup__image-subtitle');
 

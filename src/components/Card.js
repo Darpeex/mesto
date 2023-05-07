@@ -1,5 +1,3 @@
-import { openPopup } from '../utils/utils.js';
-
 // Создание класса Card
 class Card {
   #container;
@@ -7,11 +5,13 @@ class Card {
   #cardElement;
   #cardImage;
   #template;
+  #handleCardClick;
 
-  constructor (containerSelector, data, cardTemplate) { 
+  constructor (containerSelector, data, cardTemplate, handleCardClick) { 
     this.#container = document.querySelector(containerSelector); // #elements
     this.#data = data;
     this.#template = cardTemplate;
+    this.#handleCardClick = handleCardClick;
   }
 
   // Получаем данные карточки
@@ -40,19 +40,12 @@ class Card {
     const card = evt.target.closest('.elements-block');
     card.remove();
   }
-// Открытие попапа с картинкой
-  #openPopupCard (evt) {
-    popupImage.src = evt.target.src;
-    popupImage.alt = evt.target.alt;
-    popupSubtitle.textContent = evt.target.alt;
-    openPopup(openCard);
-  }
 
 // Обработчики событий
   #setEventListeners (cardElement) {
     cardElement.querySelector(".elements-block__delete-button").addEventListener('click', this.#handleDelete);
     cardElement.querySelector(".elements-block__like-button").addEventListener('click', this.#toggleLike);
-    cardElement.querySelector(".elements-block__image").addEventListener('click', this.#openPopupCard);
+    this.#cardImage.addEventListener('click', () => this.#handleCardClick());
   }
 }
 
