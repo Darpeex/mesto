@@ -9,7 +9,7 @@ class Section {
     this.#renderedItems = items;
     this.#renderer = renderer;
     
-    this.#container = document.querySelector(selector);
+    this.#container = selector;
   }
 
   // Метод, который отвечает за отрисовку всех элементов. 
@@ -19,7 +19,7 @@ class Section {
 
   // Метод, который принимает DOM-элемент и добавляет его в контейнер.
   addItem(element) {
-    this.#container.append(element);
+    this.#container.prepend(element);
   }
 }
 
