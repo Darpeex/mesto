@@ -5,7 +5,7 @@ class Popup {
 
   // Принимает в конструктор единственный параметр — селектор попапа.
   constructor(popup) {
-    this.#popup = popup; // модальное окно (попап)
+    this.#popup = popup; // модальное окно 
     this._handleEscClose = this._handleEscClose.bind(this); // явная привязка
     this.#closeButtons = this.#popup.querySelector('.popup__button_action_close'); // крестики
   }
