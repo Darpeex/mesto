@@ -5,25 +5,25 @@ class Popup {
 
   // Принимает в конструктор единственный параметр — селектор попапа.
   constructor(popup) {
-    this.#popup = document.querySelector(popup); // модальное окно
-    // this.#handleEscClose = this.#handleEscClose.bind(this); // явная привязка
+    this.#popup = popup; // модальное окно (попап)
+    this._handleEscClose = this._handleEscClose.bind(this); // явная привязка
     this.#closeButtons = this.#popup.querySelector('.popup__button_action_close'); // крестики
   }
 
   // Открытие попапов
   open() {
     this.#popup.classList.add('popup_opened');
-    document.addEventListener('keydown', this.#handleEscClose);
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   // Закрытие попапов
   close() {
     this.#popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this.#handleEscClose);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   // Закрытие попапа клавишей Esc.
-  #handleEscClose(evt) {
+  _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close();
     }
@@ -36,7 +36,7 @@ class Popup {
         this.close();
       }
     });
-
+    
     this.#closeButtons.addEventListener('click', () => {
       this.close();
     });
