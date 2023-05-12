@@ -23,7 +23,7 @@ card.getCard();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ items: initialCards, renderer: (item) => {
-  cardList.addItem(card.getCard(item))
+  cardList.addItem(createCard(item))
 }}, cardsContainer)
 cardList.renderItems();
 
@@ -58,9 +58,8 @@ function createCard (data) {
   
   const cardElement = card.getCard(data)
   cardsContainer.prepend(cardElement);
+  return(cardElement);
 };
-// Перебераем каждую и ставим в начало списка
-initialCards.reverse().forEach(createCard);
 
 
 // Редактирование профиля
