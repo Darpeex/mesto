@@ -5,6 +5,7 @@ class FormValidator {
   #inactiveButtonClass;
   #inputErrorClass;
   #validationForm;
+  #errorElement;
   #formInputs;
   #formButton;
 
@@ -37,12 +38,12 @@ class FormValidator {
 
   //Проверяем поле на валидность + смена активности кнопки
   #checkInputValidity(input) {
-    const errorElement = document.querySelector(`#${input.id}-error`); // Находим span'ы от айдишников инпут с приставкой -error
+    this.#errorElement = document.querySelector(`#${input.id}-error`); // Находим span'ы от айдишников инпут с приставкой -error
     if (input.checkValidity()) { // Если поле валидно
-      errorElement.textContent = ""; // Если всё хорошо, чистим поле с ошибкой
+      this.#errorElement.textContent = ""; // Если всё хорошо, чистим поле с ошибкой
       input.classList.remove(this.#inputErrorClass); // Если всё хорошо - убираем подчёркивание красным цветом
     } else { // Иначе
-      errorElement.textContent = input.validationMessage; // Если что-то нехорошо, выводим сообщение об ошибке
+      this.#errorElement.textContent = input.validationMessage; // Если что-то нехорошо, выводим сообщение об ошибке
       input.classList.add(this.#inputErrorClass); // Если что-то нехорошо - добавляем подчёркивание красным цветом
     }
   }
@@ -70,6 +71,13 @@ class FormValidator {
       evt.preventDefault(); // При subit предотвращаем тандартное действие
     });
       this.#setEventListeners(); // Вызываем приватную функцию и т.д.
+  }
+
+  // Очищаем поля при открытии
+  resetPopupForm() {
+    this.#errorElement.forEach((field) => field.textContent = '');
+    this.#formInputs.forEach((input) => input.classList.remove(this.#inputErrorClass));
+    this.#disableButton();
   }
 }
 

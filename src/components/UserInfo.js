@@ -1,7 +1,7 @@
 class UserInfo {
   #profileNameElement;
   #profileDescriptionElement;
-  // Новые комментарии после сдачи спринта пишу
+  
   constructor({ profileNameSelector, profileAboutSelector }) {
     this.#profileNameElement = document.querySelector(profileNameSelector);
     this.#profileDescriptionElement = document.querySelector(profileAboutSelector);

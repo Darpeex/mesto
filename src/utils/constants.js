@@ -57,6 +57,7 @@ const popupOpen = document.querySelector('.popup_opened'); // Модификат
 const formInput = document.querySelector('.popup__form-input') // Поля ввода попапов
 const openPopupBtn = document.querySelector('.button__form-open') // Кнопки открытия форм
 
+
 const validationConfig = {
   formSelector: ".popup__form", // селектор форм
   inputSelector: ".popup__form-input", // селектор полей ввода

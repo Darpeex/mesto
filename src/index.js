@@ -4,6 +4,7 @@ import Card from "./components/Card.js";
 import Section from "./components/Section.js";
 import Popup from "./components/Popup.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
@@ -14,7 +15,10 @@ creationFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage();
 
 // Класс Card - получаем данные карточки
-const card = new Card(cardsContainer, data, cardTemplate, () => {popupWithImage.open})
+const card = new Card(cardsContainer, data, cardTemplate, () => {
+  popupWithImage.open();
+  console.log('done');
+})
 card.getCard();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
