@@ -90,12 +90,9 @@ const userInfo = new UserInfo( getName, getJob )
 
 // Редактирование профиля
 const openPopupEditProfile = function () {
-
-//   nameInput.value = getName.textContent;
-//   jobInput.value = getJob.textContent;
-
-  userInfo.getUserInfo();
-  userInfo.setUserInfo();
+  const profileData = userInfo.getUserInfo()
+  nameInput.value = profileData.userName;
+  jobInput.value = profileData.userDescription;
   editCardPopup.open();
 
   profileFormValidator.enableValidation();
@@ -107,11 +104,11 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
 
-    //   getName.textContent = `${nameInput.value}`;
-    //   getJob.textContent = `${jobInput.value}`;
+    getName.textContent = `${nameInput.value}`;
+    getJob.textContent = `${jobInput.value}`;
 
-    userInfo.setUserInfo(); // Взять информацию из поля
-    popupEditProfile.setEventListeners(); // Поставить информацию getName и getJob
+    // userInfo.setUserInfo(); // Взять информацию из поля
+    // popupEditProfile.setEventListeners(); // Поставить информацию getName и getJob
 
     editCardPopup.close();
 };
