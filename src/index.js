@@ -15,10 +15,6 @@ creationFormValidator.enableValidation();
 // Класс PopupWithImage - открытие карточек
 const popupWithImage = new PopupWithImage();
 
-// Класс Card - получаем данные карточки и открываем попап картинок
-// const card = new Card(cardsContainer, data, cardTemplate, () => {popupWithImage.open()})
-// card.getCard();
-
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ items: initialCards, renderer: (item) => {
   cardList.addItem(createCard(item))
@@ -61,31 +57,7 @@ function createCard (data) {
   return(cardElement);
 };
 
-
-// // Редактирование профиля
-// const openPopupEditProfile = function () {
-//   nameInput.value = getName.textContent;
-//   jobInput.value = getJob.textContent;
-//   editCardPopup.open();
-
-//   profileFormValidator.enableValidation();
-// };
-// // Обработчик клика функции
-// profileEditButton.addEventListener('click', openPopupEditProfile);
-
-// // Отправка формы с изменениями в профиле
-// function handleProfileFormSubmit (evt) {
-//   evt.preventDefault();
-//   getName.textContent = `${nameInput.value}`;
-//   getJob.textContent = `${jobInput.value}`;
-//   editCardPopup.close();
-// };
-// // Обработчик отправки функции
-// profileForm.addEventListener('submit', handleProfileFormSubmit);
-
-
-
-const popupEditProfile = new PopupWithForm(profileForm, (formData) => {});
+const popupEditProfile = new PopupWithForm(profileForm, () => {handleProfileFormSubmit(data)});
 const userInfo = new UserInfo( getName, getJob )
 
 // Редактирование профиля
@@ -95,22 +67,15 @@ const openPopupEditProfile = function () {
   jobInput.value = profileData.userDescription;
   editCardPopup.open();
 
+  popupEditProfile.setEventListeners();
   profileFormValidator.enableValidation();
 };
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
 // Отправка формы с изменениями в профиле
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault();
+function handleProfileFormSubmit () {
+  userInfo.setUserInfo({ userName: nameInput.value, userDescription: jobInput.value});
 
-    getName.textContent = `${nameInput.value}`;
-    getJob.textContent = `${jobInput.value}`;
-
-    // userInfo.setUserInfo(); // Взять информацию из поля
-    // popupEditProfile.setEventListeners(); // Поставить информацию getName и getJob
-
-    editCardPopup.close();
+  editCardPopup.close();
 };
-// Обработчик отправки функции
-profileForm.addEventListener('submit', handleProfileFormSubmit);
