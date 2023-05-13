@@ -18,7 +18,9 @@ class Card {
   #getCardTemplate (data) {
     this.#cardElement = this.#template.cloneNode(true); // Клонируем данные темплейта
     this.#cardImage = this.#cardElement.querySelector(".elements-block__image"); // Блок  картинкой
-    console.log(data.name);
+
+    // console.log(data.name);
+    
     this.#cardElement.querySelector(".elements-block__name").textContent = data.name; // Содержимое текстового поля = передаваемой data.name
     this.#cardImage.src = data.link; // Содержимое ссылки = передаваемой data.link (Вроде как-то так)
     this.#cardImage.alt = data.name; // Содержимое alt берётся из передаваемого data.name
