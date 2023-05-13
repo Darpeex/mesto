@@ -2,12 +2,15 @@ class UserInfo {
   #profileNameElement;
   #profileDescriptionElement;
   
-  constructor({ profileNameSelector, profileAboutSelector }) {
-    this.#profileNameElement = document.querySelector(profileNameSelector);
-    this.#profileDescriptionElement = document.querySelector(profileAboutSelector);
+  constructor( profileNameSelector, profileAboutSelector ) {
+    this.#profileNameElement = profileNameSelector;
+    this.#profileDescriptionElement = profileAboutSelector;
+    // console.log(this.#profileNameElement);
+    // console.log(this.#profileDescriptionElement);
   }
 
   getUserInfo() {
+
     return {
       userName: this.#profileNameElement.textContent,
       userDescription: this.#profileDescriptionElement.textContent

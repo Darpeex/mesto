@@ -62,10 +62,40 @@ function createCard (data) {
 };
 
 
+// // Редактирование профиля
+// const openPopupEditProfile = function () {
+//   nameInput.value = getName.textContent;
+//   jobInput.value = getJob.textContent;
+//   editCardPopup.open();
+
+//   profileFormValidator.enableValidation();
+// };
+// // Обработчик клика функции
+// profileEditButton.addEventListener('click', openPopupEditProfile);
+
+// // Отправка формы с изменениями в профиле
+// function handleProfileFormSubmit (evt) {
+//   evt.preventDefault();
+//   getName.textContent = `${nameInput.value}`;
+//   getJob.textContent = `${jobInput.value}`;
+//   editCardPopup.close();
+// };
+// // Обработчик отправки функции
+// profileForm.addEventListener('submit', handleProfileFormSubmit);
+
+
+
+const popupEditProfile = new PopupWithForm(profileForm, (formData) => {});
+const userInfo = new UserInfo( getName, getJob )
+
 // Редактирование профиля
 const openPopupEditProfile = function () {
-  nameInput.value = getName.textContent;
-  jobInput.value = getJob.textContent;
+
+//   nameInput.value = getName.textContent;
+//   jobInput.value = getJob.textContent;
+
+  userInfo.getUserInfo();
+  userInfo.setUserInfo();
   editCardPopup.open();
 
   profileFormValidator.enableValidation();
@@ -73,12 +103,16 @@ const openPopupEditProfile = function () {
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
-
 // Отправка формы с изменениями в профиле
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
-    getName.textContent = `${nameInput.value}`;
-    getJob.textContent = `${jobInput.value}`;
+
+    //   getName.textContent = `${nameInput.value}`;
+    //   getJob.textContent = `${jobInput.value}`;
+
+    userInfo.setUserInfo(); // Взять информацию из поля
+    popupEditProfile.setEventListeners(); // Поставить информацию getName и getJob
+
     editCardPopup.close();
 };
 // Обработчик отправки функции
