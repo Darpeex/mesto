@@ -57,7 +57,7 @@ function createCard (data) {
   return(cardElement);
 };
 
-const popupEditProfile = new PopupWithForm(profileForm, () => {handleProfileFormSubmit(data)});
+const popupEditProfile = new PopupWithForm(profileForm, handleProfileFormSubmit);
 const userInfo = new UserInfo( getName, getJob )
 
 // Редактирование профиля
@@ -74,8 +74,8 @@ const openPopupEditProfile = function () {
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
 // Отправка формы с изменениями в профиле
-function handleProfileFormSubmit () {
-  userInfo.setUserInfo({ userName: nameInput.value, userDescription: jobInput.value});
-
-  editCardPopup.close();
+function handleProfileFormSubmit(data) {
+  console.log({userName: data.userName, userDescription: data.userAbout})
+  userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
+  popupEditProfile.close();
 };
