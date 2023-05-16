@@ -18,7 +18,7 @@ class PopupWithImage extends Popup {
     this.#popupImage.alt = name;
     this.#popupSubtitle.textContent = name;
     
-    super.open(this.#openCard);
+    super.open();
     super.setEventListeners();
   }
 }
