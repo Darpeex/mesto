@@ -9,12 +9,12 @@ import {
   popupProfile,
   popupAddCard,
   popupAddCardBtn,
-  getCardName,
-  getSrcImg,
+  cardName,
+  srcImg,
   data,
   profileEditButton,
-  getName,
-  getJob,
+  name,
+  job,
   nameInput,
   jobInput,
 } from "../utils/constants.js"
@@ -54,11 +54,11 @@ popupAddCardBtn.addEventListener('click', () => {
 
 // Добавление новой карточки
 const renderCard = (evt) => {
-  if (getCardName.value.length <= 1 || getSrcImg.value.length <= 1) {stop;}
+  if (cardName.value.length <= 1 || srcImg.value.length <= 1) {stop;}
   else {
     evt.preventDefault();
-    data.name = getCardName.value;
-    data.link = getSrcImg.value;
+    data.name = cardName.value;
+    data.link = srcImg.value;
     createCard(data);
     creationForm.reset();
     addCardPopup.close();}
@@ -77,7 +77,7 @@ function createCard (data) {
 };
 
 const popupEditProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
-const userInfo = new UserInfo( getName, getJob )
+const userInfo = new UserInfo( name, job )
 
 // Редактирование профиля
 const openPopupEditProfile = function () {

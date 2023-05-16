@@ -1,8 +1,8 @@
 // Выборка DOM элементов
 export const popupProfile = document.querySelector('#editProfile'); // Попап редактирования профиля
 export const profileEditButton = document.querySelector('.profile__button_action_edit'); // Кнопка открытия попапа редактирования профиля
-export const getName = document.querySelector('.profile__name'); // Получение имени из профиля (для формы)
-export const getJob = document.querySelector('.profile__activity'); // Получение рода деятельности из профиля (для формы)
+export const name = document.querySelector('.profile__name'); // Получение имени из профиля (для формы)
+export const job = document.querySelector('.profile__activity'); // Получение рода деятельности из профиля (для формы)
 export const profileForm = document.querySelector('.popup__editForm'); // Форма попапа профиля
 export const nameInput = profileForm.querySelector('.popup__form-input_field_name'); // Поле формы попапа профиля для имени
 export const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
@@ -40,8 +40,8 @@ export const data = {name: '.elements-block__name', link: '.elements-block__imag
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки
 export const popupAddCardBtn = document.querySelector('.profile__button_action_add'); // Кнопка открытия попапа добавления карточки
 export const creationForm = popupAddCard.querySelector('.popup__creationForm'); // Форма попапа добавления карточки
-export const getCardName = creationForm.querySelector ('.popup__form-input_field_cardName'); // Поле формы попапа добавления карточки для имени
-export const getSrcImg = creationForm.querySelector('.popup__form-input_field_srcImg'); // Поле формы попапа добавления карточки для картинки (ссылка)
+export const cardName = creationForm.querySelector ('.popup__form-input_field_cardName'); // Поле формы попапа добавления карточки для имени
+export const srcImg = creationForm.querySelector('.popup__form-input_field_srcImg'); // Поле формы попапа добавления карточки для картинки (ссылка)
 
 export const validationConfig = {
   formSelector: ".popup__form", // селектор форм
