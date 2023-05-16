@@ -54,15 +54,15 @@ class FormValidator {
   }
 
   // Активная кнопка
-  #enableButton(button) {
-    button.classList.remove(this.#inactiveButtonClass); // удаляем модификатор неактивной кнопки
-    button.removeAttribute("disabled"); // неактивность кнопки через псевдокласс ВЫКЛ
+  #enableButton() {
+    this.#formButton.classList.remove(this.#inactiveButtonClass); // удаляем модификатор неактивной кнопки
+    this.#formButton.removeAttribute("disabled"); // неактивность кнопки через псевдокласс ВЫКЛ
   }
 
   // Неактивная кнопка
-  #disableButton(button) {
-    button.classList.add(this.#inactiveButtonClass); // добавляем модификатор неактивной кнопки
-    button.setAttribute("disabled", true); // неактивность кнопки через псевдокласс ВКЛ
+  #disableButton() {
+    this.#formButton.classList.add(this.#inactiveButtonClass); // добавляем модификатор неактивной кнопки
+    this.#formButton.setAttribute("disabled", true); // неактивность кнопки через псевдокласс ВКЛ
   }
 
   // Функция проверки форм
