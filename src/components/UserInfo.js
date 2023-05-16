@@ -3,8 +3,8 @@ class UserInfo {
   #profileDescriptionElement;
   
   constructor( profileNameSelector, profileAboutSelector ) {
-    this.#profileNameElement = profileNameSelector;
-    this.#profileDescriptionElement = profileAboutSelector;
+    this.#profileNameElement = document.querySelector(profileNameSelector);
+    this.#profileDescriptionElement = document.querySelector(profileAboutSelector);
   }
 
   getUserInfo() {

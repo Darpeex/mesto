@@ -13,8 +13,6 @@ import {
   srcImg,
   data,
   profileEditButton,
-  name,
-  job,
   nameInput,
   jobInput,
 } from "../utils/constants.js"
@@ -77,7 +75,7 @@ function createCard (data) {
 };
 
 const popupEditProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
-const userInfo = new UserInfo( name, job )
+const userInfo = new UserInfo('.profile__name', '.profile__activity')
 
 // Редактирование профиля
 const openPopupEditProfile = function () {

@@ -1,8 +1,6 @@
 // Выборка DOM элементов
 export const popupProfile = document.querySelector('#editProfile'); // Попап редактирования профиля
 export const profileEditButton = document.querySelector('.profile__button_action_edit'); // Кнопка открытия попапа редактирования профиля
-export const name = document.querySelector('.profile__name'); // Получение имени из профиля (для формы)
-export const job = document.querySelector('.profile__activity'); // Получение рода деятельности из профиля (для формы)
 export const profileForm = document.querySelector('.popup__editForm'); // Форма попапа профиля
 export const nameInput = profileForm.querySelector('.popup__form-input_field_name'); // Поле формы попапа профиля для имени
 export const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
