@@ -1,4 +1,4 @@
-import './pages/index.css'; // добавьте импорт главного файла стилей
+import './index.css'; // добавьте импорт главного файла стилей
 import {
   validationConfig,
   profileForm,
@@ -17,14 +17,14 @@ import {
   getJob,
   nameInput,
   jobInput,
-} from "../src/utils/constants.js"
-import Popup from "./components/Popup.js";
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidation.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
+} from "../utils/constants.js"
+import Popup from "../components/Popup.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidation.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
