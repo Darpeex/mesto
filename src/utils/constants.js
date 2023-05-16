@@ -6,7 +6,7 @@ export const nameInput = profileForm.querySelector('.popup__form-input_field_nam
 export const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
 
 export const cardsContainer = document.querySelector("#elements"); // Контейнер, содержащий карточки
-export const cardTemplate = cardsContainer.querySelector('#template').content; // Темплейт и всё его содержимое (".content")
+export const cardTemplate = cardsContainer.querySelector('#template').content.querySelector('.elements-block'); // Темплейт и содержимое элемента
 export const initialCards = [
   {
     name: 'Камчатка',
