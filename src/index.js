@@ -1,8 +1,41 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей
-import FormValidator from "./components/FormValidation.js";
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
+import {
+  validationConfig,
+  profileForm,
+  creationForm,
+  initialCards,
+  cardsContainer,
+  cardTemplate,
+  popupProfile,
+  popupAddCard,
+  popupAddCardBtn,
+  getCardName,
+  getSrcImg,
+  // popup,
+  data,
+  profileEditButton,
+  // profileSaveButton,
+  getName,
+  getJob,
+  nameInput,
+  jobInput,
+  // makeCard, Закомментированные - не используются, удалить? (В папке константс тоже?)
+  // openCard,
+  // popupImage,
+  // popupSubtitle,
+  // imagePopupOpenBtn,
+  // cardTitle,
+  // elementBlock,
+  // popupOpen,
+  // formInput,
+  // openPopupBtn,
+  // userName,
+  // userAbout
+} from "../src/utils/constants.js"
 import Popup from "./components/Popup.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidation.js";
+import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
