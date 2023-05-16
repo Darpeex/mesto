@@ -33,10 +33,10 @@ creationFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
-const cardList = new Section({ items: initialCards, renderer: (item) => {
+const cardList = new Section({ renderer: (item) => {
   cardList.addItem(createCard(item))
 }}, "#elements")
-cardList.renderItems();
+cardList.renderItems(initialCards);
 
 // Класс Popup - открытие и закрытие попапа
 const editCardPopup = new Popup(popupProfile);
