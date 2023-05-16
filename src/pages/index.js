@@ -35,7 +35,7 @@ const popupWithImage = new PopupWithImage();
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ items: initialCards, renderer: (item) => {
   cardList.addItem(createCard(item))
-}}, cardsContainer)
+}}, "#elements")
 cardList.renderItems();
 
 // Класс Popup - открытие и закрытие попапа
