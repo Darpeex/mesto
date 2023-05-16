@@ -5,9 +5,9 @@ class PopupWithForm extends Popup {
   #formElement;
   
   constructor(popupSelector, submitCallback) {
-    super(popup);
+    super(popupSelector);
     this.#submitCallback = submitCallback;
-    this.#formElement = popupSelector;
+    this.#formElement = popupSelector.querySelector('.popup__editForm');
   }
 
   #getInputValues() {

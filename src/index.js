@@ -11,15 +11,15 @@ import {
   popupAddCardBtn,
   getCardName,
   getSrcImg,
-  // popup,
   data,
   profileEditButton,
-  // profileSaveButton,
   getName,
   getJob,
   nameInput,
   jobInput,
-  // makeCard, Закомментированные - не используются, удалить? (В папке константс тоже?)
+  // popup,
+  // profileSaveButton,
+  // makeCard, Закомментированные - не используются, удалить? (В папке константс эти тоже?)
   // openCard,
   // popupImage,
   // popupSubtitle,
@@ -90,7 +90,7 @@ function createCard (data) {
   return(cardElement);
 };
 
-const popupEditProfile = new PopupWithForm(profileForm, handleProfileFormSubmit);
+const popupEditProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 const userInfo = new UserInfo( getName, getJob )
 
 // Редактирование профиля
@@ -108,7 +108,6 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 
 // Отправка формы с изменениями в профиле
 function handleProfileFormSubmit(data) {
-  console.log({userName: data.userName, userDescription: data.userAbout})
   userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
   popupEditProfile.close();
 };
