@@ -27,6 +27,7 @@ import UserInfo from "../components/UserInfo.js";
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
 
+profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
 
 // Класс PopupWithImage - открытие карточек
@@ -75,7 +76,8 @@ function createCard (data) {
 };
 
 const popupEditProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
-const userInfo = new UserInfo('.profile__name', '.profile__activity')
+  popupEditProfile.setEventListeners();
+const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
 // Редактирование профиля
 const openPopupEditProfile = function () {
@@ -83,9 +85,6 @@ const openPopupEditProfile = function () {
   nameInput.value = profileData.userName;
   jobInput.value = profileData.userDescription;
   editCardPopup.open();
-
-  popupEditProfile.setEventListeners();
-  profileFormValidator.enableValidation();
 };
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
