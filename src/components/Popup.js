@@ -6,7 +6,7 @@ class Popup {
   constructor(popup) {
     this.#popup = popup; // модальное окно 
     this._handleEscClose = this._handleEscClose.bind(this); // явная привязка
-    this.#closeButton = this.#popup.querySelector('.popup__button_action_close'); // крестики
+    this.#closeButton = this.#popup.querySelector('.popup__button_action_close'); // крестик
   }
 
   // Открытие попапов
