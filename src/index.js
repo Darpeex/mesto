@@ -17,20 +17,6 @@ import {
   getJob,
   nameInput,
   jobInput,
-  // popup,
-  // profileSaveButton,
-  // makeCard, Закомментированные - не используются, удалить? (В папке константс эти тоже?)
-  // openCard,
-  // popupImage,
-  // popupSubtitle,
-  // imagePopupOpenBtn,
-  // cardTitle,
-  // elementBlock,
-  // popupOpen,
-  // formInput,
-  // openPopupBtn,
-  // userName,
-  // userAbout
 } from "../src/utils/constants.js"
 import Popup from "./components/Popup.js";
 import Card from "./components/Card.js";

@@ -1,7 +1,6 @@
 // Выборка DOM элементов
 export const popupProfile = document.querySelector('#editProfile'); // Попап редактирования профиля
 export const profileEditButton = document.querySelector('.profile__button_action_edit'); // Кнопка открытия попапа редактирования профиля
-export const profileSaveButton = popupProfile.querySelector('.popup__button_action_save'); // Кнопка отправки формы редактирования профиля
 export const getName = document.querySelector('.profile__name'); // Получение имени из профиля (для формы)
 export const getJob = document.querySelector('.profile__activity'); // Получение рода деятельности из профиля (для формы)
 export const profileForm = document.querySelector('.popup__editForm'); // Форма попапа профиля
@@ -41,24 +40,8 @@ export const data = {name: '.elements-block__name', link: '.elements-block__imag
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки
 export const popupAddCardBtn = document.querySelector('.profile__button_action_add'); // Кнопка открытия попапа добавления карточки
 export const creationForm = popupAddCard.querySelector('.popup__creationForm'); // Форма попапа добавления карточки
-export const makeCard = popupAddCard.querySelector('.popup__button_action_create'); // Кнопка отправки формы добавления карточки
 export const getCardName = creationForm.querySelector ('.popup__form-input_field_cardName'); // Поле формы попапа добавления карточки для имени
 export const getSrcImg = creationForm.querySelector('.popup__form-input_field_srcImg'); // Поле формы попапа добавления карточки для картинки (ссылка)
-
-export const openCard = document.querySelector("#openCard"); // Попап открытия карточки
-export const popupImage = openCard.querySelector('.popup__image-card'); // Картинка попапа открытия карточки
-export const popupSubtitle = openCard.querySelector('.popup__image-subtitle'); // Имя картинки попапа открытия карточки
-export const imagePopupOpenBtn = document.querySelector('.elements-block__image'); // Картинка карточки в роли кнопки открытия этого попапа
-export const cardTitle = document.querySelector(".elements-block__name"); // Имя карточки, соответствующее картинке открытия карточки ↑
-export const elementBlock = document.querySelector(".elements-block"); // Карточка со всем её содержимым (Картинка, текст, кнопки лайка/удаления)
-
-export const popup = document.querySelector('.popup'); // Попапы
-export const popupOpen = document.querySelector('.popup_opened'); // Модификатор открытого попапа
-export const formInput = document.querySelector('.popup__form-input') // Поля ввода попапов
-export const openPopupBtn = document.querySelector('.button__form-open') // Кнопки открытия форм
-
-export const userName = document.querySelector('#user-name');
-export const userAbout = document.querySelector('#about');
 
 export const validationConfig = {
   formSelector: ".popup__form", // селектор форм
