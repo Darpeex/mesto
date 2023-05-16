@@ -75,8 +75,10 @@ class FormValidator {
 
   // Очищаем поля при открытии
   resetPopupForm() {
-    this.#errorElement.forEach((field) => field.textContent = '');
-    this.#formInputs.forEach((input) => input.classList.remove(this.#inputErrorClass));
+    console.log()
+    // this.#errorElement.forEach((field) => field.textContent = ''); // Если не ошибаюсь, ресет происходит только при удовлетворяющих условиях (ошибок нет)
+    // this.#formInputs.forEach((input) => input.classList.remove(this.#inputErrorClass)); // Наверное эти две строчки не несут смысла при таком раскладе
+    this.#formInputs.forEach((input) => input.value = '');
     this.#disableButton();
   }
 }
