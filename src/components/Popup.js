@@ -1,13 +1,12 @@
 class Popup {
   #popup;
-  #closeButtons;
-  // #handleEscClose;
+  #closeButton;
 
   // Принимает в конструктор единственный параметр — селектор попапа.
   constructor(popup) {
     this.#popup = popup; // модальное окно 
     this._handleEscClose = this._handleEscClose.bind(this); // явная привязка
-    this.#closeButtons = this.#popup.querySelector('.popup__button_action_close'); // крестики
+    this.#closeButton = this.#popup.querySelector('.popup__button_action_close'); // крестики
   }
 
   // Открытие попапов
@@ -37,7 +36,7 @@ class Popup {
       }
     });
     
-    this.#closeButtons.addEventListener('click', () => {
+    this.#closeButton.addEventListener('click', () => {
       this.close();
     });
   }
