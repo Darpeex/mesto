@@ -59,8 +59,9 @@ const renderCard = (evt) => {
     data.name = cardName.value;
     data.link = srcImg.value;
     createCard(data);
-    creationForm.reset();
-    addCardPopup.close();}
+    addCardPopup.close();
+    creationFormValidator.resetPopupForm();
+  }
 }
 creationForm.addEventListener('submit', renderCard);
 
