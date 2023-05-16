@@ -26,8 +26,8 @@ module.exports = {
         exclude: '/node_modules/'
       },
       {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
-        type: 'asset/resource',
+        test: /\.(png|svg|jpe?g|gif|ico|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource'
       },
       {
         test: /\.css$/,
@@ -48,6 +48,5 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-
   ]
 }
