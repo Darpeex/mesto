@@ -59,6 +59,7 @@ const renderCard = (evt) => {
     data.name = cardName.value;
     data.link = srcImg.value;
     createCard(data);
+
     addCardPopup.close();
     creationFormValidator.resetPopupForm();
   }
