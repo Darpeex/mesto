@@ -8,7 +8,7 @@ class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this.#submitCallback = submitCallback;
-    this.#formElement = document.querySelector(popupSelector).querySelector('.popup__editForm');
+    this.#formElement = document.querySelector(popupSelector).querySelector('.popup__form');
     this.#inputs = Array.from(this.#formElement.querySelectorAll('.popup__form-input'));
   }
 
