@@ -44,13 +44,11 @@ popupAddCardBtn.addEventListener('click', () => {
 
 // Добавляем готовую карточку в сетку
 function createCard (dataCards) {
-  // console.log(dataCards)
   const card = new Card('#elements', dataCards, cardTemplate, () => {
-    // popupWithImage.open({ name: data.name, link: data.link })
+  // popupWithImage.open({ name: data.name, link: data.link })
   })
   
   const cardElement = card.getCard(dataCards)
-  cardList.addItem(card.getCard(dataCards));
   return(cardElement);
 };
 
@@ -63,8 +61,9 @@ function renderCard(dataForm) {
   else {
     data.name = dataForm.cardName;
     data.link = dataForm.cardLink;
-    createCard(data);
 
+    const cardElement = createCard(data);
+    cardList.addItem(cardElement);
     creationFormValidator.resetPopupForm();
   }
 }
