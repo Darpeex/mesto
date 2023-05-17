@@ -5,7 +5,7 @@ class PopupWithImage extends Popup {
   #popupImage;
   #popupSubtitle;
 
-  constructor() {
+  constructor(openCard) {
     super(openCard);
     this.#openCard = document.querySelector(openCard);
     this.#popupImage = this.#openCard.querySelector('.popup__image-card');
@@ -14,12 +14,13 @@ class PopupWithImage extends Popup {
 
   // Открытие попапа с картинкой
   open({ name, link }) {
+    console.log(this.#popupImage.src)
+    console.log(this.#popupSubtitle.textContent)
     this.#popupImage.src = link;
     this.#popupImage.alt = name;
     this.#popupSubtitle.textContent = name;
     
     super.open();
-    super.setEventListeners();
   }
 }
 
