@@ -14,8 +14,8 @@ class PopupWithImage extends Popup {
 
   // Открытие попапа с картинкой
   open({ name, link }) {
-    console.log(this.#popupImage.src)
-    console.log(this.#popupSubtitle.textContent)
+    console.log(name)
+    console.log(link)
     this.#popupImage.src = link;
     this.#popupImage.alt = name;
     this.#popupSubtitle.textContent = name;

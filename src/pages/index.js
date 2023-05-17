@@ -29,7 +29,8 @@ profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
 
 // Класс PopupWithImage - открытие карточек
-// const popupWithImage = new PopupWithImage();
+const popupWithImage = new PopupWithImage('#openCard');
+popupWithImage.setEventListeners();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ renderer: (item) => {
@@ -44,8 +45,9 @@ popupAddCardBtn.addEventListener('click', () => {
 
 // Добавляем готовую карточку в сетку
 function createCard (dataCards) {
+  console.log(dataCards)
   const card = new Card('#elements', dataCards, cardTemplate, () => {
-  // popupWithImage.open({ name: data.name, link: data.link })
+    popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   })
   
   const cardElement = card.getCard(dataCards)
@@ -88,6 +90,4 @@ function handleProfileFormSubmit(data) {
   popupEditProfile.close();
 };
 
-
-// Работать открытие картинки
 // Перенести вставку карточки
