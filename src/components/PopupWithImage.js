@@ -7,7 +7,7 @@ class PopupWithImage extends Popup {
 
   constructor() {
     super(openCard);
-    this.#openCard = openCard;
+    this.#openCard = document.querySelector(openCard);
     this.#popupImage = this.#openCard.querySelector('.popup__image-card');
     this.#popupSubtitle = this.#openCard.querySelector('.popup__image-subtitle');
   }

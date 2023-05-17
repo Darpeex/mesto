@@ -40,8 +40,8 @@ const cardList = new Section({ renderer: (item) => {
 cardList.renderItems(initialCards);
 
 // Класс Popup - открытие и закрытие попапа
-const editCardPopup = new Popup(popupProfile);
-const addCardPopup = new Popup(popupAddCard);
+const editCardPopup = new Popup('#editProfile');
+const addCardPopup = new Popup('#addCard');
 
 editCardPopup.setEventListeners();
 addCardPopup.setEventListeners();
@@ -77,7 +77,7 @@ function createCard (data) {
   return(cardElement);
 };
 
-const popupEditProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
+const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
