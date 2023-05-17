@@ -9,7 +9,7 @@ import {
   popupProfile,
   popupAddCard,
   popupAddCardBtn,
-  cardName,
+  nameCard,
   srcImg,
   data,
   profileEditButton,
@@ -31,7 +31,7 @@ profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
 
 // Класс PopupWithImage - открытие карточек
-const popupWithImage = new PopupWithImage();
+// const popupWithImage = new PopupWithImage();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ renderer: (item) => {
@@ -39,40 +39,34 @@ const cardList = new Section({ renderer: (item) => {
 }}, "#elements")
 cardList.renderItems(initialCards);
 
-// Класс Popup - открытие и закрытие попапа
-const editCardPopup = new Popup('#editProfile');
-const addCardPopup = new Popup('#addCard');
-
-editCardPopup.setEventListeners();
-addCardPopup.setEventListeners();
-
 // Открыть попап добавления карточки
 popupAddCardBtn.addEventListener('click', () => {
   addCardPopup.open()
 });
 
 // Добавление новой карточки
-const renderCard = (evt) => {
-  if (cardName.value.length <= 1 || srcImg.value.length <= 1) {stop;}
+const addCardPopup = new PopupWithForm('#addCard', renderCard);
+  addCardPopup.setEventListeners();
+
+function renderCard(dataForm) {
+  if (nameCard.value.length <= 1 || srcImg.value.length <= 1) {stop;}
   else {
-    evt.preventDefault();
-    data.name = cardName.value;
-    data.link = srcImg.value;
+    data.name = dataForm.cardName;
+    data.link = dataForm.cardLink;
     createCard(data);
 
-    addCardPopup.close();
     creationFormValidator.resetPopupForm();
   }
 }
-creationForm.addEventListener('submit', renderCard);
 
 // Добавляем готовую карточку в сетку
 function createCard (data) {
   const card = new Card('#elements', data, cardTemplate, () => {
-    popupWithImage.open({ name: data.name, link: data.link })
+    // popupWithImage.open({ name: data.name, link: data.link })
   })
   
   const cardElement = card.getCard(data)
+  // cardList.addItem(cardElement); Эта штука работает но её надо вынести в renderCard
   cardsContainer.prepend(cardElement);
   return(cardElement);
 };
@@ -86,7 +80,7 @@ const openPopupEditProfile = function () {
   const profileData = userInfo.getUserInfo()
   nameInput.value = profileData.userName;
   jobInput.value = profileData.userDescription;
-  editCardPopup.open();
+  popupEditProfile.open();
 };
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
@@ -96,3 +90,8 @@ function handleProfileFormSubmit(data) {
   userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
   popupEditProfile.close();
 };
+
+
+// Работать добавление карточки
+// Работать открытие картинки
+// Перенести вставку карточки

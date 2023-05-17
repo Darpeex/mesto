@@ -10,9 +10,11 @@ class PopupWithForm extends Popup {
     this.#submitCallback = submitCallback;
     this.#formElement = document.querySelector(popupSelector).querySelector('.popup__form');
     this.#inputs = Array.from(this.#formElement.querySelectorAll('.popup__form-input'));
+    console.log(this.#inputs)
   }
 
   #getInputValues() {
+    console.log( "ОК2")
     const values = {};
     this.#inputs.forEach(input => {
       values[input.name] = input.value;
@@ -22,7 +24,9 @@ class PopupWithForm extends Popup {
 
   #submitHandler = (evt) => {
     evt.preventDefault();
+    console.log( "ОК1")
     this.#submitCallback(this.#getInputValues());
+    console.log( "ОК3")
     this.close();
   }
 
