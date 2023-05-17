@@ -45,7 +45,6 @@ popupAddCardBtn.addEventListener('click', () => {
 
 // Добавляем готовую карточку в сетку
 function createCard (dataCards) {
-  console.log(dataCards)
   const card = new Card('#elements', dataCards, cardTemplate, () => {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   })
