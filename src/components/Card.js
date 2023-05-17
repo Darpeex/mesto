@@ -37,11 +37,11 @@ class Card {
   }
 
 // Лайк карточки
-  #toggleLike () {
+  #toggleLike = () => {
     this.#buttonLike.classList.toggle("elements-block__like-button_active");
   };
 // Удаление карточки
-  #handleDelete () {
+  #handleDelete = () => {
     this.#cardElement.remove();
   }
 
