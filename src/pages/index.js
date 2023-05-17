@@ -16,14 +16,12 @@ import {
   nameInput,
   jobInput,
 } from "../utils/constants.js"
-import Popup from "../components/Popup.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidation.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
 
@@ -44,6 +42,18 @@ popupAddCardBtn.addEventListener('click', () => {
   addCardPopup.open()
 });
 
+// Добавляем готовую карточку в сетку
+function createCard (dataCards) {
+  // console.log(dataCards)
+  const card = new Card('#elements', dataCards, cardTemplate, () => {
+    // popupWithImage.open({ name: data.name, link: data.link })
+  })
+  
+  const cardElement = card.getCard(dataCards)
+  cardList.addItem(card.getCard(dataCards));
+  return(cardElement);
+};
+
 // Добавление новой карточки
 const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
@@ -58,18 +68,6 @@ function renderCard(dataForm) {
     creationFormValidator.resetPopupForm();
   }
 }
-
-// Добавляем готовую карточку в сетку
-function createCard (data) {
-  const card = new Card('#elements', data, cardTemplate, () => {
-    // popupWithImage.open({ name: data.name, link: data.link })
-  })
-  
-  const cardElement = card.getCard(data)
-  // cardList.addItem(cardElement); Эта штука работает но её надо вынести в renderCard
-  cardsContainer.prepend(cardElement);
-  return(cardElement);
-};
 
 const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);
   popupEditProfile.setEventListeners();
@@ -92,6 +90,5 @@ function handleProfileFormSubmit(data) {
 };
 
 
-// Работать добавление карточки
 // Работать открытие картинки
 // Перенести вставку карточки
