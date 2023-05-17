@@ -38,7 +38,7 @@ export const data = {name: '.elements-block__name', link: '.elements-block__imag
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки
 export const popupAddCardBtn = document.querySelector('.profile__button_action_add'); // Кнопка открытия попапа добавления карточки
 export const creationForm = popupAddCard.querySelector('.popup__creationForm'); // Форма попапа добавления карточки
-export const cardName = creationForm.querySelector ('.popup__form-input_field_cardName'); // Поле формы попапа добавления карточки для имени
+export const nameCard = creationForm.querySelector ('.popup__form-input_field_nameCard'); // Поле формы попапа добавления карточки для имени
 export const srcImg = creationForm.querySelector('.popup__form-input_field_srcImg'); // Поле формы попапа добавления карточки для картинки (ссылка)
 
 export const validationConfig = {
