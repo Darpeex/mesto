@@ -38,7 +38,7 @@ class FormValidator {
 
   //Проверяем поле на валидность + смена активности кнопки
   #checkInputValidity(input) {
-    this.#errorElement = document.querySelector(`#${input.id}-error`); // Находим span'ы от айдишников инпут с приставкой -error
+    this.#errorElement = this.#validationForm.querySelector(`#${input.id}-error`); // Находим span'ы от айдишников инпут с приставкой -error
     if (input.checkValidity()) { // Если поле валидно
       this.#errorElement.textContent = ""; // Если всё хорошо, чистим поле с ошибкой
       input.classList.remove(this.#inputErrorClass); // Если всё хорошо - убираем подчёркивание красным цветом
@@ -75,12 +75,14 @@ class FormValidator {
 
   // Очищаем поля при открытии
   resetPopupForm() {
-    console.log()
-    // this.#errorElement.forEach((field) => field.textContent = ''); // Если не ошибаюсь, ресет происходит только при удовлетворяющих условиях (ошибок нет)
-    // this.#formInputs.forEach((input) => input.classList.remove(this.#inputErrorClass)); // Наверное эти две строчки не несут смысла при таком раскладе
-    this.#formInputs.forEach((input) => input.value = '');
     this.#disableButton();
   }
 }
 
 export default FormValidator;
+
+// Я, возможно, сделаю это позже, сейчас не успеваю. Спасибо1
+
+// При желании можете добавить в метод (resetPopupForm) помимо this.#disableButton()
+// и очистку полей от шибок валидации — для каждого инпута в форме вызываем 43-43
+// строки кода (потребуется вынести в отдельный метод, чтобы не дублировать код)
