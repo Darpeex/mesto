@@ -49,7 +49,7 @@ function createCard (dataCards) {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   })
   
-  const cardElement = card.getCard(dataCards)
+  const cardElement = card.getCard()
   return(cardElement);
 };
 
@@ -58,15 +58,12 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
 
 function renderCard(dataForm) {
-  if (nameCard.value.length <= 1 || srcImg.value.length <= 1) {stop;}
-  else {
     data.name = dataForm.cardName;
     data.link = dataForm.cardLink;
 
     const cardElement = createCard(data);
     cardList.addItem(cardElement);
     creationFormValidator.resetPopupForm();
-  }
 }
 
 const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);
