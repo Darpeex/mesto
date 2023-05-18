@@ -64,6 +64,7 @@ function renderCard(dataForm) {
     const cardElement = createCard(data);
     cardList.addItem(cardElement);
     creationFormValidator.resetPopupForm();
+    addCardPopup.close();
 }
 
 const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);

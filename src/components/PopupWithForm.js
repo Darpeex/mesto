@@ -23,7 +23,6 @@ class PopupWithForm extends Popup {
   #submitHandler = (evt) => {
     evt.preventDefault();
     this.#submitCallback(this.#getInputValues());
-    this.close();
   }
 
   setEventListeners() {
