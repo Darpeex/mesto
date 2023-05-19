@@ -75,14 +75,11 @@ class FormValidator {
 
   // Очищаем поля при открытии
   resetPopupForm() {
+    // this._inputList.forEach((input) => {
+    //   this._hideInputError(input)
+    // })
     this.#disableButton();
   }
 }
 
 export default FormValidator;
-
-// Я, возможно, сделаю это позже, сейчас не успеваю разобраться. Спасибо1
-
-// При желании можете добавить в метод (resetPopupForm) помимо this.#disableButton()
-// и очистку полей от шибок валидации — для каждого инпута в форме вызываем 43-43
-// строки кода (потребуется вынести в отдельный метод, чтобы не дублировать код)
