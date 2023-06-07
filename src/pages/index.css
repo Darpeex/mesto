@@ -68,3 +68,5 @@
 @import url(../blocks/popup/__image-desription/popup__image-desription.css);
 @import url(../blocks/popup/__image-card/popup__image-card.css);
 @import url(../blocks/popup/__image-subtitle/popup__image-subtitle.css);
+
+@import url(../blocks/popup/__title/_padding-less/popup__title_padding-less.css);
