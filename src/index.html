@@ -23,7 +23,10 @@
 <!-- Секция, блок profile -->
       <section class="profile page__profile-position section">
         <div class="profile__info">
-          <img class="profile__avatar" src="<%=require('./images/avatar2.jpg')%>" alt="Жак-Ив Кусто">
+          <div class="profile__avatar">
+            <img class="profile__avatar-image" src="<%=require('./images/avatar2.jpg')%>" alt="Аватарка">
+            <button class="profile__avatar-button" type="button" aria-label="Обновить аватарку"></button>
+          </div>
           <div class="profile__content">
             <h1 class="profile__name">Человек</h1>
             <p class="profile__activity">Исследователь&nbsp;мира</p>
@@ -127,12 +130,13 @@
   </div>
   
   <!-- Попап подтверждения -->
-  <div id="confirationPopup" class="popup">
+  <div id="confirationPopup" class="popup "> //popup_opened
     <div class="popup__container">
       <h2 class="popup__title popup__title_padding-less">Вы уверены?</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
       <button class="button popup__button popup__button_action_create" type="submit">Да</button>
     </div>
   </div>
+
 </body>
 </html>
