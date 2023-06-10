@@ -46,7 +46,7 @@
               <h2 class="elements-block__name"></h2>
               <div class="elements-block__like-container">
                 <button class="elements-block__like-button" type="button" aria-label="Лайк"></button>
-                <span class="elements-block__like-count"></span>
+                <span class="elements-block__like-count">1</span>
               </div>
             </div>
           </article>
@@ -58,6 +58,7 @@
     <footer class="footer page__footer-position section">
           <p class="footer__copyright">&copy;&nbsp;2023&nbsp;Mesto</p>
     </footer>
+  </div>
 
 <!-- Попап редактирования профиля -->
     <div id="editProfile" class="popup">
@@ -89,7 +90,6 @@
         </form>
       </div>
     </div>
-  </div>
 
   <!-- Попап добавления карточки -->
   <div id="addCard" class="popup">
@@ -135,6 +135,25 @@
       <h2 class="popup__title popup__title_padding-less">Вы уверены?</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
       <button class="button popup__button popup__button_action_create" type="submit">Да</button>
+    </div>
+  </div>
+
+  <!-- Попап редактирования аватарки профиля-->
+  <div id="updateAvatar" class="popup popup_opened">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
+      <form id="popup__updateAvatar" class="popup__form popup__updateAvatar" name="form-popup" novalidate>
+        <input
+          name="avatarLink"
+          id="link"
+          class="popup__form-input popup__form-input_field_avatar"
+          placeholder="Ссылка на картинку"
+          type="url"
+          required>
+        <span id="link-error" class="popup__form-input-error"></span>
+        <button class="button popup__button popup__button_action_change" type="submit">Сохранить</button>
+      </form>
     </div>
   </div>
 

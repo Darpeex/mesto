@@ -15,6 +15,7 @@
 
 .popup__form-input-error:last-of-type {
   margin-bottom: 28px;
+  /* margin-bottom: 15px; по новому макету так получается, но кажется не логичным т.к. нужно место для поля с ошибками. Выше даже есть уже комментарии */
 }
 
 @media screen and (max-width: 599px) {
