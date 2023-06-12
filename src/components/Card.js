@@ -9,7 +9,7 @@ class Card {
   #template;
   #handleCardClick;
 
-  constructor (containerSelector, data, cardTemplate, handleCardClick) { 
+  constructor (containerSelector, data, cardTemplate, handleCardClick) {
     this.#container = containerSelector; // #elements
     this.#data = data;
     this.#template = cardTemplate;

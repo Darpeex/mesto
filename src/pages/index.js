@@ -3,14 +3,9 @@ import {
   validationConfig,
   profileForm,
   creationForm,
-  initialCards,
-  cardsContainer,
+  // initialCards,
   cardTemplate,
-  popupProfile,
-  popupAddCard,
   popupAddCardBtn,
-  nameCard,
-  srcImg,
   data,
   profileEditButton,
   nameInput,
@@ -22,6 +17,24 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+
+
+
+// Спринт 9
+
+const api = new Api ({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-66',
+  headers: {
+    authorization: '36b3d00c-eb9b-4532-a563-964663cc5274',
+    'Content-Type': 'application/json'
+  }
+})
+
+// Спринт 9
+
+
+
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
 
@@ -36,7 +49,7 @@ popupWithImage.setEventListeners();
 const cardList = new Section({ renderer: (item) => {
   cardList.addItem(createCard(item))
 }}, "#elements")
-cardList.renderItems(initialCards);
+// cardList.renderItems(initialCards);
 
 // Открыть попап добавления карточки
 popupAddCardBtn.addEventListener('click', () => {
@@ -88,3 +101,14 @@ function handleProfileFormSubmit(data) {
 };
 
 // Перенести вставку карточки
+
+
+
+// Спринт 9
+
+api.getInitialCards().then((cards) => {
+  cardList.renderItems(cards);
+  // Код, который пробегает по карточкам и отрисовывать эту карточку // 53  минута вебинара 
+}).catch((err) => console.log(`catch: ${err}`))
+
+api.getUserInfo()
