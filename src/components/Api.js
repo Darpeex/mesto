@@ -38,7 +38,6 @@ class Api {
     return fetch(`${this.#url}/users/me`, {
       method: 'PATCH',
       headers: this.#headers,
-
       body: JSON.stringify({
         name: userInfo.name, // имя
         about: userInfo.about // о себе
@@ -52,18 +51,14 @@ class Api {
     return fetch(`${this.#url}/cards`, {
       method: 'POST',
       headers: this.#headers,
-
-      body: JSON.stringify({
-        name: data.name, // имя карточки
-        link: data.link // ссылка на картинку
-      })
+      body: JSON.stringify(data) // name: data.name; link: data.link
     })
     .then(this.#handleResponse)
   }
 
   // Удаление карточки
-  deleteCard(data) {
-    return fetch(`${this.#url}/cards/${data}`, {
+  deleteCard(id) {
+    return fetch(`${this.#url}/cards/${id}`, {
       method: 'DELETE',
       headers: this.#headers
     })
@@ -71,8 +66,8 @@ class Api {
   }
 
   // Запрос на добавление лайка
-  addCardLike(data) {
-    return fetch(`${this.#url}/cards/likes/${data}`, {
+  addCardLike(id) {
+    return fetch(`${this.#url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this.#headers
     })
@@ -80,8 +75,8 @@ class Api {
   }
 
   // Запрос на удаление лайка
-  removeCardLike(data) {
-    return fetch(`${this.#url}/cards/likes/${data}`, {
+  removeCardLike(id) {
+    return fetch(`${this.#url}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this.#headers
     })
@@ -93,7 +88,6 @@ class Api {
     return fetch(`${this.#url}/users/me/avatar`, {
       method: PATCH,
       headers: this.#headers,
-
       body: JSON.stringify({
         avatar: data.avatar,
       })
