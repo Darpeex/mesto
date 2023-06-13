@@ -32,7 +32,7 @@ export const initialCards = [
     name: 'Казанский Собор',
     link: 'https://images.unsplash.com/photo-1625259566209-8c59614a28fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
   }
-]; // Массив с данными для первоначальных карточек на странице
+]; // Массив с данными для первоначальных карточек на странице // Позвольте оставить, пожалуйста, если не критично
 export const data = {name: '.elements-block__name', link: '.elements-block__image'}; // Данные name (имя) и link (ссылка на карточку) для полей
 
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки

@@ -61,9 +61,7 @@ function createCard (dataCards) {
   const card = new Card('#elements', dataCards, cardTemplate, () => {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   })
-  
-  const cardElement = card.getCard()
-  return(cardElement);
+  return card.getCard();
 };
 
 // Добавление новой карточки
@@ -71,10 +69,9 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
 
 function renderCard(dataForm) {
-    data.name = dataForm.cardName;
-    data.link = dataForm.cardLink;
-
-    const cardElement = createCard(data);
+    const cardData = { name: dataForm.cardName, link: dataForm.cardLink };
+    const cardElement = createCard(cardData);
+  
     cardList.addItem(cardElement);
     creationFormValidator.resetPopupForm();
     addCardPopup.close();
@@ -84,31 +81,47 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
-// Редактирование профиля
+// // Редактирование профиля
+// const openPopupEditProfile = function () {
+//   const profileData = userInfo.getUserInfo()
+//   nameInput.value = profileData.userName;
+//   jobInput.value = profileData.userDescription;
+//   popupEditProfile.open();
+// };
+
+// Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  const profileData = userInfo.getUserInfo()
-  nameInput.value = profileData.userName;
-  jobInput.value = profileData.userDescription;
-  popupEditProfile.open();
+  api.getUserInfo()
+    .then((userData) => {
+      nameInput.value = userData.name;
+      jobInput.value = userData.about;
+      popupEditProfile.open();
+    })
+    .catch((err) => {
+      console.log(`Ошибка при получении данных пользователя: ${err}`)
+    })
 };
+
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
 // Отправка формы с изменениями в профиле
-function handleProfileFormSubmit(data) {
-  userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
-  popupEditProfile.close();
+async function handleProfileFormSubmit() {
+  popupEditProfile.renderLoading(true, 'Сохранение...');
+  try {
+    await api.setUserInfo();
+    then((newUserData) => {
+      userInfo.setUserInfo({userName: newUserData.userName, userDescription: newUserData.userAbout});
+      popupEditProfile.close();
+    })
+  } catch(err) {
+    console.log(`Ошибка при сохранении профиля: ${err}`);
+  } finally {
+    popupEditProfile.renderLoading(false);
+  }
 };
-
-// Перенести вставку карточки
-
-
-
 // Спринт 9
 
 api.getInitialCards().then((cards) => {
   cardList.renderItems(cards);
-  // Код, который пробегает по карточкам и отрисовывать эту карточку // 53  минута вебинара 
 }).catch((err) => console.log(`catch: ${err}`))
-
-api.getUserInfo()
