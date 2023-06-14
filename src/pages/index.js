@@ -39,8 +39,8 @@ popupWithImage.setEventListeners();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ renderer: (item) => {
-  cardList.addItem(createCard(item))
   likesCounter.textContent = item.likes.length.toString();
+  cardList.addItem(createCard(item))
   console.log(likesCounter.textContent)
   // const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
   // пройти по массиву, и у каждой карточки посмотреть количество лайков, затем, установить это  в <span class="elements-block__like-count"></span>
