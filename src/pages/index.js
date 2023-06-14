@@ -3,7 +3,6 @@ import {
   validationConfig,
   profileForm,
   creationForm,
-  // initialCards,
   cardTemplate,
   popupAddCardBtn,
   data,
@@ -19,10 +18,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
-
-
-// Спринт 9
-
 const api = new Api ({
   url: 'https://mesto.nomoreparties.co/v1/cohort-66',
   headers: {
@@ -30,10 +25,6 @@ const api = new Api ({
     'Content-Type': 'application/json'
   }
 })
-
-// Спринт 9
-
-
 
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
@@ -49,7 +40,6 @@ popupWithImage.setEventListeners();
 const cardList = new Section({ renderer: (item) => {
   cardList.addItem(createCard(item))
 }}, "#elements")
-// cardList.renderItems(initialCards);
 
 // Открыть попап добавления карточки
 popupAddCardBtn.addEventListener('click', () => {
@@ -81,14 +71,6 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
-// // Редактирование профиля
-// const openPopupEditProfile = function () {
-//   const profileData = userInfo.getUserInfo()
-//   nameInput.value = profileData.userName;
-//   jobInput.value = profileData.userDescription;
-//   popupEditProfile.open();
-// };
-
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
   api.getUserInfo()
@@ -101,26 +83,24 @@ const openPopupEditProfile = function () {
       console.log(`Ошибка при получении данных пользователя: ${err}`)
     })
 };
-
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
+console.log(data)
 // Отправка формы с изменениями в профиле
-async function handleProfileFormSubmit() {
+async function handleProfileFormSubmit(userData) {
   popupEditProfile.renderLoading(true, 'Сохранение...');
   try {
-    await api.setUserInfo();
-    then((newUserData) => {
-      userInfo.setUserInfo({userName: newUserData.userName, userDescription: newUserData.userAbout});
-      popupEditProfile.close();
-    })
-  } catch(err) {
+    const newUserData = await api.setUserInfo(userData);
+    userInfo.setUserInfo(newUserData);
+    // userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
+    popupEditProfile.close();
+  } catch (err) {
     console.log(`Ошибка при сохранении профиля: ${err}`);
   } finally {
     popupEditProfile.renderLoading(false);
   }
 };
-// Спринт 9
 
 api.getInitialCards().then((cards) => {
   cardList.renderItems(cards);
