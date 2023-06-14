@@ -71,10 +71,15 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
+const newUserData = api.getUserInfo()
+  newUserData // Пока лучше не придумал
+    .then((userData) => (userInfo.setUserInfo(userData))
+    ).catch ((err) => console.log(`Ошибка: ${err}`))
+
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  api.getUserInfo()
-    .then((userData) => {
+  newUserData
+    .then((userData) => {w
       nameInput.value = userData.name;
       jobInput.value = userData.about;
       popupEditProfile.open();
@@ -86,21 +91,33 @@ const openPopupEditProfile = function () {
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
-console.log(data)
 // Отправка формы с изменениями в профиле
-async function handleProfileFormSubmit(userData) {
+async function handleProfileFormSubmit(newUserInfo) {
   popupEditProfile.renderLoading(true, 'Сохранение...');
-  try {
-    const newUserData = await api.setUserInfo(userData);
-    userInfo.setUserInfo(newUserData);
-    // userInfo.setUserInfo({userName: data.userName, userDescription: data.userAbout});
-    popupEditProfile.close();
-  } catch (err) {
+    api.setUserInfo(newUserInfo)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      popupEditProfile.close();
+    }) .catch ((err) => {
     console.log(`Ошибка при сохранении профиля: ${err}`);
-  } finally {
-    popupEditProfile.renderLoading(false);
-  }
-};
+    }) .finally (() => {
+      popupEditProfile.renderLoading(false);
+    })
+  };
+
+// // Отправка формы с изменениями в профиле
+// async function handleProfileFormSubmit(userData) {
+//   popupEditProfile.renderLoading(true, 'Сохранение...');
+//   try {
+//     const newUserData = await api.setUserInfo(userData);
+//     userInfo.setUserInfo(newUserData);
+//     popupEditProfile.close();
+//   } catch (err) {
+//     console.log(`Ошибка при сохранении профиля: ${err}`);
+//   } finally {
+//     popupEditProfile.renderLoading(false);
+//   }
+// };
 
 api.getInitialCards().then((cards) => {
   cardList.renderItems(cards);

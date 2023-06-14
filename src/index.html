@@ -28,8 +28,8 @@
             <button class="profile__avatar-button" type="button" aria-label="Обновить аватарку"></button>
           </div>
           <div class="profile__content">
-            <h1 class="profile__name">Человек</h1>
-            <p class="profile__activity">Исследователь&nbsp;мира</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__activity"></p>
             <button class="profile__button profile__button_action_edit" type="button" aria-label="Редактировать"></button>
           </div>
         </div>
@@ -67,7 +67,7 @@
         <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
         <form class="popup__form popup__editForm" name="form-popup" novalidate>
           <input
-          name="userName"
+          name="name"
           id="user-name"
           class="popup__form-input popup__form-input_field_name"
           type="text"
@@ -77,7 +77,7 @@
           required>
           <span id="user-name-error" class="popup__form-input-error"></span>
           <input
-          name="userAbout"
+          name="about"
           id = "about"
           class="popup__form-input popup__form-input_field_activity"
           type="text"
@@ -152,7 +152,8 @@
           type="url"
           required>
         <span id="link-error" class="popup__form-input-error"></span>
-        <button class="button popup__button popup__button_action_change" type="submit">Сохранить</button>
+        <!-- <button class="button popup__button popup__button_action_change" type="submit">Сохранить</button> -->
+        <button class="button popup__button popup__button_action_save popup__button_valid" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
