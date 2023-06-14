@@ -59,9 +59,11 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
 
 function renderCard(dataForm) {
-    const cardData = { name: dataForm.cardName, link: dataForm.cardLink };
+    const cardData = { name: dataForm.name, link: dataForm.link };
     const cardElement = createCard(cardData);
-  
+
+    console.log(cardData) // 
+    api.addNewCard(cardData);
     cardList.addItem(cardElement);
     creationFormValidator.resetPopupForm();
     addCardPopup.close();
@@ -71,6 +73,7 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
+// Установка данных пользователя с сервера на страницу
 const newUserData = api.getUserInfo()
   newUserData // Пока лучше не придумал
     .then((userData) => (userInfo.setUserInfo(userData))
@@ -79,7 +82,7 @@ const newUserData = api.getUserInfo()
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
   newUserData
-    .then((userData) => {w
+    .then((userData) => {
       nameInput.value = userData.name;
       jobInput.value = userData.about;
       popupEditProfile.open();
@@ -105,20 +108,9 @@ async function handleProfileFormSubmit(newUserInfo) {
     })
   };
 
-// // Отправка формы с изменениями в профиле
-// async function handleProfileFormSubmit(userData) {
-//   popupEditProfile.renderLoading(true, 'Сохранение...');
-//   try {
-//     const newUserData = await api.setUserInfo(userData);
-//     userInfo.setUserInfo(newUserData);
-//     popupEditProfile.close();
-//   } catch (err) {
-//     console.log(`Ошибка при сохранении профиля: ${err}`);
-//   } finally {
-//     popupEditProfile.renderLoading(false);
-//   }
-// };
-
-api.getInitialCards().then((cards) => {
-  cardList.renderItems(cards);
-}).catch((err) => console.log(`catch: ${err}`))
+// Получение массива карточек с сервера
+api.getInitialCards()
+  .then((res) => res.reverse()) // обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
+  .then((cards) => {
+    cardList.renderItems(cards);
+  }).catch((err) => console.log(`Ошибка: ${err}`))

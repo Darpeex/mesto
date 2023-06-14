@@ -51,7 +51,7 @@ class Api {
     return fetch(`${this.#url}/cards`, {
       method: 'POST',
       headers: this.#headers,
-      body: JSON.stringify(data) // name: data.name; link: data.link
+      body: JSON.stringify(data) // name: data.name, link: data.link
     })
     .then(this.#handleResponse)
   }
@@ -86,7 +86,7 @@ class Api {
   // Обновление аватара пользователя
   editAvatar(data) {
     return fetch(`${this.#url}/users/me/avatar`, {
-      method: PATCH,
+      method: 'PATCH',
       headers: this.#headers,
       body: JSON.stringify({
         avatar: data.avatar,

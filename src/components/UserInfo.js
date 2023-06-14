@@ -9,14 +9,14 @@ class UserInfo {
 
   getUserInfo() {
     return {
-      userName: this.#profileNameElement.textContent,
-      userDescription: this.#profileDescriptionElement.textContent
+      name: this.#profileNameElement.textContent,
+      about: this.#profileDescriptionElement.textContent
     }
   }
 
-  setUserInfo({ userName, userDescription }) {
-    this.#profileNameElement.textContent = userName;
-    this.#profileDescriptionElement.textContent = userDescription;
+  setUserInfo(newUserData) {
+    this.#profileNameElement.textContent = newUserData.name;
+    this.#profileDescriptionElement.textContent = newUserData.about;
   }
 }
 
