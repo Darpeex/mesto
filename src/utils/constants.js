@@ -45,6 +45,7 @@ export const initialCards = [
 
 // export const data = {name: '.elements-block__name', link: '.elements-block__image'}; // Данные name (имя) и link (ссылка на карточку) для полей
 // export const userData = {name: nameInput.textContent, about: jobInput.value}; // Попап добавления карточки
+export const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
 
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки
 export const popupAddCardBtn = document.querySelector('.profile__button_action_add'); // Кнопка открытия попапа добавления карточки

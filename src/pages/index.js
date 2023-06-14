@@ -6,6 +6,7 @@ import {
   cardTemplate,
   popupAddCardBtn,
   data,
+  likesCounter,
   profileEditButton,
   nameInput,
   jobInput,
@@ -39,6 +40,10 @@ popupWithImage.setEventListeners();
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ renderer: (item) => {
   cardList.addItem(createCard(item))
+  likesCounter.textContent = item.likes.length.toString();
+  console.log(likesCounter.textContent)
+  // const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
+  // пройти по массиву, и у каждой карточки посмотреть количество лайков, затем, установить это  в <span class="elements-block__like-count"></span>
 }}, "#elements")
 
 // Открыть попап добавления карточки
