@@ -1,24 +1,27 @@
-import './index.css'; // добавьте импорт главного файла стилей
+import './index.css'; // Импорт главного файла стилей
 import {
+  profileEditButton,
+  confirmationPopup,
   validationConfig,
-  profileForm,
+  popupAddCardBtn,
+  likesCounter,
   creationForm,
   cardTemplate,
-  popupAddCardBtn,
-  data,
-  likesCounter,
-  profileEditButton,
+  profileForm,
   nameInput,
   jobInput,
+  data
 } from "../utils/constants.js"
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidation.js";
-import Section from "../components/Section.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import FormValidator from "../components/FormValidation.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithСonfirmation from "../components/PopupWithСonfirmation.js";
 
+// Класс Api, отвечающий за запросы к серверу
 const api = new Api ({
   url: 'https://mesto.nomoreparties.co/v1/cohort-66',
   headers: {
@@ -27,11 +30,12 @@ const api = new Api ({
   }
 })
 
+// Проверка форм на валидность
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
-
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
+
 
 // Класс PopupWithImage - открытие карточек
 const popupWithImage = new PopupWithImage('#openCard');
@@ -41,9 +45,6 @@ popupWithImage.setEventListeners();
 const cardList = new Section({ renderer: (item) => {
   likesCounter.textContent = item.likes.length.toString();
   cardList.addItem(createCard(item))
-  console.log(likesCounter.textContent)
-  // const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
-  // пройти по массиву, и у каждой карточки посмотреть количество лайков, затем, установить это  в <span class="elements-block__like-count"></span>
 }}, "#elements")
 
 // Открыть попап добавления карточки
@@ -63,17 +64,17 @@ function createCard (dataCards) {
 const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
 
+// Рендер новой картички
 function renderCard(dataForm) {
     const cardData = { name: dataForm.name, link: dataForm.link };
-    const cardElement = createCard(cardData);
 
-    console.log(cardData) // 
     api.addNewCard(cardData);
-    cardList.addItem(cardElement);
+    cardList.addItem(createCard(cardData));
     creationFormValidator.resetPopupForm();
     addCardPopup.close();
 }
 
+// Класс PopupWithForm отвечает за редактирование профиля
 const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
@@ -120,4 +121,15 @@ api.getInitialCards()
     cardList.renderItems(cards);
   }).catch((err) => console.log(`Ошибка: ${err}`))
 
-// const confiration = new PopupWithСonfiration ()
+
+  // const _id = '6489713ca097ce0864fca12a'
+  // console.log(_id)
+  // api.deleteCard(_id)
+
+// // Удаление карточки с сервера
+// const popupWithСonfirmation = new PopupWithСonfirmation(confirmationPopup, () => {
+//   const _id = '64897ce9db90cf087c1ccbd6'
+//     api.deleteCard(_id)
+//     card.handleDelete()
+// })
+//   popupWithСonfirmation.setEventListeners()
