@@ -34,14 +34,14 @@ export const initialCards = [
   }
 ]; // Массив с данными для первоначальных карточек на странице // Позвольте оставить, пожалуйста, если не критично
 
-// export const data = {
-//   cardName: '.elements-block__name', // название карточки
-//   cardlink: '.elements-block__image', // ссылка на карточку
-//   name: '.popup__form-input_field_name', // имя пользователя
-//   about: '.popup__form-input_field_activity', // о пользователе
-//   avatar: '.profile__avatar-image', // ссылка на аватарку профиля
-//   // _id: '.profile__avatar-image' // идентификатор пользователя
-// };
+export const data = {
+  cardName: '.elements-block__name', // название карточки
+  cardlink: '.elements-block__image', // ссылка на карточку
+  name: '.popup__form-input_field_name', // имя пользователя
+  about: '.popup__form-input_field_activity', // о пользователе
+  avatar: '.profile__avatar-image', // ссылка на аватарку профиля
+  ownId: 'ad38272b325ba9a65b7d46aa' // идентификатор пользователя
+};
 
 // export const data = {name: '.elements-block__name', link: '.elements-block__image'}; // Данные name (имя) и link (ссылка на карточку) для полей
 // export const userData = {name: nameInput.textContent, about: jobInput.value}; // Попап добавления карточки

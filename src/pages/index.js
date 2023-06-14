@@ -56,7 +56,7 @@ function createCard (dataCards) {
   const card = new Card('#elements', dataCards, cardTemplate, () => {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   })
-  return card.getCard();
+  return card.getCard(data);
 };
 
 // Добавление новой карточки
@@ -119,3 +119,5 @@ api.getInitialCards()
   .then((cards) => {
     cardList.renderItems(cards);
   }).catch((err) => console.log(`Ошибка: ${err}`))
+
+// const confiration = new PopupWithСonfiration ()

@@ -1,6 +1,8 @@
 // Создание класса Card
 class Card {
   #container;
+  #ownId;
+  #ownerId;
   #data;
   #cardElement;
   #buttonLike;
@@ -12,6 +14,7 @@ class Card {
   constructor (containerSelector, data, cardTemplate, handleCardClick) {
     this.#container = containerSelector; // #elements
     this.#data = data;
+    this.#ownerId = data.owner._id;
     this.#template = cardTemplate;
     this.#handleCardClick = handleCardClick;
     
@@ -31,7 +34,8 @@ class Card {
   }
 
 // Создаём и возвращаем карточку из массива
-  getCard() {
+  getCard(dataId) {
+      this.#availabilityButtonDelete(dataId)
       this.#getCardTemplate(this.#data)
     return this.#cardElement;
   }
@@ -43,6 +47,13 @@ class Card {
 // Удаление карточки
   #handleDelete = () => {
     this.#cardElement.remove();
+  }
+
+// Доступность кнопки удаления
+  #availabilityButtonDelete (dataId) {
+    if (dataId.ownId !== this.#ownerId) {
+      this.#buttonTrash.remove();
+    }
   }
 
 // Обработчики событий
