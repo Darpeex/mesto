@@ -36,7 +36,6 @@ const creationFormValidator = new FormValidator(validationConfig, creationForm) 
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
 
-
 // Класс PopupWithImage - открытие карточек
 const popupWithImage = new PopupWithImage('#openCard');
 popupWithImage.setEventListeners();
@@ -52,10 +51,29 @@ popupAddCardBtn.addEventListener('click', () => {
   addCardPopup.open()
 });
 
+// Получение массива карточек с сервера
+api.getInitialCards()
+    .then((res) => res.reverse()) // обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
+    .then((cards) => {
+      cardList.renderItems(cards);
+    }).catch((err) => console.log(`Ошибка: ${err}`))
+
+// Удаление карточки с сервера
+const popupWithСonfirmation = new PopupWithСonfirmation("#confirationPopup")
+  popupWithСonfirmation.setEventListeners()
+
 // Добавляем готовую карточку в сетку
 function createCard (dataCards) {
   const card = new Card('#elements', dataCards, cardTemplate, () => {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
+  },
+  (card) => {
+    popupWithСonfirmation.open(() => {
+      console.log(dataCards._id)
+      api.deleteCard(dataCards._id)
+      card.handleDelete()
+      card.getCard(data).remove()
+    });
   })
   return card.getCard(data);
 };
@@ -67,11 +85,16 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
 // Рендер новой картички
 function renderCard(dataForm) {
     const cardData = { name: dataForm.name, link: dataForm.link };
-
-    api.addNewCard(cardData);
-    cardList.addItem(createCard(cardData));
-    creationFormValidator.resetPopupForm();
-    addCardPopup.close();
+    console.log(dataForm)
+    api.addNewCard(cardData)
+    .then((newCardData) => {
+      cardList.addItem(createCard(newCardData));
+      creationFormValidator.resetPopupForm();
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка при создании новой карточки: ${err}`)
+    })
 }
 
 // Класс PopupWithForm отвечает за редактирование профиля
@@ -113,23 +136,3 @@ async function handleProfileFormSubmit(newUserInfo) {
       popupEditProfile.renderLoading(false);
     })
   };
-
-// Получение массива карточек с сервера
-api.getInitialCards()
-  .then((res) => res.reverse()) // обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
-  .then((cards) => {
-    cardList.renderItems(cards);
-  }).catch((err) => console.log(`Ошибка: ${err}`))
-
-
-  // const _id = '6489713ca097ce0864fca12a'
-  // console.log(_id)
-  // api.deleteCard(_id)
-
-// // Удаление карточки с сервера
-// const popupWithСonfirmation = new PopupWithСonfirmation(confirmationPopup, () => {
-//   const _id = '64897ce9db90cf087c1ccbd6'
-//     api.deleteCard(_id)
-//     card.handleDelete()
-// })
-//   popupWithСonfirmation.setEventListeners()

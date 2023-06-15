@@ -9,12 +9,14 @@ class Card {
   #buttonTrash;
   #cardImage;
   #template;
+  #openDeletePopup;
   #handleCardClick;
 
-  constructor (containerSelector, data, cardTemplate, handleCardClick) {
+  constructor (containerSelector, data, cardTemplate, handleCardClick, openDeletePopup) {
     this.#container = containerSelector; // #elements
     this.#data = data;
     this.#ownerId = data.owner._id;
+    this.#openDeletePopup = openDeletePopup;
     this.#template = cardTemplate;
     this.#handleCardClick = handleCardClick;
     
@@ -44,9 +46,10 @@ class Card {
   #toggleLike = () => {
     this.#buttonLike.classList.toggle("elements-block__like-button_active");
   };
+
 // Удаление карточки
-  #handleDelete = () => {
-    this.#cardElement.remove();
+  handleDelete = () => {
+    this.#openDeletePopup(this)
   }
 
 // Доступность кнопки удаления
@@ -58,7 +61,7 @@ class Card {
 
 // Обработчики событий
   #setEventListeners () {
-    this.#buttonTrash.addEventListener('click', this.#handleDelete);
+    this.#buttonTrash.addEventListener('click', this.handleDelete);
     this.#buttonLike.addEventListener('click', this.#toggleLike);
     this.#cardImage.addEventListener('click', this.#handleCardClick);
   }

@@ -2,14 +2,15 @@ import Popup from './Popup.js'
 
 class PopupWithForm extends Popup {
   #submitButtonText;
-  #submitCallback;
+  _submitCallback;
   #submitButton;
   #formElement;
+  #template;
   #inputs;
   
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
-    this.#submitCallback = submitCallback;
+    this._submitCallback = submitCallback;
     this.#formElement = document.querySelector(popupSelector).querySelector('.popup__form');
     this.#inputs = this.#formElement.querySelectorAll('.popup__form-input');
     this.#submitButton = this.#formElement.querySelector('button[type="submit"]');
@@ -21,13 +22,14 @@ class PopupWithForm extends Popup {
     this.#inputs.forEach(input => {
       values[input.name] = input.value;
     });
-    console.log(values);
+    // console.log(values);
     return values;
   }
 
   #submitHandler = (evt) => {
     evt.preventDefault();
-    this.#submitCallback(this.#getInputValues());
+    this._submitCallback(this.#getInputValues());
+    super.close()
   }
 
   setEventListeners() {
