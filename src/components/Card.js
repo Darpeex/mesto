@@ -47,9 +47,14 @@ class Card {
     this.#buttonLike.classList.toggle("elements-block__like-button_active");
   };
 
-// Удаление карточки
-  handleDelete = () => {
+// Открытие попапа удаления карточки
+  openPopupDelete = () => {
     this.#openDeletePopup(this)
+  }
+
+// Удаление карточки
+  handleDeleteCard = () => {
+    this.#cardElement.remove()
   }
 
 // Доступность кнопки удаления
@@ -61,9 +66,9 @@ class Card {
 
 // Обработчики событий
   #setEventListeners () {
-    this.#buttonTrash.addEventListener('click', this.handleDelete);
     this.#buttonLike.addEventListener('click', this.#toggleLike);
     this.#cardImage.addEventListener('click', this.#handleCardClick);
+    this.#buttonTrash.addEventListener('click', this.openPopupDelete);
   }
 }
 

@@ -1,7 +1,6 @@
 import './index.css'; // Импорт главного файла стилей
 import {
   profileEditButton,
-  confirmationPopup,
   validationConfig,
   popupAddCardBtn,
   likesCounter,
@@ -71,8 +70,8 @@ function createCard (dataCards) {
     popupWithСonfirmation.open(() => {
       console.log(dataCards._id)
       api.deleteCard(dataCards._id)
-      card.handleDelete()
-      card.getCard(data).remove()
+      card.openPopupDelete()
+      card.handleDeleteCard()
     });
   })
   return card.getCard(data);
