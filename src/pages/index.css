@@ -69,6 +69,7 @@
 @import url(../blocks/popup/__button/_action/popup__button_action_create.css);
 @import url(../blocks/popup/__button/_action/popup__button_action_change.css);
 @import url(../blocks/popup/__button/_action/popup__button_action_close.css);
+@import url(../blocks/popup/__button/_action/popup__button_action_delete.css);
 
 @import url(../blocks/popup/__image-desription/popup__image-desription.css);
 @import url(../blocks/popup/__image-card/popup__image-card.css);

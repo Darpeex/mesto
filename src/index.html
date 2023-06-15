@@ -130,11 +130,13 @@
   </div>
   
   <!-- Попап подтверждения -->
-  <div id="confirationPopup" class="popup"> //popup_opened
+  <div id="confirationPopup" class="popup">
     <div class="popup__container">
       <h2 class="popup__title popup__title_padding-less">Вы уверены?</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
-      <button class="button popup__button popup__button_action_create" type="submit">Да</button>
+      <form id="popup__confirationPopup" class="popup__form popup__confirationPopup" name="form-popup" novalidate>
+        <button class="button popup__button popup__button_action_delete" type="submit">Да</button>
+      </form>
     </div>
   </div>
 
