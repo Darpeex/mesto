@@ -66,16 +66,18 @@ function createCard (dataCards) {
   },
   (card) => { // Открытие попапа подтверждения удаление карточки
     popupWithСonfirmation.open(() => {
-    card.openPopupDelete()
-    api.deleteCard(dataCards._id) // Удаление карточки с сервера
-      .then(() => {
-        card.handleDeleteCard() // Удаление карточки со страницы
-      })
-      .then(() => {
-        popupWithСonfirmation.close() // Закрытие попапа
-      })
-      .catch(err => console.log(`Ошибка при добавлении карточки в сетку: ${err}`))
-      })
+      card.openPopupDelete();
+      api.deleteCard(card.data._id) // Удаление карточки с сервера
+        .then(() => {
+          card.handleDeleteCard(); // Удаление карточки со страницы
+          popupWithСonfirmation.close(); // Закрытие попапа
+        })
+        .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+        .finally(() => {
+          popupWithСonfirmation.renderLoading(false);
+        });
+      popupWithСonfirmation.renderLoading(true, 'Удаление...');
+    });
   },
   (card) => { // Вычисление собственных лайков на странице
     if(card.isLiked) {

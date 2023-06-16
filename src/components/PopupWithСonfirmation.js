@@ -12,6 +12,10 @@ class PopupWithСonfirmation extends PopupWithForm {
     super.open()
     this._submitCallback = submitDelete;
   }
+
+  renderLoading(isLoading, text) {
+    super.renderLoading(isLoading, text);
+  }
 }
 
 export default PopupWithСonfirmation;
