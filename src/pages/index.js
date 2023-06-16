@@ -126,7 +126,6 @@ const userInfo = new UserInfo('.profile__name', '.profile__activity', '.profile_
 
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  console.log(userInfo.getUserInfo())
   const userData = userInfo.getUserInfo()
   nameInput.value = userData.name;
   jobInput.value = userData.about;
