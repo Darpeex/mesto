@@ -24,7 +24,7 @@
       <section class="profile page__profile-position section">
         <div class="profile__info">
           <div class="profile__avatar">
-            <img class="profile__avatar-image" src="" alt="Аватарка"> <!-- https://cbgd.ask.fm/694/26f2a/c61d/4cef/af6a/e05ba6c79ce6/original/975391.jpg -->
+            <img class="profile__avatar-image" src="<%=require('./images/avatar3.jpg')%>" alt="Аватарка"> <!-- https://cbgd.ask.fm/694/26f2a/c61d/4cef/af6a/e05ba6c79ce6/original/975391.jpg -->
             <button class="profile__avatar-button" type="button" aria-label="Обновить аватарку"></button>
           </div>
           <div class="profile__content">
@@ -148,14 +148,14 @@
       <form id="popup__updateAvatar" class="popup__form popup__updateAvatar" name="form-popup" novalidate>
         <input
           name="avatar"
-          id="link"
+           id="linkAvatar" 
           class="popup__form-input popup__form-input_field_avatar"
           placeholder="Ссылка на картинку"
           type="url"
           minlength="2"
           maxlength="200"
           required>
-          <span id="link-error" class="popup__form-input-error"></span>
+          <span id="linkAvatar-error" class="popup__form-input-error"></span> <!--Если всё сломается, было id="link" -->
           <button class="button popup__button popup__button_action_save popup__button_valid" type="submit">Сохранить</button>
       </form>
     </div>
