@@ -86,7 +86,7 @@ function createCard (dataCards) {
     .catch((err) => console.log(`Ошибка: ${err}`));
     }
   })
-  return card.getCard(data);
+  return card.getCard(data)
 };
 
 // Добавление новой карточки
@@ -112,20 +112,14 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity', '.profile__avatar-image');
 
-// // Установка данных пользователя с сервера на страницу
-function getUserInfo() {return api.getUserInfo()}
-
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  getUserInfo()
-    .then((userData) => {
-      nameInput.value = userData.name;
-      jobInput.value = userData.about;
-      popupEditProfile.open();
-    })
-    .catch((err) => {
-      console.log(`Ошибка при получении данных пользователя: ${err}`)
-    })
+  console.log(userInfo.getUserInfo())
+  const userData = userInfo.getUserInfo()
+  nameInput.value = userData.name;
+  jobInput.value = userData.about;
+  // avatarInput.value = userData.avatar; // Наверное, в этом попапе не нужно
+  popupEditProfile.open();
 };
 // Обработчик клика функции
 profileEditButton.addEventListener('click', openPopupEditProfile);
@@ -167,11 +161,11 @@ async function fetchAvatar(avatar) {
 }
 
 // Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
-Promise.all([getUserInfo(), api.getInitialCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData)
     avatarSrc.src = userData.avatar;
-    avatarInput.value = userData.avatar; // если нужно ссылку держать видимой в строке
+    avatarInput.value = userData.avatar;
     cardList.renderItems(cards.reverse());
   })
   .catch(err => console.log(`Ошибка: ${err}`))
