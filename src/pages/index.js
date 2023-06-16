@@ -59,13 +59,6 @@ popupAddCardBtn.addEventListener('click', () => {
   addCardPopup.open()
 });
 
-// Получение массива карточек с сервера
-api.getInitialCards()
-    .then((res) => res.reverse()) // Обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
-    .then((cards) => {
-      cardList.renderItems(cards);
-    }).catch((err) => console.log(`Ошибка: ${err}`))
-
 // Удаление карточки с сервера
 const popupWithСonfirmation = new PopupWithСonfirmation("#confirationPopup")
   popupWithСonfirmation.setEventListeners()
@@ -125,18 +118,10 @@ const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
 // // Установка данных пользователя с сервера на страницу
 function getUserIndo() {return api.getUserInfo()}
-const newUserData = getUserIndo()
-  newUserData
-  .then((userData) => {
-    userInfo.setUserInfo(userData)
-    avatarSrc.src = userData.avatar;
-    avatarInput.value = userData.avatar; // если нужно ссылку держать видимой в строке
-  }
-  ).catch ((err) => console.log(`Ошибка: ${err}`))
 
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  newUserData
+  getUserIndo()
     .then((userData) => {
       nameInput.value = userData.name;
       jobInput.value = userData.about;
@@ -163,7 +148,7 @@ async function handleProfileFormSubmit(newUserInfo) {
     })
   };
 
-// Обновление аватара
+// Экземпляр и открытие попапа обновления аватара
 const editAvatar = new PopupWithForm('#updateAvatar', fetchAvatar);
   editAvatar.setEventListeners();
 avatarUpdateButton.addEventListener('click', () => {
@@ -171,6 +156,7 @@ avatarUpdateButton.addEventListener('click', () => {
   editAvatar.open()
 })
 
+// Обновление данных аватара на сервере и странице
 async function fetchAvatar(avatar) {
   try {
     await api.editAvatar(avatar); // Отправляем данные на сервер
@@ -180,5 +166,14 @@ async function fetchAvatar(avatar) {
     console.log(`Ошибка: ${err}`);
   }
 }
+
+// Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
+Promise.all([getUserIndo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData)
+    avatarSrc.src = userData.avatar;
+    avatarInput.value = userData.avatar; // если нужно ссылку держать видимой в строке
+    cardList.renderItems(cards.reverse());
+  })
 
 // Простите за далеко несовершенный код
