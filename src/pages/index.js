@@ -77,7 +77,7 @@ function createCard (dataCards) {
       .catch(err => console.log(`Ошибка при добавлении карточки в сетку: ${err}`))
       })
   },
-  (card) => {
+  (card) => { // Вычисление собственных лайков на странице
     if(card.isLiked) {
     api.removeCardLike(card.data._id)
       .then ((data) => {
@@ -101,16 +101,20 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
 
 // Рендер новой картички
 function renderCard(dataForm) {
-    const cardData = { name: dataForm.name, link: dataForm.link };
-    api.addNewCard(cardData)
-      .then((newCardData) => {
-        cardList.addItem(createCard(newCardData));
-        creationFormValidator.resetPopupForm();
-        addCardPopup.close();
-      })
-      .catch((err) => {
-        console.log(`Ошибка при создании новой карточки: ${err}`)
-      })
+  const cardData = { name: dataForm.name, link: dataForm.link };
+  addCardPopup.renderLoading(true, 'Создание...');
+  api.addNewCard(cardData)
+    .then((newCardData) => {
+      cardList.addItem(createCard(newCardData));
+      creationFormValidator.resetPopupForm();
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка при создании новой карточки: ${err}`)
+    })
+    .finally (() => {
+      addCardPopup.renderLoading(false);
+    })
 }
 
 // Класс PopupWithForm отвечает за редактирование профиля
