@@ -43,10 +43,13 @@ export const data = {
   ownId: 'ad38272b325ba9a65b7d46aa' // идентификатор пользователя
 };
 
-// export const data = {name: '.elements-block__name', link: '.elements-block__image'}; // Данные name (имя) и link (ссылка на карточку) для полей
-// export const userData = {name: nameInput.textContent, about: jobInput.value}; // Попап добавления карточки
+export const avatarUpdateButton = document.querySelector(".profile__avatar-button"); // Кнопка обновления аватара
 export const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
+export const likeButton = cardTemplate.querySelector(".elements-block__like-button"); // Кнопка лайков
 export const confirmationPopup = document.querySelector("#confirationPopup"); // Попап подтверждения
+export const avatarForm = document.querySelector("#updateAvatar"); // Попап обновления аватарки
+export const ownerId = data.ownId; // мой идентификатор console.log(ownerId)
+export const avatarSrc = document.querySelector(data.avatar); // ссылка на аватарку профиля
 
 export const popupAddCard = document.querySelector('#addCard'); // Попап добавления карточки
 export const popupAddCardBtn = document.querySelector('.profile__button_action_add'); // Кнопка открытия попапа добавления карточки

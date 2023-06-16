@@ -1,5 +1,6 @@
 import './index.css'; // Импорт главного файла стилей
 import {
+  avatarUpdateButton,
   profileEditButton,
   validationConfig,
   popupAddCardBtn,
@@ -7,8 +8,12 @@ import {
   creationForm,
   cardTemplate,
   profileForm,
+  avatarForm,
+  likeButton,
   nameInput,
+  avatarSrc,
   jobInput,
+  ownerId,
   data
 } from "../utils/constants.js"
 import Api from "../components/Api.js";
@@ -32,8 +37,10 @@ const api = new Api ({
 // Проверка форм на валидность
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
 const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
+const avatarFormValidator = new FormValidator(validationConfig, avatarForm) // Экземпляр для формы обновления аватарки
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 // Класс PopupWithImage - открытие карточек
 const popupWithImage = new PopupWithImage('#openCard');
@@ -52,7 +59,7 @@ popupAddCardBtn.addEventListener('click', () => {
 
 // Получение массива карточек с сервера
 api.getInitialCards()
-    .then((res) => res.reverse()) // обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
+    .then((res) => res.reverse()) // Обращаем порядок массива карточек, затем через prepend метода addItem отрисовываем и добавляем новые вначало страницы
     .then((cards) => {
       cardList.renderItems(cards);
     }).catch((err) => console.log(`Ошибка: ${err}`))
@@ -63,16 +70,32 @@ const popupWithСonfirmation = new PopupWithСonfirmation("#confirationPopup")
 
 // Добавляем готовую карточку в сетку
 function createCard (dataCards) {
-  const card = new Card('#elements', dataCards, cardTemplate, () => {
+  const card = new Card(ownerId, dataCards, cardTemplate, () => {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   },
-  (card) => {
+  (card) => { // Открытие попапа подтверждения удаление карточки
     popupWithСonfirmation.open(() => {
-      console.log(dataCards._id)
-      api.deleteCard(dataCards._id)
-      card.openPopupDelete()
-      card.handleDeleteCard()
+      // console.log(dataCards._id)
+      api.deleteCard(dataCards._id) // Удаление карточки с сервера
+      card.openPopupDelete() 
+      card.handleDeleteCard() // Удаление карточки со страницы
     });
+  },
+  (card) => {
+    console.log(card.data)
+    if(card.isLiked) {
+      api.removeCardLike(card.data._id)
+      .then ((data) => {
+        card.updateLikes(data.likes)
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+    } else {
+      api.addCardLike(card.data._id)
+      .then((data) => {
+        card.updateLikes(data.likes)
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+    }
   })
   return card.getCard(data);
 };
@@ -84,7 +107,6 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
 // Рендер новой картички
 function renderCard(dataForm) {
     const cardData = { name: dataForm.name, link: dataForm.link };
-    console.log(dataForm)
     api.addNewCard(cardData)
     .then((newCardData) => {
       cardList.addItem(createCard(newCardData));
@@ -101,11 +123,15 @@ const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubm
   popupEditProfile.setEventListeners();
 const userInfo = new UserInfo('.profile__name', '.profile__activity');
 
-// Установка данных пользователя с сервера на страницу
-const newUserData = api.getUserInfo()
-  newUserData // Пока лучше не придумал
-    .then((userData) => (userInfo.setUserInfo(userData))
-    ).catch ((err) => console.log(`Ошибка: ${err}`))
+// // Установка данных пользователя с сервера на страницу
+function getUserIndo() {return api.getUserInfo()}
+const newUserData = getUserIndo()
+  newUserData
+  .then((userData) => {
+    userInfo.setUserInfo(userData)
+    avatarSrc.src = userData.avatar;
+  }
+  ).catch ((err) => console.log(`Ошибка: ${err}`))
 
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
@@ -135,3 +161,22 @@ async function handleProfileFormSubmit(newUserInfo) {
       popupEditProfile.renderLoading(false);
     })
   };
+
+// Обновление аватара
+const editAvatar = new PopupWithForm('#updateAvatar', fetchAvatar);
+  editAvatar.setEventListeners();
+avatarUpdateButton.addEventListener('click', () => {
+  editAvatar.open()
+})
+
+async function fetchAvatar(avatar) {
+  try {
+    await api.editAvatar(avatar); // Отправляем данные на сервер
+    const data = await getUserIndo(); // Получаем обновленные данные с сервера
+    avatarSrc.src = data.avatar; // Обновляем аватар на странице
+  } catch (err) {
+    console.log(`Ошибка: ${err}`);
+  }
+}
+
+// // Простите за далеко несовершенный код, отправляю, чтобы увидеть более явно ошибки и понять, что и как исправить

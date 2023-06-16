@@ -1,6 +1,5 @@
 // Создание класса Card
 class Card {
-  #container;
   #ownId;
   #ownerId;
   #data;
@@ -11,19 +10,26 @@ class Card {
   #template;
   #openDeletePopup;
   #handleCardClick;
+  #onLikeClick;
 
-  constructor (containerSelector, data, cardTemplate, handleCardClick, openDeletePopup) {
-    this.#container = containerSelector; // #elements
-    this.#data = data;
-    this.#ownerId = data.owner._id;
+  constructor (ownId, data, cardTemplate, handleCardClick, openDeletePopup, onLikeClick) {
+    this.data = data;
+    this.ownId = ownId;
+    this.#ownerId = this.data.owner._id;
+    this.likes = this.data.likes;
     this.#openDeletePopup = openDeletePopup;
     this.#template = cardTemplate;
-    this.#handleCardClick = handleCardClick;
     
     this.#cardElement = this.#template.cloneNode(true); // Клонируем данные темплейта
     this.#cardImage = this.#cardElement.querySelector(".elements-block__image"); // Блок  картинкой
-    this.#buttonLike = this.#cardElement.querySelector(".elements-block__like-button"); // Лайк
-    this.#buttonTrash = this.#cardElement.querySelector(".elements-block__delete-button"); // Мусор
+    this.#buttonLike = this.#cardElement.querySelector(".elements-block__like-button"); // Кнопка лайка
+    this.#buttonTrash = this.#cardElement.querySelector(".elements-block__delete-button"); // Мусор, удаление
+    this.likesCounter = this.#cardElement.querySelector(".elements-block__like-count"); // Счётчик лайков
+
+    this.handleLikeClick = this.handleLikeClick.bind(this)
+    this.onLikeClick = onLikeClick; // Функция постановки и снятия лайков
+    // console.log(this.likes)
+    // console.log(this.onLikeClick)
   }
 
 // Получаем данные карточки
@@ -38,14 +44,9 @@ class Card {
 // Создаём и возвращаем карточку из массива
   getCard(dataId) {
       this.#availabilityButtonDelete(dataId)
-      this.#getCardTemplate(this.#data)
+      this.#getCardTemplate(this.data)
     return this.#cardElement;
   }
-
-// Лайк карточки
-  #toggleLike = () => {
-    this.#buttonLike.classList.toggle("elements-block__like-button_active");
-  };
 
 // Открытие попапа удаления карточки
   openPopupDelete = () => {
@@ -64,9 +65,29 @@ class Card {
     }
   }
 
+// Лайк карточки
+  // #toggleLike = () => {
+  //   this.#buttonLike.classList.toggle("elements-block__like-button_active");
+  // };
+
+// ()_()
+  handleLikeClick() {
+    this.onLikeClick(this)
+  }
+
+// Обновление лайков
+  updateLikes(likes) {
+    this.likes = likes;
+    // console.log(this.ownId)
+    this.isLiked = this.likes.some((like) => like._id === this.ownId);
+    this.#buttonLike.classList.toggle('elements-block__like-button_active', this.isLiked);
+    this.likesCounter.textContent = this.likes.length;
+  }
+
 // Обработчики событий
   #setEventListeners () {
-    this.#buttonLike.addEventListener('click', this.#toggleLike);
+    // this.#buttonLike.addEventListener('click', this.#toggleLike);
+    this.#buttonLike.addEventListener('click', this.handleLikeClick);
     this.#cardImage.addEventListener('click', this.#handleCardClick);
     this.#buttonTrash.addEventListener('click', this.openPopupDelete);
   }

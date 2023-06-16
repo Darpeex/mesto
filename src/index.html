@@ -24,8 +24,8 @@
       <section class="profile page__profile-position section">
         <div class="profile__info">
           <div class="profile__avatar">
-            <!-- <img class="profile__avatar-image" src="" alt="Аватарка"> -->
-            <img class="profile__avatar-image" src="<%=require('./images/avatar2.jpg')%>" alt="Аватарка">
+            <img class="profile__avatar-image" src="" alt="Аватарка">.
+            <!-- <img class="profile__avatar-image" src="<%=require('./images/avatar2.jpg')%>" alt="Аватарка"> -->
             <button class="profile__avatar-button" type="button" aria-label="Обновить аватарку"></button>
           </div>
           <div class="profile__content">
@@ -136,12 +136,12 @@
       <h2 class="popup__title popup__title_padding-less">Вы уверены?</h2>
       <button class="popup__button popup__button_action_close" type="button" aria-label="Закрыть"></button>
       <form id="popup__confirationPopup" class="popup__form popup__confirationPopup" name="form-popup" novalidate>
-        <button class="button popup__button popup__button_action_delete" type="submit">Да</button>
+        <button class="button popup__button popup__button_action_delete popup__button_valid" type="submit">Да</button>
       </form>
     </div>
   </div>
 
-  <!-- Попап редактирования аватарки профиля-->
+  <!-- Попап обновления аватарки профиля-->
   <div id="updateAvatar" class="popup">
     <div class="popup__container">
       <h2 class="popup__title">Обновить аватар</h2>
