@@ -2,16 +2,13 @@ import './index.css'; // Импорт главного файла стилей
 import {
   avatarUpdateButton,
   profileEditButton,
-  avatarPopupForm,
   validationConfig,
   popupAddCardBtn,
-  likesCounter,
   creationForm,
   cardTemplate,
   profileForm,
   avatarInput,
   avatarForm,
-  likeButton,
   nameInput,
   avatarSrc,
   jobInput,
@@ -50,7 +47,6 @@ popupWithImage.setEventListeners();
 
 // Класс Section, отвечающий за отрисовку карточек на странице
 const cardList = new Section({ renderer: (item) => {
-  likesCounter.textContent = item.likes.length.toString();
   cardList.addItem(createCard(item))
 }}, "#elements")
 
@@ -70,24 +66,24 @@ function createCard (dataCards) {
   },
   (card) => { // Открытие попапа подтверждения удаление карточки
     popupWithСonfirmation.open(() => {
-      api.deleteCard(dataCards._id) // Удаление карточки с сервера
-      card.openPopupDelete() 
-      card.handleDeleteCard() // Удаление карточки со страницы
+    api.deleteCard(dataCards._id) // Удаление карточки с сервера
+    card.openPopupDelete() 
+    card.handleDeleteCard() // Удаление карточки со страницы
     });
   },
   (card) => {
     if(card.isLiked) {
       api.removeCardLike(card.data._id)
-      .then ((data) => {
-        card.updateLikes(data.likes)
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
+    .then ((data) => {
+      card.updateLikes(data.likes)
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`));
     } else {
       api.addCardLike(card.data._id)
-      .then((data) => {
-        card.updateLikes(data.likes)
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
+    .then((data) => {
+      card.updateLikes(data.likes)
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`));
     }
   })
   return card.getCard(data);
@@ -114,14 +110,14 @@ function renderCard(dataForm) {
 // Класс PopupWithForm отвечает за редактирование профиля
 const popupEditProfile = new PopupWithForm('#editProfile', handleProfileFormSubmit);
   popupEditProfile.setEventListeners();
-const userInfo = new UserInfo('.profile__name', '.profile__activity');
+const userInfo = new UserInfo('.profile__name', '.profile__activity', '.profile__avatar-image');
 
 // // Установка данных пользователя с сервера на страницу
-function getUserIndo() {return api.getUserInfo()}
+function getUserInfo() {return api.getUserInfo()}
 
 // Получение данных пользователя с сервера
 const openPopupEditProfile = function () {
-  getUserIndo()
+  getUserInfo()
     .then((userData) => {
       nameInput.value = userData.name;
       jobInput.value = userData.about;
@@ -141,9 +137,11 @@ async function handleProfileFormSubmit(newUserInfo) {
     .then((res) => {
       userInfo.setUserInfo(res);
       popupEditProfile.close();
-    }) .catch ((err) => {
-    console.log(`Ошибка при сохранении профиля: ${err}`);
-    }) .finally (() => {
+    })
+    .catch ((err) => {
+      console.log(`Ошибка при сохранении профиля: ${err}`);
+    })
+    .finally (() => {
       popupEditProfile.renderLoading(false);
     })
   };
@@ -160,20 +158,20 @@ avatarUpdateButton.addEventListener('click', () => {
 async function fetchAvatar(avatar) {
   try {
     await api.editAvatar(avatar); // Отправляем данные на сервер
-    const data = await getUserIndo(); // Получаем обновленные данные с сервера
+    const data = await getUserInfo(); // Получаем обновленные данные с сервера
     avatarSrc.src = data.avatar; // Обновляем аватар на странице
-  } catch (err) {
+  }
+  catch (err) {
     console.log(`Ошибка: ${err}`);
   }
 }
 
 // Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
-Promise.all([getUserIndo(), api.getInitialCards()])
+Promise.all([getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData)
     avatarSrc.src = userData.avatar;
     avatarInput.value = userData.avatar; // если нужно ссылку держать видимой в строке
     cardList.renderItems(cards.reverse());
   })
-
-// Простите за далеко несовершенный код
+  .catch(err => console.log(`Ошибка: ${err}`))
