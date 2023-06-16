@@ -129,7 +129,6 @@ const openPopupEditProfile = function () {
   const userData = userInfo.getUserInfo()
   nameInput.value = userData.name;
   jobInput.value = userData.about;
-  // avatarInput.value = userData.avatar; // Наверное, в этом попапе не нужно
   popupEditProfile.open();
 };
 // Обработчик клика функции
