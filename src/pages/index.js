@@ -65,36 +65,34 @@ function createCard (dataCards) {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   },
   (card) => { // Открытие попапа подтверждения удаление карточки
-    // popupEditProfile.renderLoading(true, 'Сохранение...');
     popupWithСonfirmation.open(() => {
     card.openPopupDelete()
     api.deleteCard(dataCards._id) // Удаление карточки с сервера
-    .then(() => {
-      card.handleDeleteCard() // Удаление карточки со страницы
-    })
-    .then(() => {
-      popupWithСonfirmation.close() // Закрытие попапа
-    })
-    .catch(err => console.log(`Ошибка при добавлении карточки в сетку: ${err}`))
-    })
-    // .finally;
+      .then(() => {
+        card.handleDeleteCard() // Удаление карточки со страницы
+      })
+      .then(() => {
+        popupWithСonfirmation.close() // Закрытие попапа
+      })
+      .catch(err => console.log(`Ошибка при добавлении карточки в сетку: ${err}`))
+      })
   },
   (card) => {
     if(card.isLiked) {
       api.removeCardLike(card.data._id)
-    .then ((data) => {
-      card.updateLikes(data.likes)
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`));
-    } else {
-      api.addCardLike(card.data._id)
-    .then((data) => {
-      card.updateLikes(data.likes)
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`));
-    }
+        .then ((data) => {
+          card.updateLikes(data.likes)
+        })
+        .catch((err) => console.log(`Ошибка: ${err}`));
+        } else {
+          api.addCardLike(card.data._id)
+        .then((data) => {
+          card.updateLikes(data.likes)
+        })
+        .catch((err) => console.log(`Ошибка: ${err}`));
+        }
   })
-  return card.getCard(data)
+    return card.getCard(data)
 };
 
 // Добавление новой карточки
@@ -105,14 +103,14 @@ const addCardPopup = new PopupWithForm('#addCard', renderCard);
 function renderCard(dataForm) {
     const cardData = { name: dataForm.name, link: dataForm.link };
     api.addNewCard(cardData)
-    .then((newCardData) => {
-      cardList.addItem(createCard(newCardData));
-      creationFormValidator.resetPopupForm();
-      addCardPopup.close();
-    })
-    .catch((err) => {
-      console.log(`Ошибка при создании новой карточки: ${err}`)
-    })
+      .then((newCardData) => {
+        cardList.addItem(createCard(newCardData));
+        creationFormValidator.resetPopupForm();
+        addCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка при создании новой карточки: ${err}`)
+      })
 }
 
 // Класс PopupWithForm отвечает за редактирование профиля
@@ -136,16 +134,16 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 async function handleProfileFormSubmit(newUserInfo) {
   popupEditProfile.renderLoading(true, 'Сохранение...');
     api.setUserInfo(newUserInfo)
-    .then((res) => {
-      userInfo.setUserInfo(res);
-      popupEditProfile.close();
-    })
-    .catch ((err) => {
-      console.log(`Ошибка при сохранении профиля: ${err}`);
-    })
-    .finally (() => {
-      popupEditProfile.renderLoading(false);
-    })
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupEditProfile.close();
+      })
+      .catch ((err) => {
+        console.log(`Ошибка при сохранении профиля: ${err}`);
+      })
+      .finally (() => {
+        popupEditProfile.renderLoading(false);
+      })
   };
 
 // Экземпляр и открытие попапа обновления аватара
@@ -164,7 +162,7 @@ async function fetchAvatar(avatar) {
     avatarSrc.src = data.avatar; // Обновляем аватар на странице
   }
   catch (err) {
-    console.log(`Ошибка: ${err}`);
+    console.log(`Ошибка обновления данных на сервере: ${err}`);
   }
 }
 
