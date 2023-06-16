@@ -79,18 +79,18 @@ function createCard (dataCards) {
   },
   (card) => {
     if(card.isLiked) {
-      api.removeCardLike(card.data._id)
-        .then ((data) => {
-          card.updateLikes(data.likes)
-        })
-        .catch((err) => console.log(`Ошибка: ${err}`));
-        } else {
-          api.addCardLike(card.data._id)
-        .then((data) => {
-          card.updateLikes(data.likes)
-        })
-        .catch((err) => console.log(`Ошибка: ${err}`));
-        }
+    api.removeCardLike(card.data._id)
+      .then ((data) => {
+        card.updateLikes(data.likes)
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+      } else {
+        api.addCardLike(card.data._id)
+      .then((data) => {
+        card.updateLikes(data.likes)
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+      }
   })
     return card.getCard(data)
 };
@@ -131,19 +131,19 @@ const openPopupEditProfile = function () {
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
 // Отправка формы с изменениями в профиле
-async function handleProfileFormSubmit(newUserInfo) {
+function handleProfileFormSubmit(newUserInfo) {
   popupEditProfile.renderLoading(true, 'Сохранение...');
-    api.setUserInfo(newUserInfo)
-      .then((res) => {
-        userInfo.setUserInfo(res);
-        popupEditProfile.close();
-      })
-      .catch ((err) => {
-        console.log(`Ошибка при сохранении профиля: ${err}`);
-      })
-      .finally (() => {
-        popupEditProfile.renderLoading(false);
-      })
+  api.setUserInfo(newUserInfo)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      popupEditProfile.close();
+    })
+    .catch ((err) => {
+      console.log(`Ошибка при сохранении профиля: ${err}`);
+    })
+    .finally (() => {
+      popupEditProfile.renderLoading(false);
+    })
   };
 
 // Экземпляр и открытие попапа обновления аватара
@@ -154,22 +154,29 @@ avatarUpdateButton.addEventListener('click', () => {
   editAvatar.open()
 })
 
-function getUserInfo() {return api.getUserInfo()}
-
-
+// Получаем данные пользователя с сервера
+function getUserInfo() {
+  return api.getUserInfo()
+}
 
 // Обновление данных аватара на сервере и странице
-async function fetchAvatar(avatar) {
-  try {
-    await api.editAvatar(avatar); // Отправляем данные на сервер
-    const data = await getUserInfo(); // Получаем обновленные данные с сервера
-    avatarSrc.src = data.avatar; // Обновляем аватар на странице
-    editAvatar.close()
-  }
-  catch (err) {
-    console.log(`Ошибка обновления данных на сервере: ${err}`);
-  }
-}
+function fetchAvatar(avatar) {
+  editAvatar.renderLoading(true, 'Сохранение...');
+  api.editAvatar(avatar) // Отправляем данные на сервер
+    .then(() => {
+      return getUserInfo(); // Получаем обновленные данные с сервера
+    })
+    .then((data) => {
+      avatarSrc.src = data.avatar; // Обновляем аватар на странице
+      editAvatar.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка обновления данных на сервере: ${err}`);
+    })
+    .finally (() => {
+      editAvatar.renderLoading(false);
+    });
+};
 
 // Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
 Promise.all([getUserInfo(), api.getInitialCards()])
