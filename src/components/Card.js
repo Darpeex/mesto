@@ -17,6 +17,7 @@ class Card {
     this.ownId = ownId;
     this.#ownerId = this.data.owner._id;
     this.likes = this.data.likes;
+    this.#handleCardClick = handleCardClick; // коллбек открытия карточки
     this.#openDeletePopup = openDeletePopup;
     this.#template = cardTemplate;
     
@@ -28,8 +29,6 @@ class Card {
 
     this.handleLikeClick = this.handleLikeClick.bind(this)
     this.onLikeClick = onLikeClick; // Функция постановки и снятия лайков
-    // console.log(this.likes)
-    // console.log(this.onLikeClick)
   }
 
 // Получаем данные карточки
@@ -65,10 +64,10 @@ class Card {
     }
   }
 
-// Лайк карточки
-  // #toggleLike = () => {
-  //   this.#buttonLike.classList.toggle("elements-block__like-button_active");
-  // };
+// // Лайк карточки
+//   #toggleLike = () => {
+//     this.#buttonLike.classList.toggle("elements-block__like-button_active");
+//   };
 
 // ()_()
   handleLikeClick() {
