@@ -27,7 +27,7 @@
 }
 
 @media screen and (max-width: 599px) {
-  .popup__button_action_create {
+  .popup__button_action_delete {
     min-height: 46px;
     font-size: 14px;
     line-height: calc(17 / 14);

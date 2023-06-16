@@ -1,4 +1,4 @@
-import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 class PopupWithСonfirmation extends PopupWithForm {
   _submitCallback;

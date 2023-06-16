@@ -68,7 +68,7 @@ class FormValidator {
   // Функция проверки форм
   enableValidation() {
     this.#validationForm.addEventListener("submit", (evt) => { // Навешиваем слушатель на передоваемую форму
-      evt.preventDefault(); // При subit предотвращаем тандартное действие
+      evt.preventDefault(); // При subit предотвращаем стандартное действие
     });
       this.#setEventListeners(); // Вызываем приватную функцию и т.д.
   }

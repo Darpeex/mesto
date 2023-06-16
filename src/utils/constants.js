@@ -4,6 +4,7 @@ export const profileEditButton = document.querySelector('.profile__button_action
 export const profileForm = document.querySelector('.popup__editForm'); // Форма попапа профиля
 export const nameInput = profileForm.querySelector('.popup__form-input_field_name'); // Поле формы попапа профиля для имени
 export const jobInput = profileForm.querySelector('.popup__form-input_field_activity'); // Поле формы попапа профиля для рода деятельности
+export const avatarInput = document.querySelector('.popup__form-input_field_avatar'); // Поле формы попапа аватара
 
 export const cardsContainer = document.querySelector("#elements"); // Контейнер, содержащий карточки
 export const cardTemplate = cardsContainer.querySelector('#template').content.querySelector('.elements-block'); // Темплейт и содержимое элемента
@@ -47,7 +48,8 @@ export const avatarUpdateButton = document.querySelector(".profile__avatar-butto
 export const likesCounter = cardTemplate.querySelector(".elements-block__like-count"); // Счётчик лайков
 export const likeButton = cardTemplate.querySelector(".elements-block__like-button"); // Кнопка лайков
 export const confirmationPopup = document.querySelector("#confirationPopup"); // Попап подтверждения
-export const avatarForm = document.querySelector("#updateAvatar"); // Попап обновления аватарки
+export const avatarForm = document.querySelector("#popup__updateAvatar"); // Попап обновления аватарки
+export const avatarPopupForm = document.querySelector("#updateAvatar"); // Попап обновления аватарки
 export const ownerId = data.ownId; // мой идентификатор console.log(ownerId)
 export const avatarSrc = document.querySelector(data.avatar); // ссылка на аватарку профиля
 

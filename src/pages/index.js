@@ -2,12 +2,14 @@ import './index.css'; // Импорт главного файла стилей
 import {
   avatarUpdateButton,
   profileEditButton,
+  avatarPopupForm,
   validationConfig,
   popupAddCardBtn,
   likesCounter,
   creationForm,
   cardTemplate,
   profileForm,
+  avatarInput,
   avatarForm,
   likeButton,
   nameInput,
@@ -75,7 +77,6 @@ function createCard (dataCards) {
   },
   (card) => { // Открытие попапа подтверждения удаление карточки
     popupWithСonfirmation.open(() => {
-      // console.log(dataCards._id)
       api.deleteCard(dataCards._id) // Удаление карточки с сервера
       card.openPopupDelete() 
       card.handleDeleteCard() // Удаление карточки со страницы
@@ -130,6 +131,7 @@ const newUserData = getUserIndo()
   .then((userData) => {
     userInfo.setUserInfo(userData)
     avatarSrc.src = userData.avatar;
+    avatarInput.value = userData.avatar; // если нужно ссылку держать видимой в строке
   }
   ).catch ((err) => console.log(`Ошибка: ${err}`))
 
@@ -166,6 +168,7 @@ async function handleProfileFormSubmit(newUserInfo) {
 const editAvatar = new PopupWithForm('#updateAvatar', fetchAvatar);
   editAvatar.setEventListeners();
 avatarUpdateButton.addEventListener('click', () => {
+  avatarFormValidator.resetPopupForm(); // Делаем кнопку неактивной
   editAvatar.open()
 })
 
@@ -179,4 +182,4 @@ async function fetchAvatar(avatar) {
   }
 }
 
-// // Простите за далеко несовершенный код, отправляю, чтобы увидеть более явно ошибки и понять, что и как исправить
+// Простите за далеко несовершенный код, отправляю, чтобы увидеть более явно ошибки и понять, что и как исправить
