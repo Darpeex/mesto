@@ -1,21 +1,19 @@
 import Popup from './Popup.js'
 
 class PopupWithImage extends Popup {
-  #openCard;
   #popupImage;
+  #popupSelector;
   #popupSubtitle;
 
-  constructor(openCard) {
-    super(openCard);
-    this.#openCard = document.querySelector(openCard);
-    this.#popupImage = this.#openCard.querySelector('.popup__image-card');
-    this.#popupSubtitle = this.#openCard.querySelector('.popup__image-subtitle');
+  constructor(popupSelector) {
+    super(popupSelector);
+    this.#popupSelector = document.querySelector(popupSelector);
+    this.#popupImage = this.#popupSelector.querySelector('.popup__image-card');
+    this.#popupSubtitle = this.#popupSelector.querySelector('.popup__image-subtitle');
   }
 
   // Открытие попапа с картинкой
   open({ name, link }) {
-    console.log(name)
-    console.log(link)
     this.#popupImage.src = link;
     this.#popupImage.alt = name;
     this.#popupSubtitle.textContent = name;

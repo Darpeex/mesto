@@ -49,8 +49,8 @@ class FormValidator {
   }
 
   // Проверка: есть ли невалидное поле
-  #hasInvalidInput(inputs) {
-    return inputs.some((input) => !input.validity.valid); // Возвращаем, если поле не валидно
+  #hasInvalidInput() {
+    return this.#formInputs.some((input) => !input.validity.valid); // Возвращаем, если поле не валидно
   }
 
   // Активная кнопка

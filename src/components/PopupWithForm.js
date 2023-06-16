@@ -5,7 +5,6 @@ class PopupWithForm extends Popup {
   _submitCallback;
   #submitButton;
   #formElement;
-  #template;
   #inputs;
   
   constructor(popupSelector, submitCallback) {
@@ -17,6 +16,7 @@ class PopupWithForm extends Popup {
     this.#submitButtonText = this.#submitButton.textContent;
   }
 
+// Считываем значения полей формы
   #getInputValues() {
     const values = {};
     this.#inputs.forEach(input => {
@@ -25,6 +25,13 @@ class PopupWithForm extends Popup {
     // console.log(values);
     return values;
   }
+
+// Устанавливаем значения в поля формы
+  setInputValues(inputValues) {
+    this.#inputs.forEach((input) => { 
+      input.value = inputValues[input.name]
+    })
+  } 
 
   #submitHandler = (evt) => {
     evt.preventDefault();
