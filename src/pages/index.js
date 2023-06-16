@@ -154,12 +154,17 @@ avatarUpdateButton.addEventListener('click', () => {
   editAvatar.open()
 })
 
+function getUserInfo() {return api.getUserInfo()}
+
+
+
 // Обновление данных аватара на сервере и странице
 async function fetchAvatar(avatar) {
   try {
     await api.editAvatar(avatar); // Отправляем данные на сервер
     const data = await getUserInfo(); // Получаем обновленные данные с сервера
     avatarSrc.src = data.avatar; // Обновляем аватар на странице
+    editAvatar.close()
   }
   catch (err) {
     console.log(`Ошибка обновления данных на сервере: ${err}`);
@@ -167,7 +172,7 @@ async function fetchAvatar(avatar) {
 }
 
 // Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
-Promise.all([api.getUserInfo(), api.getInitialCards()])
+Promise.all([getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData)
     avatarSrc.src = userData.avatar;
