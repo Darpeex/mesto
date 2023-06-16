@@ -35,7 +35,7 @@ const api = new Api ({
 
 // Проверка форм на валидность
 const profileFormValidator = new FormValidator(validationConfig, profileForm) // Экземляр для формы профиля
-const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления кнопки
+const creationFormValidator = new FormValidator(validationConfig, creationForm) // Экземпляр для формы добавления карточки
 const avatarFormValidator = new FormValidator(validationConfig, avatarForm) // Экземпляр для формы обновления аватарки
 profileFormValidator.enableValidation();
 creationFormValidator.enableValidation();
@@ -101,7 +101,7 @@ function createCard (dataCards) {
 const addCardPopup = new PopupWithForm('#addCard', renderCard);
   addCardPopup.setEventListeners();
 
-// Рендер новой картички
+// Рендер новой карточки
 function renderCard(dataForm) {
   const cardData = { name: dataForm.name, link: dataForm.link };
   addCardPopup.renderLoading(true, 'Создание...');
@@ -174,7 +174,7 @@ function fetchAvatar(avatar) {
     })
     .then((data) => {
       avatarSrc.src = data.avatar; // Обновляем аватар на странице
-      editAvatar.close();
+      editAvatar.close(); // Надо форму заресетить или так оставить?
     })
     .catch((err) => {
       console.log(`Ошибка обновления данных на сервере: ${err}`);

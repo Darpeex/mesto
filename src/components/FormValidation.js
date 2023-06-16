@@ -73,11 +73,11 @@ class FormValidator {
       this.#setEventListeners(); // Вызываем приватную функцию и т.д.
   }
 
-  // Очищаем поля при открытии
+  // Очищаем формы и делаем кнопку неактивной
   resetPopupForm() {
-    // this._inputList.forEach((input) => {
-    //   this._hideInputError(input)
-    // })
+    this.#formInputs.forEach((input) => {
+      input.value = ""; // Очищаем содержимое полей
+    })
     this.#disableButton();
   }
 }

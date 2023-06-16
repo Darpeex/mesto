@@ -45,7 +45,7 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this.#formElement.reset();
+    // this.#formElement.reset();
   }
   
   renderLoading(isLoading, text) {
