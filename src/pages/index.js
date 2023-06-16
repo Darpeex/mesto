@@ -65,11 +65,19 @@ function createCard (dataCards) {
     popupWithImage.open({ name: dataCards.name, link: dataCards.link })
   },
   (card) => { // Открытие попапа подтверждения удаление карточки
+    // popupEditProfile.renderLoading(true, 'Сохранение...');
     popupWithСonfirmation.open(() => {
+    card.openPopupDelete()
     api.deleteCard(dataCards._id) // Удаление карточки с сервера
-    card.openPopupDelete() 
-    card.handleDeleteCard() // Удаление карточки со страницы
-    });
+    .then(() => {
+      card.handleDeleteCard() // Удаление карточки со страницы
+    })
+    .then(() => {
+      popupWithСonfirmation.close() // Закрытие попапа
+    })
+    .catch(err => console.log(`Ошибка при добавлении карточки в сетку: ${err}`))
+    })
+    // .finally;
   },
   (card) => {
     if(card.isLiked) {
@@ -168,4 +176,4 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     avatarInput.value = userData.avatar;
     cardList.renderItems(cards.reverse());
   })
-  .catch(err => console.log(`Ошибка: ${err}`))
+  .catch(err => console.log(`Ошибка при получении данных с сервера: ${err}`))
