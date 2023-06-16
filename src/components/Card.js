@@ -1,24 +1,21 @@
 // Создание класса Card
 class Card {
-  #ownId;
   #ownerId;
-  #data;
-  #cardElement;
-  #buttonLike;
-  #buttonTrash;
-  #cardImage;
   #template;
+  #cardImage;
+  #buttonLike;
+  #cardElement;
+  #buttonTrash;
   #openDeletePopup;
   #handleCardClick;
-  #onLikeClick;
 
   constructor (ownId, data, cardTemplate, handleCardClick, openDeletePopup, onLikeClick) {
     this.data = data;
     this.ownId = ownId;
-    this.#ownerId = this.data.owner._id;
     this.likes = this.data.likes;
+    this.#ownerId = this.data.owner._id;
     this.#handleCardClick = handleCardClick; // коллбек открытия карточки
-    this.#openDeletePopup = openDeletePopup;
+    this.#openDeletePopup = openDeletePopup; // коллбек открытия попапа удаления
     this.#template = cardTemplate;
     
     this.#cardElement = this.#template.cloneNode(true); // Клонируем данные темплейта
@@ -44,6 +41,7 @@ class Card {
   getCard(dataId) {
       this.#availabilityButtonDelete(dataId)
       this.#getCardTemplate(this.data)
+      this.updateLikes(this.likes)
     return this.#cardElement;
   }
 
@@ -64,12 +62,7 @@ class Card {
     }
   }
 
-// // Лайк карточки
-//   #toggleLike = () => {
-//     this.#buttonLike.classList.toggle("elements-block__like-button_active");
-//   };
-
-// ()_()
+// Вызыв коллбека лайка
   handleLikeClick() {
     this.onLikeClick(this)
   }
@@ -77,7 +70,6 @@ class Card {
 // Обновление лайков
   updateLikes(likes) {
     this.likes = likes;
-    // console.log(this.ownId)
     this.isLiked = this.likes.some((like) => like._id === this.ownId);
     this.#buttonLike.classList.toggle('elements-block__like-button_active', this.isLiked);
     this.likesCounter.textContent = this.likes.length;
@@ -85,7 +77,6 @@ class Card {
 
 // Обработчики событий
   #setEventListeners () {
-    // this.#buttonLike.addEventListener('click', this.#toggleLike);
     this.#buttonLike.addEventListener('click', this.handleLikeClick);
     this.#cardImage.addEventListener('click', this.#handleCardClick);
     this.#buttonTrash.addEventListener('click', this.openPopupDelete);

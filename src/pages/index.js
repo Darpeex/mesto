@@ -83,7 +83,6 @@ function createCard (dataCards) {
     });
   },
   (card) => {
-    console.log(card.data)
     if(card.isLiked) {
       api.removeCardLike(card.data._id)
       .then ((data) => {
@@ -182,4 +181,4 @@ async function fetchAvatar(avatar) {
   }
 }
 
-// Простите за далеко несовершенный код, отправляю, чтобы увидеть более явно ошибки и понять, что и как исправить
+// Простите за далеко несовершенный код
