@@ -20,7 +20,7 @@ class UserInfo {
   setUserInfo(newUserData) {
     this.#profileNameElement.textContent = newUserData.name;
     this.#profileDescriptionElement.textContent = newUserData.about;
-    this.#profileAvatarElement.textContent = newUserData.avatar
+    this.#profileAvatarElement.src = newUserData.avatar;
   }
 }
 

@@ -171,8 +171,8 @@ function fetchAvatar(avatar) {
       return getUserInfo(); // Получаем обновленные данные с сервера
     })
     .then((data) => {
-      avatarSrc.src = data.avatar; // Обновляем аватар на странице
-      editAvatar.close(); // Надо форму заресетить или так оставить?
+      userInfo.setUserInfo(data) // Обновляем аватар на странице
+      editAvatar.close();
     })
     .catch((err) => {
       console.log(`Ошибка обновления данных на сервере: ${err}`);
@@ -185,9 +185,7 @@ function fetchAvatar(avatar) {
 // Промис с методом all выполнится только тогда, когда завершаться все промисы в первом массиве, т.е. данные придут с сервера
 Promise.all([getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData)
-    avatarSrc.src = userData.avatar;
-    avatarInput.value = userData.avatar;
+    userInfo.setUserInfo(userData);
     cardList.renderItems(cards.reverse());
   })
   .catch(err => console.log(`Ошибка при получении данных с сервера: ${err}`))
