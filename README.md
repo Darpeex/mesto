@@ -1,4 +1,4 @@
-# «Место» - проектная работа для [Яндекс.Практикум](https://practicum.yandex.ru/)
+# «Место» - проектная работа от [Яндекс.Практикум](https://practicum.yandex.ru/)
 
 ![Mesto Demo](/src/images/mesto.jpg)
 
