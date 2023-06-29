@@ -7,10 +7,8 @@ import {
   creationForm,
   cardTemplate,
   profileForm,
-  avatarInput,
   avatarForm,
   nameInput,
-  avatarSrc,
   jobInput,
   ownerId,
   data
